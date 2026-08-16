@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import { Button } from "@/components/Button";
 import {
   inquiryTypes,
   RETAIL_INQUIRY,
@@ -201,7 +200,7 @@ export default function ContactForm() {
           onChange={(event) => setField("inquiryType", event.target.value)}
           className={inputClasses}
         >
-          <option value="">Select an option…</option>
+          <option value="">Please select an option</option>
           {inquiryTypes.map((type) => (
             <option key={type} value={type}>
               {type}
@@ -275,6 +274,7 @@ export default function ContactForm() {
           id={fieldId("message")}
           rows={6}
           required
+          placeholder="How can we help?"
           value={form.message}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? `${fieldId("message")}-error` : undefined}
@@ -288,9 +288,19 @@ export default function ContactForm() {
         )}
       </div>
 
-      <Button type="submit" disabled={status === "submitting"}>
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="w-full cursor-pointer bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-60"
+      >
         {status === "submitting" ? "Sending…" : "Send Message"}
-      </Button>
+      </button>
+      <p className="text-sm text-navy/60">
+        <span className="text-red-700" aria-hidden="true">
+          *
+        </span>{" "}
+        Required field
+      </p>
     </form>
   );
 }

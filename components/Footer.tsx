@@ -1,46 +1,66 @@
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "@/components/Logo";
+import { MailIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
-const footerLinks = [
-  { label: "Product", href: "/product" },
+const infoLinks = [
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
+];
+
+const legalLinks = [
+  { label: "Patent", href: "/legal#patent" },
+  { label: "Privacy Policy", href: "/legal#privacy" },
   { label: "Legal & Privacy Policy", href: "/legal" },
 ];
+
+function SocialIcon({ label }: { label: string }) {
+  if (label === "Instagram") {
+    return (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+  if (label === "LinkedIn") {
+    return (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M4.5 3.5A1.75 1.75 0 1 1 4.5 7a1.75 1.75 0 0 1 0-3.5ZM3 9h3v12H3Zm6 0h2.8v1.7h.1c.4-.75 1.5-1.9 3.4-1.9 3 0 4.2 1.8 4.2 4.9V21h-3v-6.4c0-1.5-.4-2.6-1.8-2.6-1.5 0-2.2 1-2.2 2.6V21H9Z" />
+      </svg>
+    );
+  }
+  return <MailIcon size={18} />;
+}
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-navy-deep text-white">
-      <div className="mx-auto max-w-6xl px-6 py-16 sm:px-8">
-        <div className="grid gap-12 md:grid-cols-[2fr_1fr]">
+      <div className="mx-auto max-w-6xl px-6 py-14 sm:px-8">
+        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_auto_auto] md:gap-12">
           <div>
-            <p className="font-serif text-xl tracking-wide">
-              {siteConfig.logo.image ? (
-                <Image
-                  src={siteConfig.logo.image}
-                  alt={siteConfig.logo.alt}
-                  width={160}
-                  height={40}
-                />
-              ) : (
-                siteConfig.logo.text
-              )}
-            </p>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-mist">
+            <Link href="/" aria-label={`${siteConfig.brandName} — home`}>
+              <Logo onDark />
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-mist">
               {siteConfig.brandStatement}
-            </p>
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-mist/80">
-              {siteConfig.tagline}
             </p>
           </div>
 
-          <nav aria-label="Footer">
-            <ul className="space-y-3">
-              {footerLinks.map((item) => (
-                <li key={item.href}>
+          <p className="self-center text-sm leading-relaxed text-mist">
+            {siteConfig.footerMotto}
+          </p>
+
+          <nav aria-label="Info">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mist/70">
+              Info
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {infoLinks.map((item) => (
+                <li key={item.label}>
                   <Link
                     href={item.href}
                     className="text-sm text-mist transition-colors hover:text-white"
@@ -51,13 +71,56 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
+
+          <div className="flex flex-col justify-between gap-8">
+            <nav aria-label="Legal">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mist/70">
+                Legal
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {legalLinks.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-mist transition-colors hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <ul className="flex gap-3" aria-label="Social links">
+              {siteConfig.socialLinks.map((social) => (
+                <li key={social.label}>
+                  {social.href ? (
+                    <a
+                      href={social.href}
+                      aria-label={social.label}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-mist transition-colors hover:border-white hover:text-white"
+                    >
+                      <SocialIcon label={social.label} />
+                    </a>
+                  ) : (
+                    <span
+                      aria-label={`${social.label} (coming soon)`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-mist/50"
+                    >
+                      <SocialIcon label={social.label} />
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <div className="mt-14 border-t border-white/15 pt-8">
-          <p className="text-xs text-mist/80">{siteConfig.patent.shortNotice}</p>
-          <p className="mt-3 text-xs text-mist/80">
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-xs text-mist/80 sm:flex-row sm:items-center sm:justify-between">
+          <p>
             © {year} {siteConfig.copyrightHolder}. All rights reserved.
           </p>
+          <p>{siteConfig.patent.number ?? siteConfig.patent.shortNotice}</p>
         </div>
       </div>
     </footer>

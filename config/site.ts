@@ -7,35 +7,37 @@
  */
 
 export const siteConfig = {
-  /**
-   * The final company name has not been chosen yet.
-   * Replace this placeholder once branding is finalized.
-   */
-  brandName: "[BRAND NAME]",
+  /** Full brand name. */
+  brandName: "Easy Top Bed Sheet System",
+
+  /** Short brand name used in the wordmark. */
+  brandShort: "Easy Top",
+
+  /** Wordmark subtitle line. */
+  brandSubtitle: "Bed Sheet System",
 
   /** Core brand idea used across the site. */
   tagline: "Made for Real Life",
 
   /** Short brand statement used in the footer. */
   brandStatement:
-    "A two-part bed-sheet system with a fitted base that stays put and a removable top that comes off for washing.",
+    "The two-part bed sheet system that stays put—so you can change your sheets the easy way.",
+
+  /** Center footer line. */
+  footerMotto: "Patented innovation designed to make life easier—every day.",
 
   /**
-   * Logo configuration. The logo is currently a text placeholder.
-   * When a final logo is ready, set `logo.image` to its path in /public
-   * and components will use it instead of the text mark.
+   * Logo configuration. The wordmark is rendered from text plus an inline
+   * mark. When final logo artwork is ready, set `logo.image` to its path
+   * in /public and components will use it instead.
    */
   logo: {
-    text: "[BRAND NAME]",
     image: null as string | null,
-    alt: "[BRAND NAME] logo",
+    alt: "Easy Top Bed Sheet System logo",
   },
 
-  /**
-   * Placeholder contact email. Not a live inbox yet — replace once the
-   * real address exists.
-   */
-  email: "hello@example.com",
+  /** Contact email. */
+  email: "info@easytopbedding.com",
 
   /**
    * Placeholder base URL used for canonical URLs, Open Graph metadata,
@@ -43,17 +45,24 @@ export const siteConfig = {
    */
   baseUrl: "https://www.example.com",
 
+  /** Founder attribution shown on the About page. */
+  founder: {
+    name: "Staci Thomas",
+    title: "Founder & Inventor",
+  },
+
   /**
-   * Patent / intellectual property placeholders.
-   * Never publish an invented patent number — replace these strings only
-   * with information supplied after legal review.
+   * Patent / intellectual property configuration.
+   * `number` must remain null until real patent details are supplied by
+   * legal review — never publish an invented patent number.
    */
   patent: {
-    /** Short notice used in the footer. */
+    number: null as string | null,
+    /** Short notice used in the footer while `number` is null. */
     shortNotice: "Patent information available upon final legal review.",
-    /** Longer statement used on the Legal & Privacy Policy page. */
+    /** Statement used on the Legal & Privacy Policy page. */
     statement:
-      "The two-part bed-sheet system described on this website is the subject of patent protection. Specific patent details will be published here upon final legal review.",
+      "Easy Top Bed Sheet System and its products and designs are protected by U.S. patents and patents pending.",
   },
 
   /**
@@ -85,10 +94,13 @@ export const siteConfig = {
   /**
    * What's included in one set. Configurable in case packaging changes.
    */
-  whatsIncluded: ["1 fitted base", "1 removable top"],
+  whatsIncluded: [
+    { item: "1 Removable Top Sheet", note: null as string | null },
+    { item: "1 Fitted Base", note: "With secure elasticized pocket" },
+  ],
 
   /** Copyright holder shown in the footer. */
-  copyrightHolder: "[BRAND NAME]",
+  copyrightHolder: "Easy Top Bed Sheet System",
 
   /**
    * "Last Updated" date shown on the Legal & Privacy Policy page.
@@ -97,10 +109,14 @@ export const siteConfig = {
   legalLastUpdated: "August 16, 2026",
 
   /**
-   * Social links. None are in use yet; add entries here
-   * (e.g. { label: "Instagram", href: "https://..." }) when accounts exist.
+   * Social links rendered in the footer. Point these at real profiles
+   * once the accounts exist.
    */
-  socialLinks: [] as { label: string; href: string }[],
+  socialLinks: [
+    { label: "Instagram", href: null as string | null },
+    { label: "LinkedIn", href: null as string | null },
+    { label: "Email", href: "mailto:info@easytopbedding.com" as string | null },
+  ],
 } as const;
 
 /** Formatted pocket-depth range, e.g. `8"–22"`. */

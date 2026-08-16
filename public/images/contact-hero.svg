@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Placeholder image: Made bed with top sheet turned down">
+  <rect width="1200" height="900" fill="#faf7f1"/>
+  <rect x="1" y="1" width="1198" height="898" fill="none" stroke="#eae2d3" stroke-width="2"/>
+  <rect x="20" y="20" width="1160" height="860" fill="none" stroke="#56718f" stroke-width="1" stroke-dasharray="6 8" opacity="0.5"/>
+  <text x="600" y="416" text-anchor="middle" font-family="Georgia, serif" font-size="15" letter-spacing="5" fill="#56718f">PLACEHOLDER IMAGE</text>
+  <text x="600" y="456" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#1c2c44">Made bed with top sheet turned down</text>
+  <text x="600" y="496" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-style="italic" fill="#1c2c44" opacity="0.55">Final photography pending</text>
+</svg>

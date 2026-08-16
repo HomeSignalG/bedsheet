@@ -1,262 +1,292 @@
 import type { Metadata } from "next";
-import Hero from "@/components/Hero";
 import Section from "@/components/Section";
-import ImageCard from "@/components/ImageCard";
-import ProcessSteps from "@/components/ProcessSteps";
+import PatentBadge from "@/components/PatentBadge";
+import StepCards from "@/components/StepCards";
+import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
 import PlaceholderImage from "@/components/PlaceholderImage";
-import { ButtonLink } from "@/components/Button";
-import { pocketDepthProse, siteConfig } from "@/config/site";
+import ImageCard from "@/components/ImageCard";
+import { CheckIcon, DiamondIcon, FabricIcon, WashIcon } from "@/components/icons";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Product",
   description:
-    "Technical overview of the two-part bed-sheet system: removable washable top, secure fitted base, sizing from Twin through California King, and specifications.",
+    "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, fitting 8\"–22\" mattress depths.",
   alternates: { canonical: "/product" },
   openGraph: {
     title: `Product | ${siteConfig.brandName}`,
     description:
-      "Technical overview of the two-part bed-sheet system: removable washable top, secure fitted base, sizing from Twin through California King, and specifications.",
+      "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, fitting 8\"–22\" mattress depths.",
     url: "/product",
   },
 };
 
-const PENDING = "Final specification pending.";
+const heroChecklist = [
+  "Snaps on and off in seconds",
+  "Fitted base stays on your mattress",
+  "Engineered for all mattress depths",
+];
 
-const constructionDetails = [
+const featureCards = [
   {
-    src: "/images/construction-attachment.svg",
-    alt: "Placeholder for a close-up photo of the attachment mechanism",
-    title: "Attachment mechanism",
-    caption: `Secures the removable top to the fitted base and releases without lifting the mattress. ${PENDING}`,
+    title: "1. Secure Snap System",
+    src: "/images/feature-snap-system.svg",
+    alt: "Placeholder for a close-up photo of the snap fasteners along the sheet edge",
+    caption:
+      "Durable, low-profile snaps keep the top sheet perfectly in place—no shifting, no bunching.",
   },
   {
-    src: "/images/construction-top.svg",
-    alt: "Placeholder for a photo of the removable top construction",
-    title: "Removable top construction",
-    caption: `The washable sleeping surface, engineered to attach flat and stay smooth through the night. ${PENDING}`,
+    title: "2. Smooth, Low Profile",
+    src: "/images/feature-snap-profile.svg",
+    alt: "Placeholder for a close-up photo of the smooth low-profile snaps",
+    caption:
+      "Snaps are discreet and smooth so you won't feel them and they won't interfere with your comfort.",
   },
   {
-    src: "/images/construction-base.svg",
-    alt: "Placeholder for a photo of the fitted base",
-    title: "Fitted base",
-    caption: `Installs once and stays securely on the mattress between washes. ${PENDING}`,
+    title: "3. Deep, Secure Pocket",
+    src: "/images/feature-pocket.svg",
+    alt: "Placeholder for a photo of the fitted base pocket wrapped around a mattress corner",
+    caption:
+      "Deep pockets and elasticized edges keep the fitted base locked in, night after night.",
   },
   {
-    src: "/images/construction-corner.svg",
-    alt: "Placeholder for a close-up photo of the corner and retention construction",
-    title: "Corner / retention construction",
-    caption: `Designed to hold the base in place across a wide range of mattress depths. ${PENDING}`,
-  },
-  {
-    src: "/images/construction-seams.svg",
-    alt: "Placeholder for a close-up photo of seams and stitching",
-    title: "Seams / stitching",
-    caption: `Constructed for repeated washing and reattachment. ${PENDING}`,
-  },
-  {
-    src: "/images/construction-fabric.svg",
-    alt: "Placeholder for a close-up photo of the fabric",
-    title: "Fabric",
-    caption: `Fabric selection is under evaluation. ${PENDING}`,
+    title: "4. Quality Construction",
+    src: "/images/feature-construction.svg",
+    alt: "Placeholder for a close-up photo of the reinforced stitching",
+    caption:
+      "Reinforced stitching, premium fabrics, and durable hardware built to last through countless washes.",
   },
 ];
 
-const productDetailSections = [
+const detailStrip = [
   {
-    title: "Materials",
-    body: `Material selection for the removable top and fitted base is in progress. Fabric composition and thread specifications will be published once finalized. ${PENDING}`,
+    icon: <FabricIcon />,
+    title: "Premium Fabrics",
+    copy: "Soft, breathable, and durable fabrics for lasting comfort and performance.",
   },
   {
+    icon: <WashIcon />,
+    title: "Care Instructions",
+    copy: "Machine wash with like colors. Tumble dry low. Remove promptly.",
+  },
+  {
+    icon: null,
     title: "Colors",
-    body: `The launch color palette is being finalized. Colorways will be announced ahead of retail availability. ${PENDING}`,
+    copy: "Classic colors that fit every bedroom.",
   },
   {
-    title: "Care instructions",
-    body: `The removable top is designed to be machine-washed like a conventional sheet. Complete care instructions will accompany final fabric selection. ${PENDING}`,
-  },
-  {
-    title: "Packaging",
-    body: `Retail packaging is in development and will be designed for shelf and planogram requirements. ${PENDING}`,
-  },
-  {
-    title: "Product construction",
-    body: `Construction documentation — including attachment hardware, seam specifications, and durability testing — will be published as manufacturing details are finalized. ${PENDING}`,
-  },
-  {
-    title: "Patent",
-    body: siteConfig.patent.shortNotice,
-  },
-  {
-    title: "Retail-ready specifications",
-    body: `A complete retail specification sheet — including case-pack details and logistics information — will be available to buyers upon request once finalized. Buyer inquiries are welcome through our contact page. ${PENDING}`,
+    icon: <DiamondIcon />,
+    title: "Built to Last",
+    copy: "Premium materials and construction you can count on for years.",
   },
 ];
 
 export default function ProductPage() {
   return (
     <>
-      <Hero
-        background="white"
-        eyebrow="The product"
-        title="The two-part system that stays put."
-        copy="A removable, washable top attached to a secure fitted base. Easy attachment and removal, designed for a wide range of mattress depths — so changing the bed means changing one layer, not remaking the whole thing."
-        media={
-          <PlaceholderImage
-            src="/images/product-hero.svg"
-            alt="Clean isolated visual of the two-part sheet system: removable top and fitted base"
-            width={1200}
-            height={900}
-            priority
-          />
-        }
-      />
-
-      <Section background="ivory" labelledBy="system-overview">
-        <h2 id="system-overview" className="sr-only">
-          System overview
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              title: "Removable washable top",
-              body: "The sleeping surface detaches and machine-washes like a conventional sheet.",
-            },
-            {
-              title: "Secure fitted base",
-              body: "Stays installed on the mattress — no repeated removal and reinstallation.",
-            },
-            {
-              title: "Easy attachment / removal",
-              body: "Designed so the top releases and reattaches without lifting the mattress.",
-            },
-            {
-              title: "Wide depth range",
-              body: `One fit designed for mattresses ${pocketDepthProse()} deep.`,
-            },
-          ].map((item) => (
-            <div key={item.title} className="border border-mist bg-white p-8">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.18em]">
-                {item.title}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-navy/75">
-                {item.body}
-              </p>
+      {/* Hero */}
+      <section className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              The {siteConfig.brandShort} System
+            </p>
+            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl">
+              The two-part system that stays put.
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
+              A fitted base that stays on your mattress. A removable top sheet
+              that snaps on and off in seconds—so you can change your bed the
+              easy way.
+            </p>
+            <ul className="mt-7 space-y-3">
+              {heroChecklist.map((item) => (
+                <li key={item} className="flex items-center gap-3 text-navy">
+                  <span className="shrink-0 text-accent" aria-hidden="true">
+                    <CheckIcon />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <PatentBadge />
             </div>
-          ))}
+          </div>
+          <div>
+            <PlaceholderImage
+              src="/images/product-hero.svg"
+              alt="The removable top sheet lifted at one corner above the fitted base on a mattress"
+              width={1200}
+              height={900}
+              priority
+            />
+            <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+              <div className="border-l-2 border-accent pl-4">
+                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+                  Removable Top Sheet
+                </dt>
+                <dd className="mt-1 text-sm leading-relaxed text-navy/70">
+                  Soft, smooth, and easy to remove and wash.
+                </dd>
+              </div>
+              <div className="border-l-2 border-accent pl-4">
+                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+                  Fitted Base
+                </dt>
+                <dd className="mt-1 text-sm leading-relaxed text-navy/70">
+                  Stays securely on your mattress. All. The. Time.
+                </dd>
+              </div>
+            </dl>
+          </div>
         </div>
-      </Section>
+      </section>
 
-      <Section
-        background="white"
-        eyebrow="Construction details"
-        title="How it's built"
-        intro="Detailed construction documentation is being finalized alongside manufacturing. Where a specification is not yet locked, it is marked as pending."
-      >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {constructionDetails.map((detail) => (
-            <ImageCard key={detail.title} {...detail} />
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        background="ivory"
-        eyebrow="How it works"
-        title="Four steps, no mattress wrestling"
-      >
-        <ProcessSteps
-          steps={[
-            {
-              label: "Detach",
-              description: "Release the removable top from the fitted base.",
-            },
-            {
-              label: "Remove",
-              description: "Lift the sleeping surface away — the base stays on the mattress.",
-            },
-            {
-              label: "Wash",
-              description: "Machine-wash the top like any conventional sheet.",
-            },
-            {
-              label: "Reattach",
-              description: "Secure the clean top back onto the base. Done.",
-            },
-          ]}
-        />
-      </Section>
-
-      <Section
-        background="beige"
-        eyebrow="What's included"
-        title="In every set"
-      >
-        <ul className="grid max-w-2xl gap-4 sm:grid-cols-2">
-          {siteConfig.whatsIncluded.map((item) => (
-            <li
-              key={item}
-              className="border border-navy/15 bg-white p-6 text-center"
-            >
-              <span className="font-serif text-xl">{item}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm text-navy/60">
-          Packaging contents are subject to final configuration ahead of retail
-          launch.
-        </p>
-      </Section>
-
-      <Section
-        background="white"
-        eyebrow="Specifications"
-        title="Size & pocket depth"
-        intro={`Available ${siteConfig.sizeRange}. Every size is designed to fit mattresses ${pocketDepthProse()} deep.`}
-      >
-        <SpecTable />
-      </Section>
-
-      <Section
-        background="ivory"
-        eyebrow="Product details"
-        title="Documentation & specifications"
-        intro="The sections below reflect the current state of product development. Nothing here is final until it says so."
-      >
-        <div className="grid gap-6 md:grid-cols-2">
-          {productDetailSections.map((section) => (
-            <section
-              key={section.title}
-              aria-label={section.title}
-              className="border border-mist bg-white p-8"
-            >
-              <h3 className="text-sm font-semibold uppercase tracking-[0.18em]">
-                {section.title}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-navy/75">
-                {section.body}
-              </p>
-            </section>
-          ))}
-        </div>
-      </Section>
-
-      <Section background="navy" labelledBy="product-cta">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 id="product-cta" className="font-serif text-3xl md:text-4xl">
-            Questions about the product?
+      {/* Feature cards */}
+      <section id="features" aria-labelledby="features-heading" className="scroll-mt-24 bg-white px-6 py-20 sm:px-8">
+        <div className="mx-auto max-w-6xl">
+          <h2
+            id="features-heading"
+            className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+          >
+            Designed to Work Better
           </h2>
-          <p className="mt-5 leading-relaxed text-mist">
-            Retail buyers, distributors, media, and anyone curious about the
-            system can reach us through our contact page.
-          </p>
-          <div className="mt-8">
-            <ButtonLink href="/contact" variant="onDark">
-              Get in Touch
-            </ButtonLink>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {featureCards.map((card) => (
+              <ImageCard key={card.title} {...card} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Steps + What's included */}
+      <section aria-label="How it works and what's included" className="bg-ivory px-6 py-20 sm:px-8">
+        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
+          <div>
+            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
+              Change Your Top Sheet in Seconds
+            </h2>
+            <StepCards
+              steps={[
+                {
+                  label: "Unsnap",
+                  copy: "Release the snaps along the sides.",
+                  src: "/images/step-remove.svg",
+                  alt: "Placeholder for a photo of hands releasing the snaps",
+                },
+                {
+                  label: "Wash",
+                  copy: "Toss it in the wash and dry.",
+                  src: "/images/step-wash.svg",
+                  alt: "Placeholder for a photo of the top sheet in the wash",
+                },
+                {
+                  label: "Reattach",
+                  copy: "Snap on a clean top sheet. You're done.",
+                  src: "/images/step-reattach.svg",
+                  alt: "Placeholder for a photo of snapping on a clean top sheet",
+                },
+              ]}
+            />
+          </div>
+          <div>
+            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
+              What&rsquo;s Included
+            </h2>
+            <PlaceholderImage
+              src="/images/whats-included.svg"
+              alt="Placeholder for a photo of the folded top sheet stacked on the folded fitted base"
+              width={1000}
+              height={700}
+            />
+            <ul className="mt-6 space-y-4">
+              {siteConfig.whatsIncluded.map((entry) => (
+                <li key={entry.item} className="flex items-start gap-3">
+                  <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">
+                    <CheckIcon />
+                  </span>
+                  <div>
+                    <p className="font-medium text-navy">{entry.item}</p>
+                    {entry.note && (
+                      <p className="text-sm text-navy/60">({entry.note})</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-sm leading-relaxed text-navy/70">
+              Each set includes one fitted base and one removable top sheet.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Sizes & pocket depth */}
+      <Section background="white" labelledBy="spec-heading">
+        <h2
+          id="spec-heading"
+          className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+        >
+          Sizes &amp; Pocket Depth Compatibility
+        </h2>
+        <div className="grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
+          <SpecTable />
+          <div className="border border-mist bg-ivory p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+              Fits All Mattress Depths
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-navy/70">
+              Our universal pocket system is engineered to fit the full range
+              of mattress depths.
+            </p>
+            <PlaceholderImage
+              src="/images/depth-mattress.svg"
+              alt="Placeholder for a diagram of the pocket stretching over mattress depths"
+              width={800}
+              height={500}
+              className="mt-5"
+            />
+            <div className="mt-4 flex justify-between text-sm font-medium text-navy">
+              <span>{siteConfig.pocketDepth.min}&quot; MIN</span>
+              <span>{siteConfig.pocketDepth.max}&quot; MAX</span>
+            </div>
           </div>
         </div>
       </Section>
+
+      {/* Detail strip */}
+      <section aria-label="Materials, care, and colors" className="border-t border-mist bg-white px-6 py-14 sm:px-8">
+        <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {detailStrip.map((item) => (
+            <div key={item.title} className="flex items-start gap-4">
+              {item.icon ? (
+                <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">
+                  {item.icon}
+                </span>
+              ) : (
+                <span className="mt-1 flex shrink-0 gap-1.5" aria-hidden="true">
+                  <span className="h-6 w-6 border border-mist bg-ivory" />
+                  <span className="h-6 w-6 border border-mist bg-accent/70" />
+                  <span className="h-6 w-6 border border-mist bg-beige" />
+                </span>
+              )}
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy/70">{item.copy}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <CtaBand
+        title="Built for Retailers."
+        copy="A smarter bed sheet system your customers will love."
+      />
     </>
   );
 }
