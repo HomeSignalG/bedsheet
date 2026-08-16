@@ -6,7 +6,13 @@ import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
-import { CheckIcon, DiamondIcon, FabricIcon, WashIcon } from "@/components/icons";
+import {
+  CheckIcon,
+  CheckSolidIcon,
+  DiamondIcon,
+  FabricIcon,
+  WashIcon,
+} from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -82,12 +88,23 @@ const detailStrip = [
   },
 ];
 
+function HeroLabel({ title, copy }: { title: string; copy: string }) {
+  return (
+    <div className="border-l-2 border-navy pl-4">
+      <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+        {title}
+      </dt>
+      <dd className="mt-1 text-sm leading-relaxed text-navy/70">{copy}</dd>
+    </div>
+  );
+}
+
 export default function ProductPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      {/* Hero — photo bleeds to the top and right edges on large screens */}
+      <section className="relative bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
               The {siteConfig.brandShort} System
@@ -103,8 +120,8 @@ export default function ProductPage() {
             <ul className="mt-7 space-y-3">
               {heroChecklist.map((item) => (
                 <li key={item} className="flex items-center gap-3 text-navy">
-                  <span className="shrink-0 text-accent" aria-hidden="true">
-                    <CheckIcon />
+                  <span className="shrink-0 text-navy" aria-hidden="true">
+                    <CheckSolidIcon />
                   </span>
                   {item}
                 </li>
@@ -114,7 +131,8 @@ export default function ProductPage() {
               <PatentBadge />
             </div>
           </div>
-          <div>
+          {/* Contained image + labels on small screens */}
+          <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/product-hero.svg"
               alt="The removable top sheet lifted at one corner above the fitted base on a mattress"
@@ -123,24 +141,41 @@ export default function ProductPage() {
               priority
             />
             <dl className="mt-6 grid gap-6 sm:grid-cols-2">
-              <div className="border-l-2 border-accent pl-4">
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
-                  Removable Top Sheet
-                </dt>
-                <dd className="mt-1 text-sm leading-relaxed text-navy/70">
-                  Soft, smooth, and easy to remove and wash.
-                </dd>
-              </div>
-              <div className="border-l-2 border-accent pl-4">
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
-                  Fitted Base
-                </dt>
-                <dd className="mt-1 text-sm leading-relaxed text-navy/70">
-                  Stays securely on your mattress. All. The. Time.
-                </dd>
-              </div>
+              <HeroLabel
+                title="Removable Top Sheet"
+                copy="Soft, smooth, and easy to remove and wash."
+              />
+              <HeroLabel
+                title="Fitted Base"
+                copy="Stays securely on your mattress. All. The. Time."
+              />
             </dl>
           </div>
+        </div>
+        {/* Full-bleed photo with overlaid callouts on large screens */}
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
+          <PlaceholderImage
+            src="/placeholders/product-hero.svg"
+            alt="The removable top sheet lifted at one corner above the fitted base on a mattress"
+            width={1200}
+            height={900}
+            priority
+            className="h-full w-full rounded-none object-cover"
+          />
+          <dl>
+            <div className="absolute right-8 top-14 max-w-56">
+              <HeroLabel
+                title="Removable Top Sheet"
+                copy="Soft, smooth, and easy to remove and wash."
+              />
+            </div>
+            <div className="absolute bottom-16 right-8 max-w-56">
+              <HeroLabel
+                title="Fitted Base"
+                copy="Stays securely on your mattress. All. The. Time."
+              />
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -169,6 +204,7 @@ export default function ProductPage() {
               Change Your Top Sheet in Seconds
             </h2>
             <StepCards
+              layout="stacked"
               steps={[
                 {
                   label: "Unsnap",

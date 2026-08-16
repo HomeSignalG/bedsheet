@@ -45,9 +45,9 @@ const heroBenefits = [
 export default function ContactPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      {/* Hero — photo bleeds to the top and right edges on large screens */}
+      <section className="relative bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[520px] lg:grid-cols-2">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
               Contact Us
@@ -69,12 +69,24 @@ export default function ContactPage() {
               <BenefitStrip items={heroBenefits} />
             </div>
           </div>
+          <div className="lg:hidden">
+            <PlaceholderImage
+              src="/placeholders/contact-hero.svg"
+              alt="Placeholder for a photo of a made bed with the top sheet turned down"
+              width={1200}
+              height={900}
+              priority
+            />
+          </div>
+        </div>
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/contact-hero.svg"
             alt="Placeholder for a photo of a made bed with the top sheet turned down"
             width={1200}
             height={900}
             priority
+            className="h-full w-full rounded-none object-cover"
           />
         </div>
       </section>

@@ -25,9 +25,12 @@ const emptyForm: ContactFormData = {
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const inputClasses =
-  "w-full rounded-md border border-navy/25 bg-white px-4 py-3 text-navy placeholder:text-navy/40 focus:border-accent";
-const labelClasses = "mb-2 block text-sm font-medium text-navy";
+/* Labels sit inside the field border, per the design mockups. */
+const fieldBoxClasses =
+  "rounded-md border bg-white px-4 py-2.5 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/25";
+const boxLabelClasses = "block text-xs font-medium text-navy/70";
+const controlClasses =
+  "w-full border-0 bg-transparent p-0 pt-0.5 text-navy placeholder:text-navy/40 focus:outline-none";
 const errorClasses = "mt-2 text-sm text-red-700";
 
 export default function ContactForm() {
@@ -188,25 +191,31 @@ export default function ContactForm() {
       />
 
       <div>
-        <label htmlFor={fieldId("inquiryType")} className={labelClasses}>
-          Type of Inquiry <RequiredMark />
-        </label>
-        <select
-          id={fieldId("inquiryType")}
-          value={form.inquiryType}
-          required
-          aria-invalid={errors.inquiryType ? true : undefined}
-          aria-describedby={errors.inquiryType ? `${fieldId("inquiryType")}-error` : undefined}
-          onChange={(event) => setField("inquiryType", event.target.value)}
-          className={inputClasses}
+        <div
+          className={`${fieldBoxClasses} ${
+            errors.inquiryType ? "border-red-700/60" : "border-navy/25"
+          }`}
         >
-          <option value="">Please select an option</option>
-          {inquiryTypes.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
+          <label htmlFor={fieldId("inquiryType")} className={boxLabelClasses}>
+            Type of Inquiry <RequiredMark />
+          </label>
+          <select
+            id={fieldId("inquiryType")}
+            value={form.inquiryType}
+            required
+            aria-invalid={errors.inquiryType ? true : undefined}
+            aria-describedby={errors.inquiryType ? `${fieldId("inquiryType")}-error` : undefined}
+            onChange={(event) => setField("inquiryType", event.target.value)}
+            className={controlClasses}
+          >
+            <option value="">Please select an option</option>
+            {inquiryTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
         {errors.inquiryType && (
           <p id={`${fieldId("inquiryType")}-error`} className={errorClasses}>
             {errors.inquiryType}
@@ -267,20 +276,26 @@ export default function ContactForm() {
       />
 
       <div>
-        <label htmlFor={fieldId("message")} className={labelClasses}>
-          Message <RequiredMark />
-        </label>
-        <textarea
-          id={fieldId("message")}
-          rows={6}
-          required
-          placeholder="How can we help?"
-          value={form.message}
-          aria-invalid={errors.message ? true : undefined}
-          aria-describedby={errors.message ? `${fieldId("message")}-error` : undefined}
-          onChange={(event) => setField("message", event.target.value)}
-          className={inputClasses}
-        />
+        <div
+          className={`${fieldBoxClasses} ${
+            errors.message ? "border-red-700/60" : "border-navy/25"
+          }`}
+        >
+          <label htmlFor={fieldId("message")} className={boxLabelClasses}>
+            Message <RequiredMark />
+          </label>
+          <textarea
+            id={fieldId("message")}
+            rows={6}
+            required
+            placeholder="How can we help?"
+            value={form.message}
+            aria-invalid={errors.message ? true : undefined}
+            aria-describedby={errors.message ? `${fieldId("message")}-error` : undefined}
+            onChange={(event) => setField("message", event.target.value)}
+            className={`${controlClasses} resize-y`}
+          />
+        </div>
         {errors.message && (
           <p id={`${fieldId("message")}-error`} className={errorClasses}>
             {errors.message}
@@ -338,22 +353,28 @@ function TextField({
 }) {
   return (
     <div>
-      <label htmlFor={id} className={labelClasses}>
-        {label} {required && <RequiredMark />}
-      </label>
-      <input
-        id={id}
-        type={type}
-        value={value}
-        required={required}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        inputMode={inputMode}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? `${id}-error` : undefined}
-        onChange={(event) => onChange(event.target.value)}
-        className={inputClasses}
-      />
+      <div
+        className={`${fieldBoxClasses} ${
+          error ? "border-red-700/60" : "border-navy/25"
+        }`}
+      >
+        <label htmlFor={id} className={boxLabelClasses}>
+          {label} {required && <RequiredMark />}
+        </label>
+        <input
+          id={id}
+          type={type}
+          value={value}
+          required={required}
+          autoComplete={autoComplete}
+          placeholder={placeholder}
+          inputMode={inputMode}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          onChange={(event) => onChange(event.target.value)}
+          className={controlClasses}
+        />
+      </div>
       {error && (
         <p id={`${id}-error`} className={errorClasses}>
           {error}

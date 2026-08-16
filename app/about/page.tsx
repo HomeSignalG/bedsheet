@@ -105,9 +105,9 @@ const promiseChips = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      {/* Hero — photo bleeds to the top and right edges on large screens */}
+      <section className="relative bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
               About Us
@@ -130,12 +130,24 @@ export default function AboutPage() {
               <BenefitStrip items={heroBenefits} />
             </div>
           </div>
+          <div className="lg:hidden">
+            <PlaceholderImage
+              src="/placeholders/about-hero.svg"
+              alt="Placeholder for a photo of the founder seated on a made bed with the top sheet turned back"
+              width={1200}
+              height={900}
+              priority
+            />
+          </div>
+        </div>
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/about-hero.svg"
             alt="Placeholder for a photo of the founder seated on a made bed with the top sheet turned back"
             width={1200}
             height={900}
             priority
+            className="h-full w-full rounded-none object-cover"
           />
         </div>
       </section>
@@ -147,7 +159,7 @@ export default function AboutPage() {
         title="Born from a real problem."
         labelledBy="our-story"
       >
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr_1fr] lg:gap-8">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr_1.05fr] lg:gap-8">
           <div className="space-y-5 leading-relaxed text-navy/80">
             <p>
               After back surgery, our founder found that something as simple as
@@ -165,14 +177,15 @@ export default function AboutPage() {
             <p className="font-semibold text-navy">There had to be a better way.</p>
           </div>
 
-          <PlaceholderImage
-            src="/placeholders/about-problem.svg"
-            alt="Placeholder for a photo of someone straining to change a traditional fitted sheet"
-            width={800}
-            height={900}
-          />
-
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
+          {/* The problem: photo + list */}
+          <div className="flex gap-5">
+            <PlaceholderImage
+              src="/placeholders/about-problem.svg"
+              alt="Placeholder for a photo of someone straining to change a traditional fitted sheet"
+              width={800}
+              height={900}
+              className="max-w-[45%] rounded-lg object-cover"
+            />
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-red-800">
                 The Problem:
@@ -188,11 +201,25 @@ export default function AboutPage() {
                 ))}
               </ul>
             </div>
+          </div>
+
+          {/* The solution: photo + list, with connecting arrow */}
+          <div className="relative flex gap-5 lg:pl-6">
+            <span
+              className="absolute -left-7 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-mist bg-white text-navy shadow-sm lg:flex"
+              aria-hidden="true"
+            >
+              <ArrowRightIcon size={18} />
+            </span>
+            <PlaceholderImage
+              src="/placeholders/about-solution.svg"
+              alt="Placeholder for a photo of the Easy Top system on a neatly made bed"
+              width={800}
+              height={900}
+              className="max-w-[45%] rounded-lg object-cover"
+            />
             <div>
-              <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-emerald-800">
-                <span className="text-navy/40" aria-hidden="true">
-                  <ArrowRightIcon size={16} />
-                </span>
+              <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-emerald-800">
                 The Solution:
               </h3>
               <ul className="mt-4 space-y-3">
@@ -286,7 +313,7 @@ export default function AboutPage() {
                 <br />
                 This is our purpose.
               </p>
-              <p className="mt-6 font-serif text-2xl italic text-navy">
+              <p className="mt-6 font-script text-4xl text-navy">
                 {siteConfig.founder.name}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-navy/60">

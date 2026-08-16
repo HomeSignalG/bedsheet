@@ -233,6 +233,29 @@ export function CheckIcon({ size = 22 }: { size?: number }) {
   );
 }
 
+/** Filled navy check circle — hero checklists. */
+export function CheckSolidIcon({ size = 22 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 32 32"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <circle cx="16" cy="16" r="13" />
+      <path
+        d="m10.5 16.5 4 4 7-8"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 /** Plain checkmark — solution list. */
 export function CheckMarkIcon({ size = 18 }: { size?: number }) {
   return (

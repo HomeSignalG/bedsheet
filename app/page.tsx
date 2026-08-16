@@ -74,9 +74,9 @@ const lifestylePanels = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+      {/* Hero — photo bleeds to the top and right edges on large screens */}
+      <section className="relative bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
             <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl md:text-[3.4rem]">
               Change your sheets. Not your fitted base.
@@ -99,7 +99,8 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="relative">
+          {/* Contained image + badge on small screens */}
+          <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/home-hero.svg"
               alt="The removable top sheet turned back on a made bed, showing the snap edge"
@@ -107,9 +108,23 @@ export default function HomePage() {
               height={900}
               priority
             />
-            <div className="mt-4 lg:absolute lg:-bottom-6 lg:right-0 lg:mt-0 lg:max-w-xs">
+            <div className="mt-4">
               <PatentBadge />
             </div>
+          </div>
+        </div>
+        {/* Full-bleed photo on large screens */}
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
+          <PlaceholderImage
+            src="/placeholders/home-hero.svg"
+            alt="The removable top sheet turned back on a made bed, showing the snap edge"
+            width={1200}
+            height={900}
+            priority
+            className="h-full w-full rounded-none object-cover"
+          />
+          <div className="absolute bottom-10 left-0 max-w-xs -translate-x-1/4">
+            <PatentBadge />
           </div>
         </div>
       </section>
@@ -152,19 +167,21 @@ export default function HomePage() {
           {lifestylePanels.map((panel) => (
             <figure
               key={panel.title}
-              className="relative flex h-full flex-col overflow-hidden rounded-xl border border-mist bg-white"
+              className="relative aspect-[4/5] overflow-hidden rounded-xl border border-mist"
             >
-              <figcaption className="p-6">
-                <p className="font-serif text-xl text-navy">{panel.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-navy/70">{panel.copy}</p>
-              </figcaption>
               <PlaceholderImage
                 src={panel.src}
                 alt={panel.alt}
                 width={800}
                 height={600}
-                className="mt-auto rounded-none"
+                className="absolute inset-0 h-full w-full rounded-none object-cover"
               />
+              <figcaption className="absolute inset-x-0 top-0 p-6">
+                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">
+                  {panel.title}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-navy/75">{panel.copy}</p>
+              </figcaption>
               <span
                 className="absolute bottom-4 left-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
                 aria-hidden="true"

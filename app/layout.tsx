@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Dancing_Script, Inter, Playfair_Display } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,6 +13,12 @@ const heading = Playfair_Display({
 
 const body = Inter({
   variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const script = Dancing_Script({
+  variable: "--font-signature",
   subsets: ["latin"],
   display: "swap",
 });
@@ -37,7 +43,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${heading.variable} ${body.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${heading.variable} ${body.variable} ${script.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <a
           href="#main-content"

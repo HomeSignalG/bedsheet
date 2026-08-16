@@ -1,39 +1,58 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 
 /**
- * Numbered process steps — number + text beside an image, with arrow
- * separators ("Change your top sheet in seconds"), per the mockups.
+ * Numbered process steps with arrow separators.
+ * `row` (Home): number + text beside the image.
+ * `stacked` (Product): number badge on the image, text below.
  */
 export default function StepCards({
   steps,
+  layout = "row",
 }: {
   steps: { label: string; copy: string; src: string; alt: string }[];
+  layout?: "row" | "stacked";
 }) {
   return (
     <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
       {steps.map((step, index) => (
         <li key={step.label} className="relative">
-          <div className="grid grid-cols-[1fr_1.2fr] items-center gap-4">
+          {layout === "row" ? (
+            <div className="grid grid-cols-[1fr_1.2fr] items-center gap-4">
+              <div>
+                <StepNumber index={index} />
+                <h3 className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+                  {step.label}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy/70">{step.copy}</p>
+              </div>
+              <PlaceholderImage
+                src={step.src}
+                alt={step.alt}
+                width={800}
+                height={600}
+                className="rounded-lg"
+              />
+            </div>
+          ) : (
             <div>
-              <span
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white"
-                aria-hidden="true"
-              >
-                {index + 1}
-              </span>
-              <h3 className="mt-3 text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+              <div className="relative">
+                <PlaceholderImage
+                  src={step.src}
+                  alt={step.alt}
+                  width={800}
+                  height={600}
+                  className="rounded-lg"
+                />
+                <span className="absolute -left-2 -top-2" aria-hidden="true">
+                  <StepNumber index={index} />
+                </span>
+              </div>
+              <h3 className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-navy">
                 {step.label}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-navy/70">{step.copy}</p>
             </div>
-            <PlaceholderImage
-              src={step.src}
-              alt={step.alt}
-              width={800}
-              height={600}
-              className="rounded-lg"
-            />
-          </div>
+          )}
           {index < steps.length - 1 && (
             <span
               aria-hidden="true"
@@ -45,5 +64,16 @@ export default function StepCards({
         </li>
       ))}
     </ol>
+  );
+}
+
+function StepNumber({ index }: { index: number }) {
+  return (
+    <span
+      className="flex h-8 w-8 items-center justify-center rounded-full bg-navy text-sm font-semibold text-white"
+      aria-hidden="true"
+    >
+      {index + 1}
+    </span>
   );
 }
