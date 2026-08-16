@@ -275,7 +275,7 @@ export default function HomePage() {
       </section>
 
       <CtaBand
-        title="Built for Retailers."
+        title="Start a Retail Account"
         copy="A smarter bed sheet system your customers will love."
       />
     </>
