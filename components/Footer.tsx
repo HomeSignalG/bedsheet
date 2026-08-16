@@ -11,7 +11,6 @@ const infoLinks = [
 const legalLinks = [
   { label: "Patent", href: "/legal#patent" },
   { label: "Privacy Policy", href: "/legal#privacy" },
-  { label: "Legal & Privacy Policy", href: "/legal" },
 ];
 
 function SocialIcon({ label }: { label: string }) {
