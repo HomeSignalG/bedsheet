@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — premium bedding aesthetic */
+  --color-navy: #1c2c44; /* deep navy */
+  --color-navy-deep: #131f31; /* darker navy for footer / hover states */
+  --color-ivory: #faf7f1; /* warm ivory */
+  --color-beige: #eae2d3; /* soft beige */
+  --color-mist: #e8eaed; /* light neutral gray */
+  --color-accent: #56718f; /* restrained muted blue accent */
+
+  /* Typography */
+  --font-serif: var(--font-heading), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus states for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
