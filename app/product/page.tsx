@@ -253,7 +253,8 @@ export default function ProductPage() {
               ))}
             </ul>
             <p className="mt-5 text-sm leading-relaxed text-navy/70">
-              Each set includes one fitted base and one removable top sheet.
+              Each set includes one fitted base, one removable top sheet, and
+              two pillowcases.
             </p>
           </div>
         </div>
