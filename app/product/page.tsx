@@ -31,28 +31,28 @@ const heroChecklist = [
 const featureCards = [
   {
     title: "1. Secure Snap System",
-    src: "/images/feature-snap-system.svg",
+    src: "/placeholders/feature-snap-system.svg",
     alt: "Placeholder for a close-up photo of the snap fasteners along the sheet edge",
     caption:
       "Durable, low-profile snaps keep the top sheet perfectly in place—no shifting, no bunching.",
   },
   {
     title: "2. Smooth, Low Profile",
-    src: "/images/feature-snap-profile.svg",
+    src: "/placeholders/feature-snap-profile.svg",
     alt: "Placeholder for a close-up photo of the smooth low-profile snaps",
     caption:
       "Snaps are discreet and smooth so you won't feel them and they won't interfere with your comfort.",
   },
   {
     title: "3. Deep, Secure Pocket",
-    src: "/images/feature-pocket.svg",
+    src: "/placeholders/feature-pocket.svg",
     alt: "Placeholder for a photo of the fitted base pocket wrapped around a mattress corner",
     caption:
       "Deep pockets and elasticized edges keep the fitted base locked in, night after night.",
   },
   {
     title: "4. Quality Construction",
-    src: "/images/feature-construction.svg",
+    src: "/placeholders/feature-construction.svg",
     alt: "Placeholder for a close-up photo of the reinforced stitching",
     caption:
       "Reinforced stitching, premium fabrics, and durable hardware built to last through countless washes.",
@@ -86,7 +86,7 @@ export default function ProductPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
@@ -116,7 +116,7 @@ export default function ProductPage() {
           </div>
           <div>
             <PlaceholderImage
-              src="/images/product-hero.svg"
+              src="/placeholders/product-hero.svg"
               alt="The removable top sheet lifted at one corner above the fitted base on a mattress"
               width={1200}
               height={900}
@@ -173,19 +173,19 @@ export default function ProductPage() {
                 {
                   label: "Unsnap",
                   copy: "Release the snaps along the sides.",
-                  src: "/images/step-remove.svg",
+                  src: "/placeholders/step-remove.svg",
                   alt: "Placeholder for a photo of hands releasing the snaps",
                 },
                 {
                   label: "Wash",
                   copy: "Toss it in the wash and dry.",
-                  src: "/images/step-wash.svg",
+                  src: "/placeholders/step-wash.svg",
                   alt: "Placeholder for a photo of the top sheet in the wash",
                 },
                 {
                   label: "Reattach",
                   copy: "Snap on a clean top sheet. You're done.",
-                  src: "/images/step-reattach.svg",
+                  src: "/placeholders/step-reattach.svg",
                   alt: "Placeholder for a photo of snapping on a clean top sheet",
                 },
               ]}
@@ -196,7 +196,7 @@ export default function ProductPage() {
               What&rsquo;s Included
             </h2>
             <PlaceholderImage
-              src="/images/whats-included.svg"
+              src="/placeholders/whats-included.svg"
               alt="Placeholder for a photo of the folded top sheet stacked on the folded fitted base"
               width={1000}
               height={700}
@@ -233,7 +233,7 @@ export default function ProductPage() {
         </h2>
         <div className="grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
           <SpecTable />
-          <div className="border border-mist bg-ivory p-8">
+          <div className="rounded-xl border border-mist bg-ivory p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
               Fits All Mattress Depths
             </p>
@@ -242,7 +242,7 @@ export default function ProductPage() {
               of mattress depths.
             </p>
             <PlaceholderImage
-              src="/images/depth-mattress.svg"
+              src="/placeholders/depth-mattress.svg"
               alt="Placeholder for a diagram of the pocket stretching over mattress depths"
               width={800}
               height={500}

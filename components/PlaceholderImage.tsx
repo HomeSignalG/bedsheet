@@ -29,7 +29,7 @@ export default function PlaceholderImage({
       width={width}
       height={height}
       priority={priority}
-      className={`h-auto w-full border border-mist ${className}`}
+      className={`h-auto w-full ${className.includes("rounded") ? "" : "rounded-xl"} ${className}`}
     />
   );
 }

@@ -52,21 +52,21 @@ const lifestylePanels = [
     icon: <BackIcon />,
     title: "Easier on Your Back",
     copy: "Change the sleeping surface without wrestling with the mattress.",
-    src: "/images/lifestyle-ease.svg",
+    src: "/placeholders/lifestyle-ease.svg",
     alt: "Placeholder for a photo of someone easily changing the top sheet",
   },
   {
     icon: <ChildIcon />,
     title: "Easy Enough for Kids",
     copy: "Empower kids and teens to take ownership of their space. A 10-year-old can change the bed.",
-    src: "/images/lifestyle-kids.svg",
+    src: "/placeholders/lifestyle-kids.svg",
     alt: "Placeholder for a photo of a child around age ten changing their own bed",
   },
   {
     icon: <HouseIcon />,
     title: "Made for Real Life",
     copy: "Life happens. Messes happen. Laundry happens. We make it easier.",
-    src: "/images/lifestyle-household.svg",
+    src: "/placeholders/lifestyle-household.svg",
     alt: "Placeholder for a photo of a family household with a pet on the bed",
   },
 ];
@@ -75,7 +75,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
             <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl md:text-[3.4rem]">
@@ -92,7 +92,7 @@ export default function HomePage() {
             <div className="mt-9">
               <Link
                 href="/product"
-                className="inline-flex items-center gap-3 bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep"
+                className="inline-flex items-center gap-3 rounded-md bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep"
               >
                 Discover the Difference
                 <ArrowRightIcon />
@@ -101,7 +101,7 @@ export default function HomePage() {
           </div>
           <div className="relative">
             <PlaceholderImage
-              src="/images/home-hero.svg"
+              src="/placeholders/home-hero.svg"
               alt="The removable top sheet turned back on a made bed, showing the snap edge"
               width={1200}
               height={900}
@@ -115,7 +115,7 @@ export default function HomePage() {
       </section>
 
       {/* Three-step process */}
-      <Section background="white" labelledBy="steps-heading">
+      <Section background="ivory" labelledBy="steps-heading">
         <h2
           id="steps-heading"
           className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-navy"
@@ -127,19 +127,19 @@ export default function HomePage() {
             {
               label: "Remove",
               copy: "Unsnap the top sheet from the base.",
-              src: "/images/step-remove.svg",
+              src: "/placeholders/step-remove.svg",
               alt: "Placeholder for a photo of hands unsnapping the top sheet",
             },
             {
               label: "Wash",
               copy: "Toss it in the wash and dry.",
-              src: "/images/step-wash.svg",
+              src: "/placeholders/step-wash.svg",
               alt: "Placeholder for a photo of the top sheet going into the washing machine",
             },
             {
               label: "Reattach",
               copy: "Snap on a clean top sheet. You're done.",
-              src: "/images/step-reattach.svg",
+              src: "/placeholders/step-reattach.svg",
               alt: "Placeholder for a photo of hands snapping on a clean top sheet",
             },
           ]}
@@ -147,15 +147,24 @@ export default function HomePage() {
       </Section>
 
       {/* Lifestyle panels */}
-      <section aria-label="Everyday benefits" className="bg-ivory px-6 py-16 sm:px-8">
+      <section aria-label="Everyday benefits" className="bg-white px-6 py-16 sm:px-8">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {lifestylePanels.map((panel) => (
-            <figure key={panel.title} className="relative flex h-full flex-col bg-white">
-              <figcaption className="border border-b-0 border-mist p-6">
+            <figure
+              key={panel.title}
+              className="relative flex h-full flex-col overflow-hidden rounded-xl border border-mist bg-white"
+            >
+              <figcaption className="p-6">
                 <p className="font-serif text-xl text-navy">{panel.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-navy/70">{panel.copy}</p>
               </figcaption>
-              <PlaceholderImage src={panel.src} alt={panel.alt} width={800} height={600} />
+              <PlaceholderImage
+                src={panel.src}
+                alt={panel.alt}
+                width={800}
+                height={600}
+                className="mt-auto rounded-none"
+              />
               <span
                 className="absolute bottom-4 left-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
                 aria-hidden="true"
@@ -176,7 +185,7 @@ export default function HomePage() {
       >
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_320px]">
           <PlaceholderImage
-            src="/images/system-exploded.svg"
+            src="/placeholders/system-exploded.svg"
             alt="Exploded view showing the removable top sheet lifted above the fitted base on a mattress"
             width={1200}
             height={700}
@@ -236,7 +245,7 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-          <div className="border border-mist bg-beige/60 p-6">
+          <div className="rounded-xl border border-mist bg-white p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
               Pocket Depth
             </p>

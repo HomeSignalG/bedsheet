@@ -131,8 +131,8 @@ export default function LegalPage() {
         </div>
       </section>
 
-      <div className="bg-white px-6 py-16 sm:px-8">
-        <div className="mx-auto max-w-4xl border border-mist bg-white p-8 sm:p-12">
+      <div className="bg-ivory px-6 py-16 sm:px-8">
+        <div className="mx-auto max-w-4xl rounded-2xl bg-white p-8 shadow-sm sm:p-12">
           {/* Patent & IP */}
           <section id="patent" aria-labelledby="patent-heading" className="scroll-mt-24">
             <div className="flex items-start gap-5">

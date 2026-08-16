@@ -58,7 +58,7 @@ export default function Header() {
 
         <Link
           href="/contact"
-          className="hidden bg-navy px-6 py-3 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep lg:inline-block"
+          className="hidden rounded-md bg-navy px-6 py-3 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep lg:inline-block"
         >
           Retailer Inquiry
         </Link>
@@ -116,7 +116,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="block bg-navy px-6 py-3 text-center text-sm font-medium uppercase tracking-[0.14em] text-white"
+                className="block rounded-md bg-navy px-6 py-3 text-center text-sm font-medium uppercase tracking-[0.14em] text-white"
               >
                 Retailer Inquiry
               </Link>

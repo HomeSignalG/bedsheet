@@ -33,4 +33,3 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `promise-sheets.svg` | About promise | Folded Easy Top set |
 | `founder-portrait.svg` | About founder | Founder portrait |
 | `contact-hero.svg` | Contact hero | Made bed with top sheet turned down |
-| `construction-*.svg` | (reserve) | Earlier construction close-up slots |

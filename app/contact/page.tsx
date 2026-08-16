@@ -46,7 +46,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
@@ -70,7 +70,7 @@ export default function ContactPage() {
             </div>
           </div>
           <PlaceholderImage
-            src="/images/contact-hero.svg"
+            src="/placeholders/contact-hero.svg"
             alt="Placeholder for a photo of a made bed with the top sheet turned down"
             width={1200}
             height={900}
@@ -82,7 +82,7 @@ export default function ContactPage() {
       {/* Contact card + form */}
       <section aria-label="Contact form" className="bg-white px-6 py-16 sm:px-8">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[320px_1fr] lg:gap-14">
-          <aside className="h-fit border border-mist bg-ivory p-8 text-center">
+          <aside className="h-fit rounded-2xl border border-mist bg-ivory p-8 text-center">
             <span
               className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white"
               aria-hidden="true"
@@ -136,7 +136,7 @@ export default function ContactPage() {
 
       {/* Privacy banner */}
       <section aria-label="Privacy assurance" className="bg-white px-6 pb-16 sm:px-8">
-        <div className="mx-auto flex max-w-6xl items-start gap-5 border border-mist bg-ivory p-6">
+        <div className="mx-auto flex max-w-6xl items-start gap-5 rounded-xl border border-mist bg-ivory p-6">
           <span className="mt-0.5 shrink-0 text-navy" aria-hidden="true">
             <ShieldIcon />
           </span>

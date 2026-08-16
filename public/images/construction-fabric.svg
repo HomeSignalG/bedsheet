@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Placeholder image: Fabric">
-  <rect width="800" height="600" fill="#faf7f1"/>
-  <rect x="1" y="1" width="798" height="598" fill="none" stroke="#eae2d3" stroke-width="2"/>
-  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#56718f" stroke-width="1" stroke-dasharray="6 8" opacity="0.5"/>
-  <text x="400" y="256" text-anchor="middle" font-family="Georgia, serif" font-size="18" letter-spacing="6" fill="#56718f">PLACEHOLDER IMAGE</text>
-  <text x="400" y="308" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#1c2c44">Fabric</text>
-  <text x="400" y="356" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#1c2c44" opacity="0.55">Final photography pending</text>
-</svg>

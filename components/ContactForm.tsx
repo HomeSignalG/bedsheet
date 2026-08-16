@@ -26,7 +26,7 @@ const emptyForm: ContactFormData = {
 type Status = "idle" | "submitting" | "success" | "error";
 
 const inputClasses =
-  "w-full border border-navy/30 bg-white px-4 py-3 text-navy placeholder:text-navy/40 focus:border-accent";
+  "w-full rounded-md border border-navy/25 bg-white px-4 py-3 text-navy placeholder:text-navy/40 focus:border-accent";
 const labelClasses = "mb-2 block text-sm font-medium text-navy";
 const errorClasses = "mt-2 text-sm text-red-700";
 
@@ -291,7 +291,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full cursor-pointer bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full cursor-pointer rounded-md bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Message"}
       </button>

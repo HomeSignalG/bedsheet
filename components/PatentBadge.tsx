@@ -3,7 +3,7 @@ import { ShieldIcon } from "@/components/icons";
 /** "Patented system" callout card used on Home and Product heroes. */
 export default function PatentBadge() {
   return (
-    <div className="inline-flex items-start gap-4 border border-mist bg-white p-5">
+    <div className="inline-flex items-start gap-4 rounded-lg border border-mist bg-white p-5 shadow-sm">
       <span className="mt-0.5 shrink-0 text-navy" aria-hidden="true">
         <ShieldIcon />
       </span>

@@ -17,13 +17,15 @@ export default function CtaBand({
             <StoreIcon />
           </span>
           <div>
-            <h2 className="font-serif text-2xl tracking-wide md:text-3xl">{title}</h2>
+            <h2 className="text-xl font-bold uppercase tracking-[0.08em] md:text-2xl">
+              {title}
+            </h2>
             <p className="mt-2 max-w-xl leading-relaxed text-mist">{copy}</p>
           </div>
         </div>
         <Link
           href="/contact"
-          className="inline-flex shrink-0 items-center gap-3 border border-white px-8 py-3.5 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-navy"
+          className="inline-flex shrink-0 items-center gap-3 rounded-md border border-white px-8 py-3.5 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-navy"
         >
           Retailer Inquiry
           <ArrowRightIcon />

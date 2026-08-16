@@ -106,7 +106,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+      <section className="bg-white px-6 py-16 sm:px-8 md:py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
@@ -131,7 +131,7 @@ export default function AboutPage() {
             </div>
           </div>
           <PlaceholderImage
-            src="/images/about-hero.svg"
+            src="/placeholders/about-hero.svg"
             alt="Placeholder for a photo of the founder seated on a made bed with the top sheet turned back"
             width={1200}
             height={900}
@@ -142,7 +142,7 @@ export default function AboutPage() {
 
       {/* Our story: problem and solution */}
       <Section
-        background="white"
+        background="ivory"
         eyebrow="Our story"
         title="Born from a real problem."
         labelledBy="our-story"
@@ -166,7 +166,7 @@ export default function AboutPage() {
           </div>
 
           <PlaceholderImage
-            src="/images/about-problem.svg"
+            src="/placeholders/about-problem.svg"
             alt="Placeholder for a photo of someone straining to change a traditional fitted sheet"
             width={800}
             height={900}
@@ -209,7 +209,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <p className="mt-14 bg-ivory px-6 py-5 text-center text-lg leading-relaxed text-navy">
+        <p className="mt-14 rounded-lg bg-white px-6 py-5 text-center text-lg leading-relaxed text-navy">
           So we reimagined the bed sheet from the ground up—creating a system
           that stays put, and a top that comes off in seconds.
         </p>
@@ -263,7 +263,7 @@ export default function AboutPage() {
               </ul>
             </div>
             <PlaceholderImage
-              src="/images/promise-sheets.svg"
+              src="/placeholders/promise-sheets.svg"
               alt="Placeholder for a photo of the folded Easy Top set"
               width={900}
               height={700}
@@ -294,7 +294,7 @@ export default function AboutPage() {
               </p>
             </div>
             <PlaceholderImage
-              src="/images/founder-portrait.svg"
+              src="/placeholders/founder-portrait.svg"
               alt={`Placeholder for a portrait of ${siteConfig.founder.name}, founder and inventor`}
               width={700}
               height={800}
