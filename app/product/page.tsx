@@ -134,10 +134,10 @@ export default function ProductPage() {
           {/* Contained image + labels on small screens */}
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/product-hero.svg"
-              alt="The removable top sheet lifted at one corner above the fitted base on a mattress"
-              width={1200}
-              height={900}
+              src="/placeholders/product-hero.webp"
+              alt="The Easy Top system on a platform bed: light-blue fitted base and top sheet with a navy accent throw folded across the foot of the bed"
+              width={1402}
+              height={1122}
               priority
             />
             <dl className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -155,21 +155,21 @@ export default function ProductPage() {
         {/* Full-bleed photo with overlaid callouts on large screens */}
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/product-hero.svg"
-            alt="The removable top sheet lifted at one corner above the fitted base on a mattress"
-            width={1200}
-            height={900}
+            src="/placeholders/product-hero.webp"
+            alt="The Easy Top system on a platform bed: light-blue fitted base and top sheet with a navy accent throw folded across the foot of the bed"
+            width={1402}
+            height={1122}
             priority
             className="h-full w-full rounded-none object-cover"
           />
           <dl>
-            <div className="absolute right-8 top-14 max-w-56">
+            <div className="absolute right-8 top-14 max-w-56 rounded-lg bg-white/90 p-4 shadow-sm backdrop-blur-sm">
               <HeroLabel
                 title="Removable Top Sheet"
                 copy="Soft, smooth, and easy to remove and wash."
               />
             </div>
-            <div className="absolute bottom-16 right-8 max-w-56">
+            <div className="absolute bottom-16 right-8 max-w-56 rounded-lg bg-white/90 p-4 shadow-sm backdrop-blur-sm">
               <HeroLabel
                 title="Fitted Base"
                 copy="Stays securely on your mattress. All. The. Time."
