@@ -12,7 +12,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 
 | File | Used on | Depicts (final photo) |
 | --- | --- | --- |
-| `home-hero.svg` | Home hero | Removable top sheet turned back on a made bed |
+| `home-hero.webp` | Home hero | Final photo (in place): Easy Top on an upholstered bed |
 | `step-remove.svg` | Home + Product steps | Hands unsnapping the top sheet |
 | `step-wash.svg` | Home + Product steps | Top sheet going into the wash |
 | `step-reattach.svg` | Home + Product steps | Snapping on a clean top sheet |

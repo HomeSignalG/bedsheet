@@ -102,10 +102,10 @@ export default function HomePage() {
           {/* Contained image + badge on small screens */}
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/home-hero.svg"
-              alt="The removable top sheet turned back on a made bed, showing the snap edge"
-              width={1200}
-              height={900}
+              src="/placeholders/home-hero.webp"
+              alt="The Easy Top system on an upholstered bed: white top sheet turned back at the foot to show the snap fasteners on the fitted base"
+              width={1411}
+              height={1114}
               priority
             />
             <div className="mt-4">
@@ -116,10 +116,10 @@ export default function HomePage() {
         {/* Full-bleed photo on large screens */}
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/home-hero.svg"
-            alt="The removable top sheet turned back on a made bed, showing the snap edge"
-            width={1200}
-            height={900}
+            src="/placeholders/home-hero.webp"
+            alt="The Easy Top system on an upholstered bed: white top sheet turned back at the foot to show the snap fasteners on the fitted base"
+            width={1411}
+            height={1114}
             priority
             className="h-full w-full rounded-none object-cover"
           />
