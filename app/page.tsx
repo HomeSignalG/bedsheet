@@ -68,8 +68,8 @@ const lifestylePanels: {
     icon: <ChildIcon />,
     title: "Easy Enough for Kids",
     copy: "Empower kids and teens to take ownership of their space. A 10-year-old can change the bed.",
-    src: "/placeholders/lifestyle-kids.svg",
-    alt: "Placeholder for a photo of a child around age ten changing their own bed",
+    src: "/placeholders/kid-changing-bed.webp",
+    alt: "A boy smiling as he lifts the light-blue top sheet off the snap fasteners to change his own bed",
   },
   {
     icon: <HouseIcon />,
@@ -186,19 +186,20 @@ export default function HomePage() {
                 objectPosition={panel.objectPosition}
                 className="absolute inset-0 h-full w-full rounded-none object-cover"
               />
-              {/* Keeps the caption legible over photography */}
+              {/* Caption sits low, where these photos are plain sheet, so
+                  faces stay visible and the navy text keeps its contrast. */}
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white via-white/85 to-transparent"
+                className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/88 to-transparent"
               />
-              <figcaption className="absolute inset-x-0 top-0 p-6">
+              <figcaption className="absolute inset-x-0 bottom-0 p-6">
                 <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">
                   {panel.title}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-navy/75">{panel.copy}</p>
               </figcaption>
               <span
-                className="absolute bottom-4 left-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
+                className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
                 aria-hidden="true"
               >
                 {panel.icon}
