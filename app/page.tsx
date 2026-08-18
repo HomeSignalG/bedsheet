@@ -75,8 +75,9 @@ const lifestylePanels: {
     icon: <HouseIcon />,
     title: "Made for Real Life",
     copy: "Life happens. Messes happen. Laundry happens. We make it easier.",
-    src: "/placeholders/lifestyle-household.svg",
-    alt: "Placeholder for a photo of a family household with a pet on the bed",
+    src: "/placeholders/family-pet-bed.webp",
+    alt: "A girl hugging a golden retriever on a bed made up with the light-blue top sheet",
+    objectPosition: "center 38%",
   },
 ];
 
