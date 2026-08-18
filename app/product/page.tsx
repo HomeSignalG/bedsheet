@@ -134,7 +134,7 @@ export default function ProductPage() {
           {/* Contained image + labels on small screens */}
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/product-hero.webp"
+              src="/placeholders/bedroom-navy.webp"
               alt="The Easy Top system on a platform bed: light-blue fitted base and top sheet with a navy accent throw folded across the foot of the bed"
               width={1402}
               height={1122}
@@ -155,7 +155,7 @@ export default function ProductPage() {
         {/* Full-bleed photo with overlaid callouts on large screens */}
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/product-hero.webp"
+            src="/placeholders/bedroom-navy.webp"
             alt="The Easy Top system on a platform bed: light-blue fitted base and top sheet with a navy accent throw folded across the foot of the bed"
             width={1402}
             height={1122}

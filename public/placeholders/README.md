@@ -12,7 +12,8 @@ and lazy-loading behavior stays consistent when files are swapped.
 
 | File | Used on | Depicts (final photo) |
 | --- | --- | --- |
-| `home-hero.webp` | Home hero | Final photo (in place): Easy Top on an upholstered bed |
+| `bedroom-navy.webp` | Home hero + Product hero | Final photo (in place): Easy Top on a grey platform bed |
+| `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: Easy Top on a cream upholstered bed |
 | `step-remove.svg` | Home + Product steps | Hands unsnapping the top sheet |
 | `step-wash.svg` | Home + Product steps | Top sheet going into the wash |
 | `step-reattach.svg` | Home + Product steps | Snapping on a clean top sheet |

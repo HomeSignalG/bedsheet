@@ -102,10 +102,10 @@ export default function HomePage() {
           {/* Contained image + badge on small screens */}
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/home-hero.webp"
-              alt="The Easy Top system on an upholstered bed: white top sheet turned back at the foot to show the snap fasteners on the fitted base"
-              width={1411}
-              height={1114}
+              src="/placeholders/bedroom-navy.webp"
+              alt="The Easy Top system on a grey platform bed: light-blue fitted base and top sheet with a navy throw folded across the foot"
+              width={1402}
+              height={1122}
               priority
             />
             <div className="mt-4">
@@ -116,10 +116,10 @@ export default function HomePage() {
         {/* Full-bleed photo on large screens */}
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/home-hero.webp"
-            alt="The Easy Top system on an upholstered bed: white top sheet turned back at the foot to show the snap fasteners on the fitted base"
-            width={1411}
-            height={1114}
+            src="/placeholders/bedroom-navy.webp"
+            alt="The Easy Top system on a grey platform bed: light-blue fitted base and top sheet with a navy throw folded across the foot"
+            width={1402}
+            height={1122}
             priority
             className="h-full w-full rounded-none object-cover"
           />
