@@ -17,7 +17,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `step-remove.svg` | Home + Product steps | Hands unsnapping the top sheet |
 | `step-wash.svg` | Home + Product steps | Top sheet going into the wash |
 | `step-reattach.svg` | Home + Product steps | Snapping on a clean top sheet |
-| `lifestyle-ease.svg` | Home lifestyle | Easily changing the top sheet |
+| `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
 | `lifestyle-kids.svg` | Home lifestyle | A child (~age 10) changing their own bed |
 | `lifestyle-household.svg` | Home lifestyle | Family household with a pet on the bed |
 | `system-exploded.svg` | Home | Exploded view: top sheet above fitted base |

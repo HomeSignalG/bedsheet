@@ -47,13 +47,22 @@ const heroBenefits = [
   },
 ];
 
-const lifestylePanels = [
+const lifestylePanels: {
+  icon: React.ReactNode;
+  title: string;
+  copy: string;
+  src: string;
+  alt: string;
+  /** Crop focus for landscape photos in the portrait panel. */
+  objectPosition?: string;
+}[] = [
   {
     icon: <BackIcon />,
     title: "Easier on Your Back",
     copy: "Change the sleeping surface without wrestling with the mattress.",
-    src: "/placeholders/lifestyle-ease.svg",
-    alt: "Placeholder for a photo of someone easily changing the top sheet",
+    src: "/placeholders/top-sheet-peel-back.webp",
+    alt: "A woman lifting the corner of the light-blue top sheet away from the snap fasteners on the fitted base",
+    objectPosition: "70% center",
   },
   {
     icon: <ChildIcon />,
@@ -167,14 +176,20 @@ export default function HomePage() {
           {lifestylePanels.map((panel) => (
             <figure
               key={panel.title}
-              className="relative aspect-[4/5] overflow-hidden rounded-xl border border-mist"
+              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mist"
             >
               <PlaceholderImage
                 src={panel.src}
                 alt={panel.alt}
                 width={800}
                 height={600}
+                objectPosition={panel.objectPosition}
                 className="absolute inset-0 h-full w-full rounded-none object-cover"
+              />
+              {/* Keeps the caption legible over photography */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white via-white/85 to-transparent"
               />
               <figcaption className="absolute inset-x-0 top-0 p-6">
                 <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">

@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 /**
- * Renders a clearly labeled placeholder image from /public/images.
- * All placeholder assets live in that directory so final photography can
- * be dropped in by replacing files (or updating the `src` paths) without
- * changing page code.
+ * Renders an image from /public/placeholders — either final photography
+ * or a clearly labeled placeholder block. Keeping every asset in that one
+ * directory means final photos can be dropped in by updating the `src`
+ * path, without touching layout code.
  */
 export default function PlaceholderImage({
   src,
@@ -12,6 +12,7 @@ export default function PlaceholderImage({
   width,
   height,
   priority = false,
+  objectPosition,
   className = "",
 }: {
   src: string;
@@ -20,6 +21,8 @@ export default function PlaceholderImage({
   height: number;
   /** Set for above-the-fold images; everything else lazy-loads. */
   priority?: boolean;
+  /** Crop focus when the image is cover-fitted into a fixed aspect box. */
+  objectPosition?: string;
   className?: string;
 }) {
   return (
@@ -29,6 +32,7 @@ export default function PlaceholderImage({
       width={width}
       height={height}
       priority={priority}
+      style={objectPosition ? { objectPosition } : undefined}
       className={`h-auto w-full ${className.includes("rounded") ? "" : "rounded-xl"} ${className}`}
     />
   );
