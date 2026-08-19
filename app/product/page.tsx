@@ -44,8 +44,8 @@ const featureCards = [
   },
   {
     title: "2. Smooth, Low Profile",
-    src: "/placeholders/feature-snap-profile.svg",
-    alt: "Placeholder for a close-up photo of the smooth low-profile snaps",
+    src: "/placeholders/snap-low-profile.webp",
+    alt: "Raking close-up of a single low-profile snap sitting almost flush with the sheet surface",
     caption:
       "Snaps are discreet and smooth so you won't feel them and they won't interfere with your comfort.",
   },

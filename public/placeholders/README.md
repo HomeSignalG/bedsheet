@@ -24,7 +24,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `system-diagram.webp` | Home two-part system | Final diagram (in place). Carries its own heading, copy and TOP SHEET / FITTED BASE / MATTRESS labels, so the page renders that text screen-reader-only instead of on screen. |
 | `product-hero.svg` | Product hero | Top sheet lifted at one corner above the base |
 | `snap-system-taupe.webp` | Product feature card 1 (Secure Snap System) | Final photo (in place): snap stud and socket in taupe. Natural aspect, uncropped. |
-| `feature-snap-profile.svg` | Product features | Smooth low-profile snaps close-up |
+| `snap-low-profile.webp` | Product feature card 2 (Smooth, Low Profile) | Final photo (in place): single snap at a raking angle showing how flush it sits. |
 | `feature-pocket.svg` | Product features | Fitted base pocket on a mattress corner |
 | `feature-construction.svg` | Product features | Reinforced stitching close-up |
 | `whats-included.svg` | Product | Folded top sheet stacked on folded base |
