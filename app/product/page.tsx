@@ -134,10 +134,10 @@ export default function ProductPage() {
           {/* Contained image + labels on small screens */}
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/bedroom-navy.webp"
-              alt="The Easy Top system on a platform bed: light-blue fitted base and top sheet with a navy accent throw folded across the foot of the bed"
-              width={1402}
-              height={1122}
+              src="/placeholders/bedroom-warm.webp"
+              alt="The Easy Top system on an upholstered bed: white fitted base and top sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+              width={1536}
+              height={1024}
               priority
             />
             <dl className="mt-6 grid gap-6 sm:grid-cols-2">
@@ -155,10 +155,10 @@ export default function ProductPage() {
         {/* Full-bleed photo with overlaid callouts on large screens */}
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/bedroom-navy.webp"
-            alt="The Easy Top system on a platform bed: light-blue fitted base and top sheet with a navy accent throw folded across the foot of the bed"
-            width={1402}
-            height={1122}
+            src="/placeholders/bedroom-warm.webp"
+            alt="The Easy Top system on an upholstered bed: white fitted base and top sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+            width={1536}
+            height={1024}
             priority
             className="h-full w-full rounded-none object-cover"
           />

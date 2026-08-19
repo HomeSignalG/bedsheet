@@ -12,7 +12,8 @@ and lazy-loading behavior stays consistent when files are swapped.
 
 | File | Used on | Depicts (final photo) |
 | --- | --- | --- |
-| `bedroom-navy.webp` | Home hero + Product hero | Final photo (in place): Easy Top on a grey platform bed |
+| `bedroom-navy.webp` | Home hero | Final photo (in place): Easy Top on a grey platform bed |
+| `bedroom-warm.webp` | Product hero | Final photo (in place): Easy Top on a warm upholstered bed, snaps visible along the sheet edge |
 | `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: Easy Top on a cream upholstered bed |
 | `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
 | `wash-basket.webp` | Home + Product "Wash" step | Photo in place, but only 150x120px — soft at render size and clearly blurry on high-DPI screens. Replace with a full-resolution original (1200px wide or more) when available. |
