@@ -20,7 +20,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
 | `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) | Final photo (in place): a boy changing his own bed |
 | `family-pet-bed.webp` | Home lifestyle (Made for Real Life) | Final photo (in place): girl and dog on the bed. Supplied with the heading, copy and icon baked into a left-hand column; that column was cropped off so the page renders its own live text. |
-| `system-exploded.svg` | Home | Exploded view: top sheet above fitted base |
+| `system-diagram.webp` | Home two-part system | Final diagram (in place). Carries its own heading, copy and TOP SHEET / FITTED BASE / MATTRESS labels, so the page renders that text screen-reader-only instead of on screen. |
 | `product-hero.svg` | Product hero | Top sheet lifted at one corner above the base |
 | `feature-snap-system.svg` | Product features | Snap fasteners along the sheet edge |
 | `feature-snap-profile.svg` | Product features | Smooth low-profile snaps close-up |

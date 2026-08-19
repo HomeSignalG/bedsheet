@@ -210,39 +210,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Two-part system */}
-      <Section
-        background="white"
-        eyebrow="A better way to bed."
-        title="The two-part system that stays put."
-        intro="The fitted base stays securely on your mattress. The removable top sheet is what gets changed. It's that simple."
-      >
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr_320px]">
-          <PlaceholderImage
-            src="/placeholders/system-exploded.svg"
-            alt="Exploded view showing the removable top sheet lifted above the fitted base on a mattress"
-            width={1200}
-            height={700}
-          />
-          <dl className="space-y-8">
-            <div className="border-l-2 border-accent pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Removable Top Sheet
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
-                Soft, smooth, and easy to remove and wash. Snaps on and off in
-                seconds.
-              </dd>
-            </div>
-            <div className="border-l-2 border-accent pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Fitted Base
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
-                Stays on your mattress securely. All. The. Time.
-              </dd>
-            </div>
-          </dl>
+      {/* Two-part system — the supplied diagram carries its own heading,
+          copy and callout labels, so the page renders that text for
+          assistive tech and search engines rather than duplicating it
+          on screen. */}
+      <Section background="white">
+        <h2 className="sr-only">The two-part system that stays put.</h2>
+        <p className="sr-only">
+          The fitted base stays securely on your mattress. The removable top
+          sheet is what gets changed. It&rsquo;s that simple. Top sheet:
+          removable top sheet, snaps on and off in seconds. Fitted base: stays
+          on your mattress securely. Mattress: your mattress, the foundation
+          that supports you.
+        </p>
+        {/* The diagram's labels are part of the artwork, so below ~720px it
+            scrolls sideways rather than shrinking the text past legibility. */}
+        <div className="overflow-x-auto">
+          <div className="min-w-[720px]">
+            <PlaceholderImage
+              src="/placeholders/system-diagram.webp"
+              alt="Exploded diagram of the two-part system: a removable top sheet with snap fasteners lifts away from a fitted base, which stays on the mattress below."
+              width={1536}
+              height={1024}
+              className="rounded-none"
+            />
+          </div>
         </div>
       </Section>
 
