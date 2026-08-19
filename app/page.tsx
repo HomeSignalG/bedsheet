@@ -277,7 +277,8 @@ export default function HomePage() {
             </p>
             <p className="mt-1 font-serif text-2xl text-navy">{pocketDepthRange()}</p>
             <p className="mt-2 text-xs leading-relaxed text-navy/70">
-              Universal pocket depth accommodates the full range of mattresses.
+              Pocket depths available to accommodate a full range of
+              mattresses.
             </p>
           </div>
         </div>
