@@ -18,12 +18,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "Product",
   description:
-    "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, fitting 8\"–22\" mattress depths.",
+    "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
   alternates: { canonical: "/product" },
   openGraph: {
     title: `Product | ${siteConfig.brandName}`,
     description:
-      "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, fitting 8\"–22\" mattress depths.",
+      "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
     url: "/product",
   },
 };

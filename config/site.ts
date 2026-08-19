@@ -70,7 +70,7 @@ export const siteConfig = {
    * Treated as the working spec; update here if the range changes.
    */
   pocketDepth: {
-    min: 8,
+    min: 10,
     max: 22,
     unit: '"',
   },
@@ -120,13 +120,13 @@ export const siteConfig = {
   ],
 } as const;
 
-/** Formatted pocket-depth range, e.g. `8"–22"`. */
+/** Formatted pocket-depth range, e.g. `10"–22"`. */
 export function pocketDepthRange(): string {
   const { min, max, unit } = siteConfig.pocketDepth;
   return `${min}${unit}–${max}${unit}`;
 }
 
-/** Prose version of the pocket-depth range, e.g. `8–22 inches`. */
+/** Prose version of the pocket-depth range, e.g. `10–22 inches`. */
 export function pocketDepthProse(): string {
   const { min, max } = siteConfig.pocketDepth;
   return `${min}–${max} inches`;

@@ -253,8 +253,8 @@ export default function HomePage() {
                 Made to Fit Real Mattresses
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-navy/70">
-                Six sizes. One system. Fits {pocketDepthRange()} mattress
-                depths.
+                Six sizes. One system. {pocketDepthRange()} mattress depths
+                available.
               </p>
             </div>
           </div>
