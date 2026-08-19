@@ -15,7 +15,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `bedroom-navy.webp` | Home hero + Product hero | Final photo (in place): Easy Top on a grey platform bed |
 | `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: Easy Top on a cream upholstered bed |
 | `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
-| `step-wash.svg` | Home + Product steps | Top sheet going into the wash |
+| `wash-basket.webp` | Home + Product "Wash" step | Photo in place, but only 150x120px — soft at render size and clearly blurry on high-DPI screens. Replace with a full-resolution original (1200px wide or more) when available. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
 | `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) | Final photo (in place): a boy changing his own bed |

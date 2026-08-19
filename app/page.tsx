@@ -158,8 +158,8 @@ export default function HomePage() {
             {
               label: "Wash",
               copy: "Toss it in the wash and dry.",
-              src: "/placeholders/step-wash.svg",
-              alt: "Placeholder for a photo of the top sheet going into the washing machine",
+              src: "/placeholders/wash-basket.webp",
+              alt: "The top sheet being lifted from a laundry basket into the washing machine",
             },
             {
               label: "Reattach",
