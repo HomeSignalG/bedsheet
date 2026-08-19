@@ -152,8 +152,8 @@ export default function HomePage() {
             {
               label: "Remove",
               copy: "Unsnap the top sheet from the base.",
-              src: "/placeholders/step-remove.svg",
-              alt: "Placeholder for a photo of hands unsnapping the top sheet",
+              src: "/placeholders/snap-closeup.webp",
+              alt: "Close-up of the top sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
             },
             {
               label: "Wash",

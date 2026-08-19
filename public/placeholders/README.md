@@ -14,7 +14,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | --- | --- | --- |
 | `bedroom-navy.webp` | Home hero + Product hero | Final photo (in place): Easy Top on a grey platform bed |
 | `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: Easy Top on a cream upholstered bed |
-| `step-remove.svg` | Home + Product steps | Hands unsnapping the top sheet |
+| `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
 | `step-wash.svg` | Home + Product steps | Top sheet going into the wash |
 | `step-reattach.svg` | Home + Product steps | Snapping on a clean top sheet |
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |

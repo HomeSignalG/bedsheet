@@ -209,8 +209,8 @@ export default function ProductPage() {
                 {
                   label: "Unsnap",
                   copy: "Release the snaps along the sides.",
-                  src: "/placeholders/step-remove.svg",
-                  alt: "Placeholder for a photo of hands releasing the snaps",
+                  src: "/placeholders/snap-closeup.webp",
+                  alt: "Close-up of the top sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
                 },
                 {
                   label: "Wash",
