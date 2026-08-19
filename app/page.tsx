@@ -19,12 +19,12 @@ import { pocketDepthRange, siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: `${siteConfig.brandName} — Change your sheets. Not your fitted base.`,
   description:
-    "The Easy Top Bed Sheet System features a removable top sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+    "The Easy Top Bed Sheet System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
   alternates: { canonical: "/" },
   openGraph: {
     title: `${siteConfig.brandName} — Change your sheets. Not your fitted base.`,
     description:
-      "The Easy Top Bed Sheet System features a removable top sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+      "The Easy Top Bed Sheet System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
     url: "/",
   },
 };
@@ -61,7 +61,7 @@ const lifestylePanels: {
     title: "Easier on Your Back",
     copy: "Change your bedsheets without wrestling with the mattress.",
     src: "/placeholders/top-sheet-peel-back.webp",
-    alt: "A woman lifting the corner of the light-blue top sheet away from the snap fasteners on the fitted base",
+    alt: "A woman lifting the corner of the light-blue bottom sheet away from the snap fasteners on the fitted base",
     objectPosition: "70% center",
   },
   {
@@ -69,14 +69,14 @@ const lifestylePanels: {
     title: "Easy Enough for Kids",
     copy: "Empower kids and teens to take ownership of their space. A 10-year-old can change the bed.",
     src: "/placeholders/kid-changing-bed.webp",
-    alt: "A boy smiling as he lifts the light-blue top sheet off the snap fasteners to change his own bed",
+    alt: "A boy smiling as he lifts the light-blue bottom sheet off the snap fasteners to change his own bed",
   },
   {
     icon: <HouseIcon />,
     title: "Made for Real Life",
     copy: "Life happens. Messes happen. Laundry happens. We make it easier.",
     src: "/placeholders/family-pet-bed.webp",
-    alt: "A girl hugging a golden retriever on a bed made up with the light-blue top sheet",
+    alt: "A girl hugging a golden retriever on a bed made up with the light-blue bottom sheet",
     objectPosition: "center 38%",
   },
 ];
@@ -92,7 +92,7 @@ export default function HomePage() {
               Change your sheets. Not your fitted base.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
-              The {siteConfig.brandName} features a removable top sheet that
+              The {siteConfig.brandName} features a removable bottom sheet that
               snaps on and off in seconds—so you can change your bed the easy
               way.
             </p>
@@ -113,7 +113,7 @@ export default function HomePage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-navy.webp"
-              alt="The Easy Top system on a grey platform bed: light-blue fitted base and top sheet with a navy throw folded across the foot"
+              alt="The Easy Top system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
               width={1402}
               height={1122}
               priority
@@ -127,7 +127,7 @@ export default function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-navy.webp"
-            alt="The Easy Top system on a grey platform bed: light-blue fitted base and top sheet with a navy throw folded across the foot"
+            alt="The Easy Top system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
             width={1402}
             height={1122}
             priority
@@ -151,21 +151,21 @@ export default function HomePage() {
           steps={[
             {
               label: "Remove",
-              copy: "Unsnap the top sheet from the base.",
+              copy: "Unsnap the bottom sheet from the fitted mattress sheet.",
               src: "/placeholders/snap-closeup.webp",
-              alt: "Close-up of the top sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
+              alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
             },
             {
               label: "Wash",
               copy: "Toss it in the wash and dry.",
               src: "/placeholders/laundry-basket.webp",
-              alt: "The top sheet being lifted from a laundry basket into the washing machine",
+              alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
             },
             {
               label: "Reattach",
-              copy: "Snap on a clean top sheet. You're done.",
+              copy: "Snap on a clean bottom sheet. You're done.",
               src: "/placeholders/snap-corner-navy.webp",
-              alt: "Close-up of the fitted base corner with the top sheet snapped into place over the grommet",
+              alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
             },
           ]}
         />
