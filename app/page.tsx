@@ -164,8 +164,8 @@ export default function HomePage() {
             {
               label: "Reattach",
               copy: "Snap on a clean top sheet. You're done.",
-              src: "/placeholders/step-reattach.svg",
-              alt: "Placeholder for a photo of hands snapping on a clean top sheet",
+              src: "/placeholders/snap-corner.webp",
+              alt: "Close-up of the fitted base corner with the top sheet snapped into place over the grommet",
             },
           ]}
         />
