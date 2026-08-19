@@ -59,7 +59,7 @@ const lifestylePanels: {
   {
     icon: <BackIcon />,
     title: "Easier on Your Back",
-    copy: "Change the sleeping surface without wrestling with the mattress.",
+    copy: "Change your bedsheets without wrestling with the mattress.",
     src: "/placeholders/top-sheet-peel-back.webp",
     alt: "A woman lifting the corner of the light-blue top sheet away from the snap fasteners on the fitted base",
     objectPosition: "70% center",
