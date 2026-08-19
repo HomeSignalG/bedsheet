@@ -164,7 +164,7 @@ export default function HomePage() {
             {
               label: "Reattach",
               copy: "Snap on a clean top sheet. You're done.",
-              src: "/placeholders/snap-corner.webp",
+              src: "/placeholders/snap-corner-navy.webp",
               alt: "Close-up of the fitted base corner with the top sheet snapped into place over the grommet",
             },
           ]}
