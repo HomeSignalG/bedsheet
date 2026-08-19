@@ -145,7 +145,7 @@ export default function HomePage() {
           id="steps-heading"
           className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-navy"
         >
-          Change your top sheet in seconds.
+          Change your bottom sheet in seconds.
         </h2>
         <StepCards
           steps={[

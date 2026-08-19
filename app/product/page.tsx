@@ -201,7 +201,7 @@ export default function ProductPage() {
         <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
           <div>
             <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              Change Your Top Sheet in Seconds
+              Change Your Bottom Sheet in Seconds
             </h2>
             <StepCards
               layout="stacked"
