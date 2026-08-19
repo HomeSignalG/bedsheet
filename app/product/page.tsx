@@ -37,8 +37,8 @@ const heroChecklist = [
 const featureCards = [
   {
     title: "1. Secure Snap System",
-    src: "/placeholders/feature-snap-system.svg",
-    alt: "Placeholder for a close-up photo of the snap fasteners along the sheet edge",
+    src: "/placeholders/snap-system-taupe.webp",
+    alt: "Close-up of the snap system: the stud on the top sheet corner aligned above the matching socket on the fitted base",
     caption:
       "Durable, low-profile snaps keep the top sheet perfectly in place—no shifting, no bunching.",
   },
