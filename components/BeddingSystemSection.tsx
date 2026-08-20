@@ -45,8 +45,8 @@ export default function BeddingSystemSection({
             Available to Fit Your Mattress
           </h3>
           <p className="mt-3 leading-relaxed text-navy/70">
-            Six standard mattress sizes &middot; {pocketDepthRange()} pocket
-            depths
+            Six standard mattress sizes &middot; Available in mattress depths
+            from {pocketDepthRange()}
           </p>
         </div>
 

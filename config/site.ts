@@ -66,8 +66,9 @@ export const siteConfig = {
   },
 
   /**
-   * Current target pocket-depth specification, in inches.
-   * Treated as the working spec; update here if the range changes.
+   * Range of mattress depths the fitted base is offered in, in inches.
+   * The customer selects a depth the way they select a size — a single
+   * base does not span this whole range. Update here if the range changes.
    */
   pocketDepth: {
     min: 10,
@@ -79,8 +80,8 @@ export const siteConfig = {
   sizeRange: "Twin through California King",
 
   /**
-   * Size & pocket-depth specification table.
-   * Pocket depth is derived from `pocketDepth` at render time.
+   * Mattress sizes offered. Depth is a separate selection, see
+   * `pocketDepth`.
    */
   sizes: [
     { size: "Twin", dimensions: '38" × 75"' },
@@ -133,13 +134,13 @@ export const siteConfig = {
   ],
 } as const;
 
-/** Formatted pocket-depth range, e.g. `10"–22"`. */
+/** Formatted range of available mattress depths, e.g. `10"–22"`. */
 export function pocketDepthRange(): string {
   const { min, max, unit } = siteConfig.pocketDepth;
   return `${min}${unit}–${max}${unit}`;
 }
 
-/** Prose version of the pocket-depth range, e.g. `10–22 inches`. */
+/** Prose version of the available depth range, e.g. `10–22 inches`. */
 export function pocketDepthProse(): string {
   const { min, max } = siteConfig.pocketDepth;
   return `${min}–${max} inches`;

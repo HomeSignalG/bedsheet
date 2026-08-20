@@ -1,19 +1,20 @@
 import { pocketDepthRange, siteConfig } from "@/config/site";
 
 /**
- * Size & pocket-depth specification table with a navy header row.
- * Renders a full table on larger screens and stacked cards on mobile.
+ * Mattress size specification table.
+ *
+ * Depth is deliberately not a column: it is a separate selection the
+ * customer makes, not a range a single fitted base spans. The note below
+ * the table states the available depths.
  */
 export default function SpecTable() {
-  const depth = pocketDepthRange();
-
   return (
     <div>
       {/* Table for sm and up */}
       <div className="hidden overflow-x-auto sm:block">
         <table className="w-full border-collapse text-left text-sm">
           <caption className="sr-only">
-            Mattress size and pocket depth specifications
+            Mattress dimensions for each available size
           </caption>
           <thead>
             <tr className="bg-navy text-white">
@@ -22,9 +23,6 @@ export default function SpecTable() {
               </th>
               <th scope="col" className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em]">
                 Mattress Dimensions (W × L)
-              </th>
-              <th scope="col" className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em]">
-                Pocket Depth
               </th>
             </tr>
           </thead>
@@ -37,8 +35,7 @@ export default function SpecTable() {
                 <th scope="row" className="px-4 py-3 font-semibold uppercase tracking-[0.06em]">
                   {row.size}
                 </th>
-                <td className="px-4 py-3 text-center text-navy/75">{row.dimensions}</td>
-                <td className="px-4 py-3 text-center text-navy/75">{depth}</td>
+                <td className="px-4 py-3 text-navy/75">{row.dimensions}</td>
               </tr>
             ))}
           </tbody>
@@ -57,14 +54,16 @@ export default function SpecTable() {
                 <dt>Mattress Dimensions</dt>
                 <dd>{row.dimensions}</dd>
               </div>
-              <div className="flex justify-between gap-4">
-                <dt>Pocket Depth</dt>
-                <dd>{depth}</dd>
-              </div>
             </dl>
           </li>
         ))}
       </ul>
+
+      <p className="mt-6 text-sm leading-relaxed text-navy/70">
+        Every size is available in mattress depths from {pocketDepthRange()}.
+        Measure your mattress and select the depth that matches it, the same
+        way you select the size.
+      </p>
     </div>
   );
 }

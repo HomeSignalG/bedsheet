@@ -19,12 +19,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "Product",
   description:
-    "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
+    "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, available in mattress depths from 10\"–22\".",
   alternates: { canonical: "/product" },
   openGraph: {
     title: `Product | ${siteConfig.brandName}`,
     description:
-      "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
+      "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, available in mattress depths from 10\"–22\".",
     url: "/product",
   },
 };
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 const heroChecklist = [
   "Snaps on and off in seconds",
   "Fitted base stays on your mattress",
-  "Engineered for all mattress depths",
+  "Choose your mattress size and depth",
 ];
 
 const featureCards = [
@@ -266,37 +266,15 @@ export default function ProductPage() {
       {/* What comes in the system, and what it fits */}
       <BeddingSystemSection headingId="bedding-system-heading" />
 
-      {/* Sizes & pocket depth */}
+      {/* Mattress size specifications */}
       <Section background="white" labelledBy="spec-heading">
         <h2
           id="spec-heading"
           className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy"
         >
-          Sizes &amp; Pocket Depth Compatibility
+          Mattress Size Specifications
         </h2>
-        <div className="grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
-          <SpecTable />
-          <div className="rounded-xl border border-mist bg-ivory p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-              Fits All Mattress Depths
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-navy/70">
-              Our universal pocket system is engineered to fit the full range
-              of mattress depths.
-            </p>
-            <PlaceholderImage
-              src="/placeholders/depth-mattress.svg"
-              alt="Placeholder for a diagram of the pocket stretching over mattress depths"
-              width={800}
-              height={500}
-              className="mt-5"
-            />
-            <div className="mt-4 flex justify-between text-sm font-medium text-navy">
-              <span>{siteConfig.pocketDepth.min}&quot; MIN</span>
-              <span>{siteConfig.pocketDepth.max}&quot; MAX</span>
-            </div>
-          </div>
-        </div>
+        <SpecTable />
       </Section>
 
       {/* Detail strip */}
