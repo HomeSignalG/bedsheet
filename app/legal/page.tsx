@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PlaceholderImage from "@/components/PlaceholderImage";
 import { LockIcon, ShieldIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 
@@ -112,22 +113,43 @@ const privacySections = [
 export default function LegalPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Legal &amp; Privacy Policy
-          </p>
-          <h1 className="max-w-2xl font-serif text-4xl leading-tight text-navy sm:text-5xl">
-            Our commitment to trust and transparency.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy/75">
-            This page outlines our patent protection and how we collect, use,
-            and protect your information.
-          </p>
-          <p className="mt-4 text-sm text-navy/60">
-            Last Updated: {siteConfig.legalLastUpdated}
-          </p>
+      {/* Hero — photo bleeds to the top and right edges on large screens */}
+      <section className="relative bg-ivory">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[420px] lg:grid-cols-2">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Legal &amp; Privacy Policy
+            </p>
+            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl">
+              Our commitment to trust and transparency.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy/75">
+              This page outlines our patent protection and how we collect, use,
+              and protect your information.
+            </p>
+            <p className="mt-4 text-sm text-navy/60">
+              Last Updated: {siteConfig.legalLastUpdated}
+            </p>
+          </div>
+          <div className="lg:hidden">
+            <PlaceholderImage
+              src="/placeholders/kid-changing-bed.webp"
+              alt="A boy smiling as he lifts the light-blue bottom sheet off the snap fasteners to change his own bed"
+              width={1448}
+              height={1086}
+              priority
+            />
+          </div>
+        </div>
+        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
+          <PlaceholderImage
+            src="/placeholders/kid-changing-bed.webp"
+            alt="A boy smiling as he lifts the light-blue bottom sheet off the snap fasteners to change his own bed"
+            width={1448}
+            height={1086}
+            priority
+            className="h-full w-full rounded-none object-cover"
+          />
         </div>
       </section>
 

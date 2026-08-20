@@ -19,7 +19,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): top sheet going into the washing machine. 600x480 — adequate at render size; a larger original would be sharper still on high-DPI screens. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
-| `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) | Final photo (in place): a boy changing his own bed |
+| `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) + Legal hero | Final photo (in place): a boy changing his own bed. Used on two pages. |
 | `family-pet-bed.webp` | Home lifestyle (Made for Real Life) | Final photo (in place): girl and dog on the bed. Supplied with the heading, copy and icon baked into a left-hand column; that column was cropped off so the page renders its own live text. |
 | `system-diagram-clean.webp` | Home two-part system | Final diagram (in place). Derived from the supplied graphic by masking out its baked-in heading, copy and callout labels and cropping to the illustration, so the page renders that text live and editable. |
 | `product-hero.svg` | Product hero | Top sheet lifted at one corner above the base |
