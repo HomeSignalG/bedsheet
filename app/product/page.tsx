@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import PatentBadge from "@/components/PatentBadge";
+import BeddingSystemSection from "@/components/BeddingSystemSection";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
@@ -263,6 +264,9 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      {/* The bedding system: what's included, then what it fits */}
+      <BeddingSystemSection />
 
       {/* Sizes & pocket depth */}
       <Section background="white" labelledBy="spec-heading">
