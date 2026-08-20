@@ -12,9 +12,9 @@ and lazy-loading behavior stays consistent when files are swapped.
 
 | File | Used on | Depicts (final photo) |
 | --- | --- | --- |
-| `bedroom-navy.webp` | Home hero | Final photo (in place): Easy Top on a grey platform bed |
-| `bedroom-warm.webp` | Product hero | Final photo (in place): Easy Top on a warm upholstered bed, snaps visible along the sheet edge |
-| `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: Easy Top on a cream upholstered bed |
+| `bedroom-navy.webp` | Home hero | Final photo (in place): SWAP on a grey platform bed |
+| `bedroom-warm.webp` | Product hero | Final photo (in place): SWAP on a warm upholstered bed, snaps visible along the sheet edge |
+| `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: SWAP on a cream upholstered bed |
 | `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
 | `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): top sheet going into the washing machine. 600x480 — adequate at render size; a larger original would be sharper still on high-DPI screens. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |
@@ -27,7 +27,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `snap-low-profile.webp` | Product feature card 2 (Smooth, Low Profile) | Final photo (in place): single snap at a raking angle showing how flush it sits. |
 | `elastic-pocket.webp` | Product feature card 3 (Deep, Secure Pocket) | Final photo (in place): elasticized hem of the fitted base lifted at a mattress corner. |
 | `snap-construction.webp` | Product feature card 4 (Quality Construction) | Final photo (in place): grommet and reinforced hem stitching held in hand. |
-| `whats-included.svg` | Product | Folded top sheet stacked on folded base |
+| `whats-included.svg` | _unused_ | Folded top sheet stacked on folded base |
 | `about-hero-farmhouse.webp` | About hero | Final photo (in place): farmhouse bedroom with the system made up |
 | `about-problem-bw.webp` | About story (The Problem) | Final photo (in place): black and white, woman struggling with a conventional fitted sheet |
 | `about-solution-photo.webp` | About story (The Solution) | Final photo (in place): woman lifting the bottom sheet off the snaps with ease |

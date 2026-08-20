@@ -8,13 +8,13 @@
 
 export const siteConfig = {
   /** Full brand name. */
-  brandName: "Easy Top Bed Sheet System",
+  brandName: "SWAP Bedding System",
 
   /** Short brand name used in the wordmark. */
-  brandShort: "Easy Top",
+  brandShort: "SWAP",
 
   /** Wordmark subtitle line. */
-  brandSubtitle: "Bed Sheet System",
+  brandSubtitle: "Bedding System",
 
   /** Core brand idea used across the site. */
   tagline: "Made for Real Life",
@@ -33,7 +33,7 @@ export const siteConfig = {
    */
   logo: {
     image: null as string | null,
-    alt: "Easy Top Bed Sheet System logo",
+    alt: "SWAP Bedding System logo",
   },
 
   /** Contact email. */
@@ -62,7 +62,7 @@ export const siteConfig = {
     shortNotice: "Patent information available upon final legal review.",
     /** Statement used on the Legal & Privacy Policy page. */
     statement:
-      "Easy Top Bed Sheet System and its products and designs are protected by U.S. patents and patents pending.",
+      "SWAP™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
   },
 
   /**
@@ -93,19 +93,8 @@ export const siteConfig = {
   ],
 
   /**
-   * What's included in one set. Configurable in case packaging changes.
-   */
-  whatsIncluded: [
-    { item: "1 Removable Bottom Sheet", note: null as string | null },
-    { item: "1 Fitted Base", note: "With secure elasticized pocket" },
-    { item: "2 Pillowcases", note: null as string | null },
-  ],
-
-  /**
-   * Contents of the system, listed in the Home page's bedding-system
-   * section. Kept separate from `whatsIncluded`, which drives the Product
-   * page's What's Included list — see README note about keeping the two
-   * in agreement.
+   * Contents of one complete system, listed in the bedding-system section
+   * on Home and Product. Single source of truth for package contents.
    */
   systemContents: [
     { quantity: 1, item: "Fitted Mattress Base Sheet" },
@@ -115,7 +104,7 @@ export const siteConfig = {
   ],
 
   /** Copyright holder shown in the footer. */
-  copyrightHolder: "Easy Top Bed Sheet System",
+  copyrightHolder: "SWAP Bedding System",
 
   /**
    * "Last Updated" date shown on the Legal & Privacy Policy page.

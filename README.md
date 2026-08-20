@@ -1,6 +1,6 @@
-# Easy Top Bed Sheet System — Website
+# SWAP Bedding System — Website
 
-A single-product, wholesale-focused company website for the patented Easy Top
+A single-product, wholesale-focused company website for the patented SWAP
 two-part bed sheet system: a fitted base that stays on the mattress and a
 removable top sheet that snaps on and off in seconds.
 
@@ -45,8 +45,8 @@ All changeable business information lives in **`config/site.ts`**:
 - Founder name and title
 - Patent statement — `patent.number` stays `null` until legal review
   supplies real patent details; a placeholder notice renders meanwhile
-- Range of mattress depths offered (currently 10–22 inches) and the size table
-- What's included per set
+- Available mattress-depth range (currently 10–22 inches) and the size table
+- Contents of one complete system
 - Copyright holder and Legal "Last Updated" date
 - Social links (icons render disabled until real URLs are added)
 

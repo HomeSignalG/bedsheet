@@ -1,24 +1,40 @@
+import Trademark from "@/components/Trademark";
 import { pocketDepthRange, siteConfig } from "@/config/site";
+
+type SectionBackground = "ivory" | "white";
+
+const backgroundClasses: Record<SectionBackground, string> = {
+  ivory: "bg-ivory",
+  white: "bg-white",
+};
 
 /**
  * The bedding-system section: what comes in the system, then what it fits.
  * Shared by the Home and Product pages so the two never drift apart.
- * `headingId` keeps the labelled-by reference unique per page.
+ * `headingId` keeps the labelled-by reference unique per page. `background`
+ * varies only the section fill: ivory on Home, white on Product, where the
+ * section above it is already ivory.
  */
 export default function BeddingSystemSection({
   headingId = "bedding-system-heading",
+  background = "ivory",
 }: {
   headingId?: string;
+  background?: SectionBackground;
 }) {
   return (
-    <section aria-labelledby={headingId} className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+    <section
+      aria-labelledby={headingId}
+      className={`${backgroundClasses[background]} px-6 py-16 sm:px-8 md:py-20`}
+    >
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <h2
             id={headingId}
             className="text-lg font-semibold uppercase tracking-[0.14em] text-navy"
           >
-            The {siteConfig.brandShort} Bedding System
+            The {siteConfig.brandShort}
+            <Trademark /> Bedding System
           </h2>
           <p className="mt-3 leading-relaxed text-navy/70">
             Everything you need for an easier-to-change bed.

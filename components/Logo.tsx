@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Trademark from "@/components/Trademark";
 import { siteConfig } from "@/config/site";
 
 /**
- * Brand wordmark: swoosh mark + "EASY TOP / BED SHEET SYSTEM".
+ * Brand wordmark: swoosh mark + "SWAP™ / BEDDING SYSTEM".
  * Uses `siteConfig.logo.image` instead when final artwork exists.
  */
 export default function Logo({ onDark = false }: { onDark?: boolean }) {
@@ -37,6 +38,7 @@ export default function Logo({ onDark = false }: { onDark?: boolean }) {
       <span className="leading-none">
         <span className="block font-serif text-xl tracking-[0.14em]">
           {siteConfig.brandShort.toUpperCase()}
+          <Trademark />
         </span>
         <span
           className={`mt-1 block text-[0.6rem] font-medium tracking-[0.32em] ${

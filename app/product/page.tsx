@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import PatentBadge from "@/components/PatentBadge";
+import BeddingSystemSection from "@/components/BeddingSystemSection";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
-import BeddingSystemSection from "@/components/BeddingSystemSection";
 import SpecTable from "@/components/SpecTable";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
+import Trademark from "@/components/Trademark";
 import {
-  CheckIcon,
   CheckSolidIcon,
   DiamondIcon,
   FabricIcon,
@@ -110,7 +110,8 @@ export default function ProductPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              The {siteConfig.brandShort} System
+              The {siteConfig.brandShort}
+              <Trademark /> Bedding System
             </p>
             <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl">
               The two-part system that stays put.
@@ -138,7 +139,7 @@ export default function ProductPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-warm.webp"
-              alt="The Easy Top system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+              alt="The SWAP system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
               width={1536}
               height={1024}
               priority
@@ -159,7 +160,7 @@ export default function ProductPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-warm.webp"
-            alt="The Easy Top system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+            alt="The SWAP system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
             width={1536}
             height={1024}
             priority
@@ -199,80 +200,48 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Steps + What's included */}
-      <section aria-label="How it works and what's included" className="bg-ivory px-6 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-          <div>
-            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              Change Your Bottom Sheet in Seconds
-            </h2>
-            <StepCards
-              layout="stacked"
-              steps={[
-                {
-                  label: "Unsnap",
-                  copy: "Release the snaps along the sides.",
-                  src: "/placeholders/snap-closeup.webp",
-                  alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
-                },
-                {
-                  label: "Wash",
-                  copy: "Toss it in the wash and dry.",
-                  src: "/placeholders/laundry-basket.webp",
-                  alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
-                },
-                {
-                  label: "Reattach",
-                  copy: "Snap on a clean bottom sheet. You're done.",
-                  src: "/placeholders/snap-corner-navy.webp",
-                  alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              What&rsquo;s Included
-            </h2>
-            <PlaceholderImage
-              src="/placeholders/whats-included.svg"
-              alt="Placeholder for a photo of the folded bottom sheet stacked on the folded fitted base"
-              width={1000}
-              height={700}
-            />
-            <ul className="mt-6 space-y-4">
-              {siteConfig.whatsIncluded.map((entry) => (
-                <li key={entry.item} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">
-                    <CheckIcon />
-                  </span>
-                  <div>
-                    <p className="font-medium text-navy">{entry.item}</p>
-                    {entry.note && (
-                      <p className="text-sm text-navy/60">({entry.note})</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-sm leading-relaxed text-navy/70">
-              Each set includes one fitted base, one removable bottom sheet, and
-              two pillowcases.
-            </p>
-          </div>
+      {/* How it works */}
+      <section aria-label="How it works" className="bg-ivory px-6 py-20 sm:px-8">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
+            Change Your Bottom Sheet in Seconds
+          </h2>
+          <StepCards
+            layout="stacked"
+            steps={[
+              {
+                label: "Unsnap",
+                copy: "Release the snaps along the sides.",
+                src: "/placeholders/snap-closeup.webp",
+                alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
+              },
+              {
+                label: "Wash",
+                copy: "Toss it in the wash and dry.",
+                src: "/placeholders/laundry-basket.webp",
+                alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
+              },
+              {
+                label: "Reattach",
+                copy: "Snap on a clean bottom sheet. You're done.",
+                src: "/placeholders/snap-corner-navy.webp",
+                alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
+              },
+            ]}
+          />
         </div>
       </section>
 
       {/* What comes in the system, and what it fits */}
-      <BeddingSystemSection headingId="bedding-system-heading" />
+      <BeddingSystemSection headingId="bedding-system-heading" background="white" />
 
-      {/* Mattress size specifications */}
+      {/* Sizes & mattress depths */}
       <Section background="white" labelledBy="spec-heading">
         <h2
           id="spec-heading"
           className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy"
         >
-          Mattress Size Specifications
+          Sizes &amp; Mattress Depths
         </h2>
         <SpecTable />
       </Section>
