@@ -1,7 +1,7 @@
 import { pocketDepthRange, siteConfig } from "@/config/site";
 
 /**
- * Size & pocket-depth specification table with a navy header row.
+ * Mattress size & available-depth specification table with a navy header row.
  * Renders a full table on larger screens and stacked cards on mobile.
  */
 export default function SpecTable() {
@@ -13,7 +13,7 @@ export default function SpecTable() {
       <div className="hidden overflow-x-auto sm:block">
         <table className="w-full border-collapse text-left text-sm">
           <caption className="sr-only">
-            Mattress size and pocket depth specifications
+            Mattress size and available mattress depth specifications
           </caption>
           <thead>
             <tr className="bg-navy text-white">
@@ -24,7 +24,7 @@ export default function SpecTable() {
                 Mattress Dimensions (W × L)
               </th>
               <th scope="col" className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em]">
-                Pocket Depth
+                Mattress Depths Available
               </th>
             </tr>
           </thead>
@@ -58,7 +58,7 @@ export default function SpecTable() {
                 <dd>{row.dimensions}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt>Pocket Depth</dt>
+                <dt>Mattress Depths Available</dt>
                 <dd>{depth}</dd>
               </div>
             </dl>

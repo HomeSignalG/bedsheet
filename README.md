@@ -45,8 +45,8 @@ All changeable business information lives in **`config/site.ts`**:
 - Founder name and title
 - Patent statement — `patent.number` stays `null` until legal review
   supplies real patent details; a placeholder notice renders meanwhile
-- Pocket-depth range (currently 10–22 inches) and the size table
-- What's included per set
+- Available mattress-depth range (currently 10–22 inches) and the size table
+- Contents of one complete system
 - Copyright holder and Legal "Last Updated" date
 - Social links (icons render disabled until real URLs are added)
 

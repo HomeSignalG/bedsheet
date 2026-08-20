@@ -92,19 +92,8 @@ export const siteConfig = {
   ],
 
   /**
-   * What's included in one set. Configurable in case packaging changes.
-   */
-  whatsIncluded: [
-    { item: "1 Removable Bottom Sheet", note: null as string | null },
-    { item: "1 Fitted Base", note: "With secure elasticized pocket" },
-    { item: "2 Pillowcases", note: null as string | null },
-  ],
-
-  /**
-   * Contents of the system, listed in the Home page's bedding-system
-   * section. Kept separate from `whatsIncluded`, which drives the Product
-   * page's What's Included list — see README note about keeping the two
-   * in agreement.
+   * Contents of one complete system, listed in the bedding-system section
+   * on Home and Product. Single source of truth for package contents.
    */
   systemContents: [
     { quantity: 1, item: "Fitted Mattress Base Sheet" },

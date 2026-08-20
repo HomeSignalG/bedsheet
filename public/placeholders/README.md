@@ -27,8 +27,8 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `snap-low-profile.webp` | Product feature card 2 (Smooth, Low Profile) | Final photo (in place): single snap at a raking angle showing how flush it sits. |
 | `elastic-pocket.webp` | Product feature card 3 (Deep, Secure Pocket) | Final photo (in place): elasticized hem of the fitted base lifted at a mattress corner. |
 | `snap-construction.webp` | Product feature card 4 (Quality Construction) | Final photo (in place): grommet and reinforced hem stitching held in hand. |
-| `whats-included.svg` | Product | Folded top sheet stacked on folded base |
-| `depth-mattress.svg` | Product spec sidebar | Mattress depth range visual |
+| `whats-included.svg` | _unused_ | Folded top sheet stacked on folded base |
+| `depth-mattress.svg` | _unused_ | Mattress depth range visual |
 | `about-hero-farmhouse.webp` | About hero | Final photo (in place): farmhouse bedroom with the system made up |
 | `about-problem-bw.webp` | About story (The Problem) | Final photo (in place): black and white, woman struggling with a conventional fitted sheet |
 | `about-solution-photo.webp` | About story (The Solution) | Final photo (in place): woman lifting the bottom sheet off the snaps with ease |

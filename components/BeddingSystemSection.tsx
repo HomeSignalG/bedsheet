@@ -1,14 +1,30 @@
 import Trademark from "@/components/Trademark";
 import { pocketDepthRange, siteConfig } from "@/config/site";
 
+type SectionBackground = "ivory" | "white";
+
+const backgroundClasses: Record<SectionBackground, string> = {
+  ivory: "bg-ivory",
+  white: "bg-white",
+};
+
 /**
  * The bedding system section: what's included in a set, then what it fits.
  * Rendered on both Home and Product so the two stay identical — the markup
- * is unchanged from the approved Home-page version.
+ * is unchanged from the approved Home-page version. Only the section
+ * background varies: ivory on Home, white on Product, where the section
+ * above it is already ivory.
  */
-export default function BeddingSystemSection() {
+export default function BeddingSystemSection({
+  background = "ivory",
+}: {
+  background?: SectionBackground;
+}) {
   return (
-    <section aria-labelledby="system-heading" className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+    <section
+      aria-labelledby="system-heading"
+      className={`${backgroundClasses[background]} px-6 py-16 sm:px-8 md:py-20`}
+    >
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <h2
@@ -43,8 +59,8 @@ export default function BeddingSystemSection() {
             Available to Fit Your Mattress
           </h3>
           <p className="mt-3 leading-relaxed text-navy/70">
-            Six standard mattress sizes &middot; {pocketDepthRange()} pocket
-            depths
+            Six standard mattress sizes &middot; Available in mattress depths
+            from {pocketDepthRange()}
           </p>
         </div>
 

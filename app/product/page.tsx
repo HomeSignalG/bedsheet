@@ -9,13 +9,12 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
 import Trademark from "@/components/Trademark";
 import {
-  CheckIcon,
   CheckSolidIcon,
   DiamondIcon,
   FabricIcon,
   WashIcon,
 } from "@/components/icons";
-import { siteConfig } from "@/config/site";
+import { pocketDepthRange, siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Product",
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
 const heroChecklist = [
   "Snaps on and off in seconds",
   "Fitted base stays on your mattress",
-  "Engineered for all mattress depths",
+  `Available in mattress depths from ${pocketDepthRange()}`,
 ];
 
 const featureCards = [
@@ -201,102 +200,70 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Steps + What's included */}
-      <section aria-label="How it works and what's included" className="bg-ivory px-6 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-          <div>
-            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              Change Your Bottom Sheet in Seconds
-            </h2>
-            <StepCards
-              layout="stacked"
-              steps={[
-                {
-                  label: "Unsnap",
-                  copy: "Release the snaps along the sides.",
-                  src: "/placeholders/snap-closeup.webp",
-                  alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
-                },
-                {
-                  label: "Wash",
-                  copy: "Toss it in the wash and dry.",
-                  src: "/placeholders/laundry-basket.webp",
-                  alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
-                },
-                {
-                  label: "Reattach",
-                  copy: "Snap on a clean bottom sheet. You're done.",
-                  src: "/placeholders/snap-corner-navy.webp",
-                  alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              What&rsquo;s Included
-            </h2>
-            <PlaceholderImage
-              src="/placeholders/whats-included.svg"
-              alt="Placeholder for a photo of the folded bottom sheet stacked on the folded fitted base"
-              width={1000}
-              height={700}
-            />
-            <ul className="mt-6 space-y-4">
-              {siteConfig.whatsIncluded.map((entry) => (
-                <li key={entry.item} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">
-                    <CheckIcon />
-                  </span>
-                  <div>
-                    <p className="font-medium text-navy">{entry.item}</p>
-                    {entry.note && (
-                      <p className="text-sm text-navy/60">({entry.note})</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-sm leading-relaxed text-navy/70">
-              Each set includes one fitted base, one removable bottom sheet, and
-              two pillowcases.
-            </p>
-          </div>
+      {/* How it works */}
+      <section aria-label="How it works" className="bg-ivory px-6 py-20 sm:px-8">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
+            Change Your Bottom Sheet in Seconds
+          </h2>
+          <StepCards
+            layout="stacked"
+            steps={[
+              {
+                label: "Unsnap",
+                copy: "Release the snaps along the sides.",
+                src: "/placeholders/snap-closeup.webp",
+                alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
+              },
+              {
+                label: "Wash",
+                copy: "Toss it in the wash and dry.",
+                src: "/placeholders/laundry-basket.webp",
+                alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
+              },
+              {
+                label: "Reattach",
+                copy: "Snap on a clean bottom sheet. You're done.",
+                src: "/placeholders/snap-corner-navy.webp",
+                alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
+              },
+            ]}
+          />
         </div>
       </section>
 
       {/* The bedding system: what's included, then what it fits */}
-      <BeddingSystemSection />
+      <BeddingSystemSection background="white" />
 
-      {/* Sizes & pocket depth */}
+      {/* Sizes & mattress depths */}
       <Section background="white" labelledBy="spec-heading">
         <h2
           id="spec-heading"
           className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy"
         >
-          Sizes &amp; Pocket Depth Compatibility
+          Sizes &amp; Mattress Depths
         </h2>
         <div className="grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
           <SpecTable />
           <div className="rounded-xl border border-mist bg-ivory p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-              Fits All Mattress Depths
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-navy/70">
-              Our universal pocket system is engineered to fit the full range
-              of mattress depths.
-            </p>
-            <PlaceholderImage
-              src="/placeholders/depth-mattress.svg"
-              alt="Placeholder for a diagram of the pocket stretching over mattress depths"
-              width={800}
-              height={500}
-              className="mt-5"
-            />
-            <div className="mt-4 flex justify-between text-sm font-medium text-navy">
-              <span>{siteConfig.pocketDepth.min}&quot; MIN</span>
-              <span>{siteConfig.pocketDepth.max}&quot; MAX</span>
-            </div>
+            <dl className="space-y-6">
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+                  Mattress Size
+                </dt>
+                <dd className="mt-3 text-sm leading-relaxed text-navy/70">
+                  {siteConfig.sizes.map((size) => size.size).join(" · ")}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+                  Mattress Depth
+                </dt>
+                <dd className="mt-3 text-sm leading-relaxed text-navy/70">
+                  Available from {pocketDepthRange()}
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </Section>
