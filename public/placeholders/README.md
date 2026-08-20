@@ -31,7 +31,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `depth-mattress.svg` | Product spec sidebar | Mattress depth range visual |
 | `about-hero-farmhouse.webp` | About hero | Final photo (in place): farmhouse bedroom with the system made up |
 | `about-problem-bw.webp` | About story (The Problem) | Final photo (in place): black and white, woman struggling with a conventional fitted sheet |
-| `about-solution.svg` | About story | Easy Top on a made bed (reserved) |
+| `about-solution-photo.webp` | About story (The Solution) | Final photo (in place): woman lifting the bottom sheet off the snaps with ease |
 | `promise-sheets.svg` | About promise | Folded Easy Top set |
 | `founder-portrait.svg` | About founder | Founder portrait |
 | `contact-hero.svg` | Contact hero | Made bed with top sheet turned down |
