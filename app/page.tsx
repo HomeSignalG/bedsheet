@@ -9,10 +9,8 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import {
   ArrowRightIcon,
   BackIcon,
-  BedIcon,
   ChildIcon,
   HouseIcon,
-  RulerIcon,
 } from "@/components/icons";
 import { pocketDepthRange, siteConfig } from "@/config/site";
 
@@ -255,49 +253,61 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Sizes */}
-      <section aria-labelledby="sizes-heading" className="bg-ivory px-6 py-14 sm:px-8">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[240px_1fr_230px]">
-          <div className="flex items-start gap-4">
-            <span className="mt-1 shrink-0 text-accent" aria-hidden="true">
-              <RulerIcon />
-            </span>
-            <div>
-              <h2
-                id="sizes-heading"
-                className="text-sm font-semibold uppercase tracking-[0.14em] text-navy"
-              >
-                Made to Fit Real Mattresses
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-navy/70">
-                Six sizes. One system. {pocketDepthRange()} mattress depths
-                available.
-              </p>
-            </div>
+      {/* The bedding system: what's included, then what it fits */}
+      <section aria-labelledby="system-heading" className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center">
+            <h2
+              id="system-heading"
+              className="text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+            >
+              The {siteConfig.brandShort} Bedding System
+            </h2>
+            <p className="mt-3 leading-relaxed text-navy/70">
+              Everything you need for an easier-to-change bed.
+            </p>
           </div>
-          <ul className="grid grid-cols-3 gap-6 sm:grid-cols-6">
-            {siteConfig.sizes.map((size) => (
-              <li key={size.size} className="text-center">
-                <span className="inline-flex text-navy/70" aria-hidden="true">
-                  <BedIcon />
+
+          <ul className="mx-auto mt-12 grid max-w-2xl gap-x-16 gap-y-8 sm:grid-cols-2">
+            {siteConfig.systemContents.map((entry) => (
+              <li key={entry.item} className="flex items-center gap-5">
+                <span className="w-8 shrink-0 text-center font-serif text-4xl leading-none text-navy">
+                  {entry.quantity}
                 </span>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.08em] text-navy">
-                  {size.size}
-                </p>
-                <p className="mt-0.5 text-xs text-navy/60">{size.dimensions}</p>
+                <span className="border-l border-mist pl-5 leading-snug text-navy">
+                  {entry.item}
+                </span>
               </li>
             ))}
           </ul>
-          <div className="rounded-xl border border-mist bg-white p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-              Pocket Depth
-            </p>
-            <p className="mt-1 font-serif text-2xl text-navy">{pocketDepthRange()}</p>
-            <p className="mt-2 text-xs leading-relaxed text-navy/70">
-              Pocket depths available to accommodate a full range of
-              mattresses.
+
+          <hr className="my-14 border-mist" />
+
+          <div className="text-center">
+            <h3 className="text-lg font-semibold uppercase tracking-[0.14em] text-navy">
+              Available to Fit Your Mattress
+            </h3>
+            <p className="mt-3 leading-relaxed text-navy/70">
+              Six standard mattress sizes &middot; {pocketDepthRange()} pocket
+              depths
             </p>
           </div>
+
+          <ul className="mt-12 grid gap-y-10 sm:grid-cols-3">
+            {siteConfig.sizes.map((size, index) => (
+              <li
+                key={size.size}
+                className={`text-center ${
+                  index % 3 !== 0 ? "sm:border-l sm:border-mist" : ""
+                }`}
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.1em] text-navy">
+                  {size.size}
+                </p>
+                <p className="mt-1.5 text-sm text-navy/60">{size.dimensions}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

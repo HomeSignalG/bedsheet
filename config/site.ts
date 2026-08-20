@@ -100,6 +100,19 @@ export const siteConfig = {
     { item: "2 Pillowcases", note: null as string | null },
   ],
 
+  /**
+   * Contents of the system, listed in the Home page's bedding-system
+   * section. Kept separate from `whatsIncluded`, which drives the Product
+   * page's What's Included list — see README note about keeping the two
+   * in agreement.
+   */
+  systemContents: [
+    { quantity: 1, item: "Fitted Mattress Base Sheet" },
+    { quantity: 2, item: "Removable Bottom Sheets" },
+    { quantity: 1, item: "Top Sheet" },
+    { quantity: 2, item: "Pillowcases" },
+  ],
+
   /** Copyright holder shown in the footer. */
   copyrightHolder: "Easy Top Bed Sheet System",
 
