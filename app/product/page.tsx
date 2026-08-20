@@ -39,6 +39,7 @@ const featureCards = [
     title: "1. Secure Snap System",
     src: "/placeholders/snap-system-taupe.webp",
     alt: "Close-up of the snap system: the stud on the bottom sheet corner aligned above the matching socket on the fitted base",
+    objectPosition: "center 40%",
     caption:
       "Durable, low-profile snaps keep the bottom sheet perfectly in place—no shifting, no bunching.",
   },
@@ -53,6 +54,7 @@ const featureCards = [
     title: "3. Deep, Secure Pocket",
     src: "/placeholders/elastic-pocket.webp",
     alt: "A hand lifting the elasticized hem of the fitted base at a mattress corner, showing the depth of the pocket",
+    objectPosition: "center 55%",
     caption:
       "Deep pockets and elasticized edges keep the fitted base locked in, night after night.",
   },
