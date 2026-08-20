@@ -3,6 +3,7 @@ import Section from "@/components/Section";
 import PatentBadge from "@/components/PatentBadge";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
+import BeddingSystemSection from "@/components/BeddingSystemSection";
 import SpecTable from "@/components/SpecTable";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
@@ -261,6 +262,9 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+
+      {/* What comes in the system, and what it fits */}
+      <BeddingSystemSection headingId="bedding-system-heading" />
 
       {/* Sizes & pocket depth */}
       <Section background="white" labelledBy="spec-heading">
