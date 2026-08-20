@@ -3,6 +3,7 @@ import Section from "@/components/Section";
 import BenefitStrip from "@/components/BenefitStrip";
 import CtaBand from "@/components/CtaBand";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import Trademark from "@/components/Trademark";
 import {
   ArrowRightIcon,
   BackIcon,
@@ -24,12 +25,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Easy Top was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+    "SWAP was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: `About Us | ${siteConfig.brandName}`,
     description:
-      "Easy Top was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+      "SWAP was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
     url: "/about",
   },
 };
@@ -117,8 +118,9 @@ export default function AboutPage() {
             </h1>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-navy/75">
               <p>
-                {siteConfig.brandShort} was created to solve a problem that was
-                very real, very personal—and far too common.
+                {siteConfig.brandShort}
+                <Trademark /> was created to solve a problem that was very
+                real, very personal—and far too common.
               </p>
               <p>
                 Today, our patented two-part bed sheet system helps people of
@@ -133,7 +135,7 @@ export default function AboutPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/about-hero-farmhouse.webp"
-              alt="A sunlit farmhouse bedroom with the Easy Top system made up on the bed, snaps visible along the sheet edge"
+              alt="A sunlit farmhouse bedroom with the SWAP system made up on the bed, snaps visible along the sheet edge"
               width={1398}
               height={1125}
               priority
@@ -143,7 +145,7 @@ export default function AboutPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/about-hero-farmhouse.webp"
-            alt="A sunlit farmhouse bedroom with the Easy Top system made up on the bed, snaps visible along the sheet edge"
+            alt="A sunlit farmhouse bedroom with the SWAP system made up on the bed, snaps visible along the sheet edge"
             width={1398}
             height={1125}
             priority

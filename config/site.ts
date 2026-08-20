@@ -8,13 +8,13 @@
 
 export const siteConfig = {
   /** Full brand name. */
-  brandName: "Easy Top Bed Sheet System",
+  brandName: "SWAP Bedding System",
 
   /** Short brand name used in the wordmark. */
-  brandShort: "Easy Top",
+  brandShort: "SWAP",
 
   /** Wordmark subtitle line. */
-  brandSubtitle: "Bed Sheet System",
+  brandSubtitle: "Bedding System",
 
   /** Core brand idea used across the site. */
   tagline: "Made for Real Life",
@@ -33,7 +33,7 @@ export const siteConfig = {
    */
   logo: {
     image: null as string | null,
-    alt: "Easy Top Bed Sheet System logo",
+    alt: "SWAP Bedding System logo",
   },
 
   /** Contact email. */
@@ -62,7 +62,7 @@ export const siteConfig = {
     shortNotice: "Patent information available upon final legal review.",
     /** Statement used on the Legal & Privacy Policy page. */
     statement:
-      "Easy Top Bed Sheet System and its products and designs are protected by U.S. patents and patents pending.",
+      "SWAP™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
   },
 
   /**
@@ -114,7 +114,7 @@ export const siteConfig = {
   ],
 
   /** Copyright holder shown in the footer. */
-  copyrightHolder: "Easy Top Bed Sheet System",
+  copyrightHolder: "SWAP Bedding System",
 
   /**
    * "Last Updated" date shown on the Legal & Privacy Policy page.

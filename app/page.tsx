@@ -6,6 +6,7 @@ import PatentBadge from "@/components/PatentBadge";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import Trademark from "@/components/Trademark";
 import {
   ArrowRightIcon,
   BackIcon,
@@ -17,12 +18,12 @@ import { pocketDepthRange, siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
   description:
-    "The Easy Top Bed Sheet System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+    "The SWAP Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
   alternates: { canonical: "/" },
   openGraph: {
     title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
     description:
-      "The Easy Top Bed Sheet System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+      "The SWAP Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
     url: "/",
   },
 };
@@ -90,9 +91,10 @@ export default function HomePage() {
               Change your sheets. Not your fitted sheet.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
-              The {siteConfig.brandName} features a removable bottom sheet that
-              snaps on and off in seconds—so you can change your bed the easy
-              way.
+              The {siteConfig.brandShort}
+              <Trademark /> {siteConfig.brandSubtitle} features a removable
+              bottom sheet that snaps on and off in seconds—so you can change
+              your bed the easy way.
             </p>
             <div className="mt-8">
               <BenefitStrip items={heroBenefits} />
@@ -111,7 +113,7 @@ export default function HomePage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-navy.webp"
-              alt="The Easy Top system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
+              alt="The SWAP system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
               width={1402}
               height={1122}
               priority
@@ -125,7 +127,7 @@ export default function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-navy.webp"
-            alt="The Easy Top system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
+            alt="The SWAP system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
             width={1402}
             height={1122}
             priority
@@ -261,7 +263,8 @@ export default function HomePage() {
               id="system-heading"
               className="text-lg font-semibold uppercase tracking-[0.14em] text-navy"
             >
-              The {siteConfig.brandShort} Bedding System
+              The {siteConfig.brandShort}
+              <Trademark /> Bedding System
             </h2>
             <p className="mt-3 leading-relaxed text-navy/70">
               Everything you need for an easier-to-change bed.

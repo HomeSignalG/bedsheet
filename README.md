@@ -1,6 +1,6 @@
-# Easy Top Bed Sheet System — Website
+# SWAP Bedding System — Website
 
-A single-product, wholesale-focused company website for the patented Easy Top
+A single-product, wholesale-focused company website for the patented SWAP
 two-part bed sheet system: a fitted base that stays on the mattress and a
 removable top sheet that snaps on and off in seconds.
 

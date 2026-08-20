@@ -6,6 +6,7 @@ import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
+import Trademark from "@/components/Trademark";
 import {
   CheckIcon,
   CheckSolidIcon,
@@ -109,7 +110,8 @@ export default function ProductPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              The {siteConfig.brandShort} System
+              The {siteConfig.brandShort}
+              <Trademark /> Bedding System
             </p>
             <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl">
               The two-part system that stays put.
@@ -137,7 +139,7 @@ export default function ProductPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-warm.webp"
-              alt="The Easy Top system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+              alt="The SWAP system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
               width={1536}
               height={1024}
               priority
@@ -158,7 +160,7 @@ export default function ProductPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-warm.webp"
-            alt="The Easy Top system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+            alt="The SWAP system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
             width={1536}
             height={1024}
             priority
