@@ -26,7 +26,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `snap-system-taupe.webp` | Product feature card 1 (Secure Snap System) | Final photo (in place): snap stud and socket in taupe. Natural aspect, uncropped. |
 | `snap-low-profile.webp` | Product feature card 2 (Smooth, Low Profile) | Final photo (in place): single snap at a raking angle showing how flush it sits. |
 | `feature-pocket.svg` | Product features | Fitted base pocket on a mattress corner |
-| `feature-construction.svg` | Product features | Reinforced stitching close-up |
+| `snap-construction.webp` | Product feature card 4 (Quality Construction) | Final photo (in place): grommet and reinforced hem stitching held in hand. |
 | `whats-included.svg` | Product | Folded top sheet stacked on folded base |
 | `depth-mattress.svg` | Product spec sidebar | Mattress depth range visual |
 | `about-hero.svg` | About hero | Founder seated on a made bed |

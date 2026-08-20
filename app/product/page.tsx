@@ -58,8 +58,8 @@ const featureCards = [
   },
   {
     title: "4. Quality Construction",
-    src: "/placeholders/feature-construction.svg",
-    alt: "Placeholder for a close-up photo of the reinforced stitching",
+    src: "/placeholders/snap-construction.webp",
+    alt: "Close-up of a hand holding the sheet corner, showing the set grommet and the reinforced stitching along the hem",
     caption:
       "Reinforced stitching, premium fabrics, and durable hardware built to last through countless washes.",
   },
