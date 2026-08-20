@@ -80,6 +80,30 @@ const lifestylePanels: {
   },
 ];
 
+/**
+ * The three layers called out on the two-part system diagram. `leader` is the
+ * vertical position of that callout's leader line in the artwork, as a
+ * percentage of the image height, so the label can be pinned to the dot that
+ * points at its layer.
+ */
+const systemLayers = [
+  {
+    title: "Removable Bottom Sheet",
+    copy: "Snaps on and off in seconds.",
+    leader: "8.58%",
+  },
+  {
+    title: "Fitted Base",
+    copy: "Stays on your mattress securely.",
+    leader: "24.38%",
+  },
+  {
+    title: "Mattress",
+    copy: "Your mattress. The foundation that supports you.",
+    leader: "45.88%",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -210,47 +234,51 @@ export default function HomePage() {
       </section>
 
       {/* Two-part system — the diagram artwork carries no text, so the
-          heading, copy and callouts render as live, editable text. */}
+          heading, copy and callouts render as live, editable text. On large
+          screens each callout is pinned to the leader line its dot sits on in
+          the artwork, so every label lines up with the layer it names. */}
       <Section
         background="white"
         eyebrow="A better way to bed."
         title="The two-part system that stays put."
         intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
       >
-        <div className="grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
-          <PlaceholderImage
-            src="/placeholders/system-diagram-clean.webp"
-            alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress below."
-            width={1265}
-            height={784}
-            className="rounded-none"
-          />
-          <dl className="space-y-8">
-            <div className="border-l-2 border-navy pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Removable Bottom Sheet
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
-                Snaps on and off in seconds.
-              </dd>
-            </div>
-            <div className="border-l-2 border-navy pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Fitted Base
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
-                Stays on your mattress securely.
-              </dd>
-            </div>
-            <div className="border-l-2 border-navy pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Mattress
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
-                Your mattress. The foundation that supports you.
-              </dd>
-            </div>
+        <div className="relative">
+          <div className="lg:w-[58%]">
+            <PlaceholderImage
+              src="/placeholders/system-diagram-clean.webp"
+              alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
+              width={1265}
+              height={1010}
+              className="rounded-none"
+            />
+          </div>
+          <dl className="mt-10 space-y-8 lg:mt-0 lg:space-y-0">
+            {systemLayers.map((layer) => (
+              <div
+                key={layer.title}
+                style={{ top: layer.leader }}
+                className="border-l-2 border-navy pl-5 lg:absolute lg:left-[62%] lg:right-0 lg:-translate-y-1/2"
+              >
+                <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+                  {layer.title}
+                </dt>
+                <dd className="mt-2 text-sm leading-relaxed text-navy/70">
+                  {layer.copy}
+                </dd>
+              </div>
+            ))}
           </dl>
+          {/* Carries each leader line across the gutter, from the edge of the
+              artwork to the label that names the layer it points at. */}
+          {systemLayers.map((layer) => (
+            <span
+              key={layer.title}
+              aria-hidden="true"
+              style={{ top: layer.leader }}
+              className="absolute left-[58%] hidden h-px w-[4%] bg-navy lg:block"
+            />
+          ))}
         </div>
       </Section>
 
