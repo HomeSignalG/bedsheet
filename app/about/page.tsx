@@ -62,7 +62,7 @@ const problems = [
 
 const solutions = [
   "Fitted base stays on",
-  "Top sheet snaps on/off",
+  "Bottom sheet snaps on/off",
   "Change in seconds",
   "No lifting the mattress",
   "Clean sheets, less stress",

@@ -95,7 +95,7 @@ export const siteConfig = {
    * What's included in one set. Configurable in case packaging changes.
    */
   whatsIncluded: [
-    { item: "1 Removable Top Sheet", note: null as string | null },
+    { item: "1 Removable Bottom Sheet", note: null as string | null },
     { item: "1 Fitted Base", note: "With secure elasticized pocket" },
     { item: "2 Pillowcases", note: null as string | null },
   ],

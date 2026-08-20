@@ -17,12 +17,12 @@ import {
 import { pocketDepthRange, siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.brandName} — Change your sheets. Not your fitted base.`,
+  title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
   description:
     "The Easy Top Bed Sheet System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${siteConfig.brandName} — Change your sheets. Not your fitted base.`,
+    title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
     description:
       "The Easy Top Bed Sheet System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
     url: "/",
@@ -89,7 +89,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
             <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl md:text-[3.4rem]">
-              Change your sheets. Not your fitted base.
+              Change your sheets. Not your fitted sheet.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
               The {siteConfig.brandName} features a removable bottom sheet that

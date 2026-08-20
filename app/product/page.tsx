@@ -18,12 +18,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "Product",
   description:
-    "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
+    "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
   alternates: { canonical: "/product" },
   openGraph: {
     title: `Product | ${siteConfig.brandName}`,
     description:
-      "A fitted base that stays on your mattress and a removable top sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
+      "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, with 10\"–22\" mattress depths available.",
     url: "/product",
   },
 };
@@ -38,9 +38,9 @@ const featureCards = [
   {
     title: "1. Secure Snap System",
     src: "/placeholders/snap-system-taupe.webp",
-    alt: "Close-up of the snap system: the stud on the top sheet corner aligned above the matching socket on the fitted base",
+    alt: "Close-up of the snap system: the stud on the bottom sheet corner aligned above the matching socket on the fitted base",
     caption:
-      "Durable, low-profile snaps keep the top sheet perfectly in place—no shifting, no bunching.",
+      "Durable, low-profile snaps keep the bottom sheet perfectly in place—no shifting, no bunching.",
   },
   {
     title: "2. Smooth, Low Profile",
@@ -113,7 +113,7 @@ export default function ProductPage() {
               The two-part system that stays put.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
-              A fitted base that stays on your mattress. A removable top sheet
+              A fitted base that stays on your mattress. A removable bottom sheet
               that snaps on and off in seconds—so you can change your bed the
               easy way.
             </p>
@@ -135,14 +135,14 @@ export default function ProductPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-warm.webp"
-              alt="The Easy Top system on an upholstered bed: white fitted base and top sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+              alt="The Easy Top system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
               width={1536}
               height={1024}
               priority
             />
             <dl className="mt-6 grid gap-6 sm:grid-cols-2">
               <HeroLabel
-                title="Removable Top Sheet"
+                title="Removable Bottom Sheet"
                 copy="Soft, smooth, and easy to remove and wash."
               />
               <HeroLabel
@@ -156,7 +156,7 @@ export default function ProductPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-warm.webp"
-            alt="The Easy Top system on an upholstered bed: white fitted base and top sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+            alt="The Easy Top system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
             width={1536}
             height={1024}
             priority
@@ -165,7 +165,7 @@ export default function ProductPage() {
           <dl>
             <div className="absolute right-8 top-14 max-w-56 rounded-lg bg-white/90 p-4 shadow-sm backdrop-blur-sm">
               <HeroLabel
-                title="Removable Top Sheet"
+                title="Removable Bottom Sheet"
                 copy="Soft, smooth, and easy to remove and wash."
               />
             </div>
@@ -210,19 +210,19 @@ export default function ProductPage() {
                   label: "Unsnap",
                   copy: "Release the snaps along the sides.",
                   src: "/placeholders/snap-closeup.webp",
-                  alt: "Close-up of the top sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
+                  alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
                 },
                 {
                   label: "Wash",
                   copy: "Toss it in the wash and dry.",
                   src: "/placeholders/laundry-basket.webp",
-                  alt: "The top sheet being lifted from a laundry basket into the washing machine",
+                  alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
                 },
                 {
                   label: "Reattach",
-                  copy: "Snap on a clean top sheet. You're done.",
+                  copy: "Snap on a clean bottom sheet. You're done.",
                   src: "/placeholders/snap-corner-navy.webp",
-                  alt: "Close-up of the fitted base corner with the top sheet snapped into place over the grommet",
+                  alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
                 },
               ]}
             />
@@ -233,7 +233,7 @@ export default function ProductPage() {
             </h2>
             <PlaceholderImage
               src="/placeholders/whats-included.svg"
-              alt="Placeholder for a photo of the folded top sheet stacked on the folded fitted base"
+              alt="Placeholder for a photo of the folded bottom sheet stacked on the folded fitted base"
               width={1000}
               height={700}
             />
@@ -253,7 +253,7 @@ export default function ProductPage() {
               ))}
             </ul>
             <p className="mt-5 text-sm leading-relaxed text-navy/70">
-              Each set includes one fitted base, one removable top sheet, and
+              Each set includes one fitted base, one removable bottom sheet, and
               two pillowcases.
             </p>
           </div>
