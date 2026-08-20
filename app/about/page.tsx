@@ -292,15 +292,15 @@ export default function AboutPage() {
               </ul>
             </div>
             <PlaceholderImage
-              src="/placeholders/promise-sheets.svg"
-              alt="Placeholder for a photo of the folded Easy Top set"
-              width={900}
-              height={700}
+              src="/placeholders/promise-hem.webp"
+              alt="Close-up of a hand holding the crisp white sheet hem, showing the set grommet and fine stitching"
+              width={1536}
+              height={1024}
               className="sm:max-w-56"
             />
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div>
             <div>
               <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
                 Founded on Purpose
@@ -322,13 +322,6 @@ export default function AboutPage() {
                 {siteConfig.founder.title}
               </p>
             </div>
-            <PlaceholderImage
-              src="/placeholders/founder-portrait.svg"
-              alt={`Placeholder for a portrait of ${siteConfig.founder.name}, founder and inventor`}
-              width={700}
-              height={800}
-              className="sm:max-w-52"
-            />
           </div>
         </div>
       </section>
