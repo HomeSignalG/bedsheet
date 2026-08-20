@@ -3,7 +3,7 @@ import Trademark from "@/components/Trademark";
 import { siteConfig } from "@/config/site";
 
 /**
- * Brand wordmark: swoosh mark + "SWAP™ / BEDDING SYSTEM".
+ * Brand wordmark: swoosh mark + "BACKEASY SHEETS™ / BEDDING SYSTEM".
  * Uses `siteConfig.logo.image` instead when final artwork exists.
  */
 export default function Logo({ onDark = false }: { onDark?: boolean }) {
@@ -36,7 +36,8 @@ export default function Logo({ onDark = false }: { onDark?: boolean }) {
         <path d="M6 25 Q14 12 24 14 Q32 15.5 37 12" />
       </svg>
       <span className="leading-none">
-        <span className="block font-serif text-xl tracking-[0.14em]">
+        {/* Steps down on narrow screens so the wordmark stays on one line. */}
+        <span className="block whitespace-nowrap font-serif text-lg tracking-[0.12em] sm:text-xl sm:tracking-[0.14em]">
           {siteConfig.brandShort.toUpperCase()}
           <Trademark />
         </span>

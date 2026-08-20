@@ -137,7 +137,7 @@ export default function ProductPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-warm.webp"
-              alt="The SWAP system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+              alt="The BackEasy Sheets system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
               width={1536}
               height={1024}
               priority
@@ -158,7 +158,7 @@ export default function ProductPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-warm.webp"
-            alt="The SWAP system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
+            alt="The BackEasy Sheets system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
             width={1536}
             height={1024}
             priority

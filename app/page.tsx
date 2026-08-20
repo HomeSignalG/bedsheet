@@ -19,12 +19,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
   description:
-    "The SWAP Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+    "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
   alternates: { canonical: "/" },
   openGraph: {
     title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
     description:
-      "The SWAP Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+      "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
     url: "/",
   },
 };
@@ -134,7 +134,7 @@ export default function HomePage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-navy.webp"
-              alt="The SWAP system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
+              alt="The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
               width={1402}
               height={1122}
               priority
@@ -148,7 +148,7 @@ export default function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-navy.webp"
-            alt="The SWAP system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
+            alt="The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
             width={1402}
             height={1122}
             priority

@@ -25,12 +25,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "SWAP was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+    "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: `About Us | ${siteConfig.brandName}`,
     description:
-      "SWAP was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+      "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
     url: "/about",
   },
 };
@@ -135,7 +135,7 @@ export default function AboutPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/about-hero-farmhouse.webp"
-              alt="A sunlit farmhouse bedroom with the SWAP system made up on the bed, snaps visible along the sheet edge"
+              alt="A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge"
               width={1398}
               height={1125}
               priority
@@ -145,7 +145,7 @@ export default function AboutPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/about-hero-farmhouse.webp"
-            alt="A sunlit farmhouse bedroom with the SWAP system made up on the bed, snaps visible along the sheet edge"
+            alt="A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge"
             width={1398}
             height={1125}
             priority
