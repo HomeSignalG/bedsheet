@@ -53,8 +53,6 @@ const lifestylePanels: {
   copy: string;
   src: string;
   alt: string;
-  /** Crop focus for landscape photos in the portrait panel. */
-  objectPosition?: string;
 }[] = [
   {
     icon: <BackIcon />,
@@ -62,7 +60,6 @@ const lifestylePanels: {
     copy: "Change your bedsheets without wrestling with the mattress.",
     src: "/placeholders/top-sheet-peel-back.webp",
     alt: "A woman lifting the corner of the light-blue bottom sheet away from the snap fasteners on the fitted base",
-    objectPosition: "70% center",
   },
   {
     icon: <ChildIcon />,
@@ -77,7 +74,6 @@ const lifestylePanels: {
     copy: "Life happens. Messes happen. Laundry happens. We make it easier.",
     src: "/placeholders/family-pet-bed.webp",
     alt: "A girl hugging a golden retriever on a bed made up with the light-blue bottom sheet",
-    objectPosition: "center 38%",
   },
 ];
 
@@ -132,7 +128,7 @@ export default function HomePage() {
             width={1402}
             height={1122}
             priority
-            className="h-full w-full rounded-none object-cover"
+            className="h-full w-full rounded-none object-contain"
           />
           <div className="absolute bottom-10 left-0 max-w-xs -translate-x-1/4">
             <PatentBadge />
@@ -178,34 +174,33 @@ export default function HomePage() {
           {lifestylePanels.map((panel) => (
             <figure
               key={panel.title}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mist"
+              className="flex h-full flex-col overflow-hidden rounded-xl border border-mist bg-white"
             >
-              <PlaceholderImage
-                src={panel.src}
-                alt={panel.alt}
-                width={800}
-                height={600}
-                objectPosition={panel.objectPosition}
-                className="absolute inset-0 h-full w-full rounded-none object-cover"
-              />
-              {/* Caption sits low, where these photos are plain sheet, so
-                  faces stay visible and the navy text keeps its contrast. */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/88 to-transparent"
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 p-6">
+              {/* The photo is scaled to fit this tile, never cropped to it,
+                  so the snaps and grommets stay in frame. The caption sits
+                  below the tile rather than over the photo for the same
+                  reason. */}
+              <div className="relative aspect-[4/3] bg-ivory">
+                <PlaceholderImage
+                  src={panel.src}
+                  alt={panel.alt}
+                  width={800}
+                  height={600}
+                  className="absolute inset-0 h-full w-full rounded-none object-contain"
+                />
+                <span
+                  className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
+                  aria-hidden="true"
+                >
+                  {panel.icon}
+                </span>
+              </div>
+              <figcaption className="p-6">
                 <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">
                   {panel.title}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-navy/75">{panel.copy}</p>
               </figcaption>
-              <span
-                className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
-                aria-hidden="true"
-              >
-                {panel.icon}
-              </span>
             </figure>
           ))}
         </div>

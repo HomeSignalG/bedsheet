@@ -149,7 +149,7 @@ export default function AboutPage() {
             width={1398}
             height={1125}
             priority
-            className="h-full w-full rounded-none object-cover"
+            className="h-full w-full rounded-none object-contain"
           />
         </div>
       </section>
@@ -186,8 +186,7 @@ export default function AboutPage() {
               alt="Black and white photo of a woman straining as she stretches a conventional fitted sheet over a mattress corner"
               width={1536}
               height={1024}
-              objectPosition="35% center"
-              className="max-w-[45%] rounded-lg object-cover"
+              className="max-w-[45%] self-start rounded-lg"
             />
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-red-800">
@@ -219,8 +218,7 @@ export default function AboutPage() {
               alt="A woman easily lifting the bottom sheet off the snap fasteners at the corner of a neatly made bed"
               width={1515}
               height={1038}
-              objectPosition="72% center"
-              className="max-w-[45%] rounded-lg object-cover"
+              className="max-w-[45%] self-start rounded-lg"
             />
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-emerald-800">

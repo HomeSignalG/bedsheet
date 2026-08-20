@@ -2,32 +2,30 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 
 /**
  * Image-topped card with a titled caption, used for the product feature
- * cards. Images fill a shared 4:3 tile so every card in a row lines up;
- * `objectPosition` sets the crop focus for photos that aren't 4:3.
+ * cards. Every card in a row shares a 4:3 tile so the captions line up;
+ * the photo is scaled to fit inside that tile rather than cropped to it,
+ * so no part of the image is cut off.
  */
 export default function ImageCard({
   src,
   alt,
   title,
   caption,
-  objectPosition,
 }: {
   src: string;
   alt: string;
   title: string;
   caption: string;
-  objectPosition?: string;
 }) {
   return (
     <figure className="flex h-full flex-col">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-ivory">
         <PlaceholderImage
           src={src}
           alt={alt}
           width={800}
           height={600}
-          objectPosition={objectPosition}
-          className="absolute inset-0 h-full w-full rounded-none object-cover"
+          className="absolute inset-0 h-full w-full rounded-none object-contain"
         />
       </div>
       <figcaption className="flex-1 pt-5">
