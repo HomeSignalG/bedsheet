@@ -86,7 +86,7 @@ export default function ContactPage() {
             width={1200}
             height={900}
             priority
-            className="h-full w-full rounded-none object-cover"
+            className="h-full w-full rounded-none object-contain"
           />
         </div>
       </section>

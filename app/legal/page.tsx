@@ -148,7 +148,7 @@ export default function LegalPage() {
             width={1448}
             height={1086}
             priority
-            className="h-full w-full rounded-none object-cover"
+            className="h-full w-full rounded-none object-contain"
           />
         </div>
       </section>
