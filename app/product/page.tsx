@@ -51,8 +51,8 @@ const featureCards = [
   },
   {
     title: "3. Deep, Secure Pocket",
-    src: "/placeholders/feature-pocket.svg",
-    alt: "Placeholder for a photo of the fitted base pocket wrapped around a mattress corner",
+    src: "/placeholders/elastic-pocket.webp",
+    alt: "A hand lifting the elasticized hem of the fitted base at a mattress corner, showing the depth of the pocket",
     caption:
       "Deep pockets and elasticized edges keep the fitted base locked in, night after night.",
   },
