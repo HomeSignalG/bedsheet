@@ -12,9 +12,9 @@ and lazy-loading behavior stays consistent when files are swapped.
 
 | File | Used on | Depicts (final photo) |
 | --- | --- | --- |
-| `bedroom-navy.webp` | Home hero | Final photo (in place): SWAP on a grey platform bed |
-| `bedroom-warm.webp` | Product hero | Final photo (in place): SWAP on a warm upholstered bed, snaps visible along the sheet edge |
-| `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: SWAP on a cream upholstered bed |
+| `bedroom-navy.webp` | Home hero | Final photo (in place): BackEasy Sheets on a grey platform bed |
+| `bedroom-warm.webp` | Product hero | Final photo (in place): BackEasy Sheets on a warm upholstered bed, snaps visible along the sheet edge |
+| `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: BackEasy Sheets on a cream upholstered bed |
 | `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
 | `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): top sheet going into the washing machine. 600x480 — adequate at render size; a larger original would be sharper still on high-DPI screens. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |

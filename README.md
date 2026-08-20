@@ -1,6 +1,6 @@
-# SWAP Bedding System — Website
+# BackEasy Sheets Bedding System — Website
 
-A single-product, wholesale-focused company website for the patented SWAP
+A single-product, wholesale-focused company website for the patented BackEasy Sheets
 two-part bed sheet system: a fitted base that stays on the mattress and a
 removable top sheet that snaps on and off in seconds.
 
