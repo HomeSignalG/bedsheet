@@ -37,7 +37,7 @@ export const siteConfig = {
   },
 
   /** Contact email. */
-  email: "info@easytopbedding.com",
+  email: "info@swapbeddingsystem.com",
 
   /**
    * Placeholder base URL used for canonical URLs, Open Graph metadata,
@@ -130,7 +130,7 @@ export const siteConfig = {
   socialLinks: [
     { label: "Instagram", href: null as string | null },
     { label: "LinkedIn", href: null as string | null },
-    { label: "Email", href: "mailto:info@easytopbedding.com" as string | null },
+    { label: "Email", href: "mailto:info@swapbeddingsystem.com" as string | null },
   ],
 } as const;
 
