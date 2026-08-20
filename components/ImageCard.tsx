@@ -29,10 +29,10 @@ export default function ImageCard({
         />
       </div>
       <figcaption className="flex-1 pt-5">
-        <p className="text-sm font-semibold uppercase tracking-[0.12em] text-navy">
+        <p className="text-sm font-semibold uppercase tracking-[0.12em] text-charcoal">
           {title}
         </p>
-        <p className="mt-3 text-sm leading-relaxed text-navy/70">{caption}</p>
+        <p className="mt-3 text-sm leading-relaxed text-warmgray">{caption}</p>
       </figcaption>
     </figure>
   );

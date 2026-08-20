@@ -105,13 +105,13 @@ export default function HomePage() {
   return (
     <>
       {/* Hero — photo bleeds to the top and right edges on large screens */}
-      <section className="relative bg-white">
+      <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
-            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl md:text-[3.4rem]">
+            <h1 className="font-serif text-4xl leading-tight text-charcoal sm:text-5xl md:text-[3.4rem]">
               Change your sheets. Not your fitted sheet.
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-warmgray">
               The {siteConfig.brandShort}
               <Trademark /> {siteConfig.brandSubtitle} features a removable
               bottom sheet that snaps on and off in seconds—so you can change
@@ -123,7 +123,7 @@ export default function HomePage() {
             <div className="mt-9">
               <Link
                 href="/product"
-                className="inline-flex items-center gap-3 rounded-md bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep"
+                className="inline-flex items-center gap-3 rounded-md bg-charcoal px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-cream transition-colors hover:bg-charcoal-deep"
               >
                 Discover the Difference
                 <ArrowRightIcon />
@@ -164,7 +164,7 @@ export default function HomePage() {
       <Section background="ivory" labelledBy="steps-heading">
         <h2
           id="steps-heading"
-          className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+          className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
         >
           Change your bottom sheet in seconds.
         </h2>
@@ -193,12 +193,12 @@ export default function HomePage() {
       </Section>
 
       {/* Lifestyle panels */}
-      <section aria-label="Everyday benefits" className="bg-white px-6 py-16 sm:px-8">
+      <section aria-label="Everyday benefits" className="bg-cream px-6 py-16 sm:px-8">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {lifestylePanels.map((panel) => (
             <figure
               key={panel.title}
-              className="flex h-full flex-col overflow-hidden rounded-xl border border-mist bg-white"
+              className="flex h-full flex-col overflow-hidden rounded-xl border border-stone bg-cream"
             >
               {/* The photo is scaled to fit this tile, never cropped to it,
                   so the snaps and grommets stay in frame. The caption sits
@@ -213,17 +213,17 @@ export default function HomePage() {
                   className="absolute inset-0 h-full w-full rounded-none object-contain"
                 />
                 <span
-                  className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
+                  className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-slate text-cream"
                   aria-hidden="true"
                 >
                   {panel.icon}
                 </span>
               </div>
               <figcaption className="p-6">
-                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">
+                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-charcoal">
                   {panel.title}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-navy/75">{panel.copy}</p>
+                <p className="mt-2 text-sm leading-relaxed text-warmgray">{panel.copy}</p>
               </figcaption>
             </figure>
           ))}
@@ -235,7 +235,7 @@ export default function HomePage() {
           screens each callout is pinned to the leader line its dot sits on in
           the artwork, so every label lines up with the layer it names. */}
       <Section
-        background="white"
+        background="cream"
         eyebrow="A better way to bed."
         title="The two-part system that stays put."
         intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
@@ -255,12 +255,12 @@ export default function HomePage() {
               <div
                 key={layer.title}
                 style={{ top: layer.leader }}
-                className="border-l-2 border-navy pl-5 lg:absolute lg:left-[62%] lg:right-0 lg:-translate-y-1/2"
+                className="border-l-2 border-slate pl-5 lg:absolute lg:left-[62%] lg:right-0 lg:-translate-y-1/2"
               >
-                <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+                <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                   {layer.title}
                 </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-navy/70">
+                <dd className="mt-2 text-sm leading-relaxed text-warmgray">
                   {layer.copy}
                 </dd>
               </div>
@@ -273,7 +273,7 @@ export default function HomePage() {
               key={layer.title}
               aria-hidden="true"
               style={{ top: layer.leader }}
-              className="absolute left-[58%] hidden h-px w-[4%] bg-navy lg:block"
+              className="absolute left-[58%] hidden h-px w-[4%] bg-slate lg:block"
             />
           ))}
         </div>
