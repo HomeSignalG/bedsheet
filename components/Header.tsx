@@ -21,7 +21,7 @@ export default function Header() {
     href.includes("#") ? false : pathname === href;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-mist bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-stone bg-cream/95 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-6 sm:px-8">
         <Link
           href="/"
@@ -43,8 +43,8 @@ export default function Header() {
                     aria-current={active ? "page" : undefined}
                     className={`text-sm font-medium uppercase tracking-[0.14em] transition-colors ${
                       active
-                        ? "border-b-2 border-navy pb-1 text-navy"
-                        : "text-navy/65 hover:text-navy"
+                        ? "border-b-2 border-charcoal pb-1 text-charcoal"
+                        : "text-warmgray hover:text-charcoal"
                     }`}
                   >
                     {item.label}
@@ -57,7 +57,7 @@ export default function Header() {
 
         <Link
           href="/contact"
-          className="hidden rounded-md bg-navy px-6 py-3 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep lg:inline-block"
+          className="hidden rounded-md bg-charcoal px-6 py-3 text-sm font-medium uppercase tracking-[0.14em] text-cream transition-colors hover:bg-charcoal-deep lg:inline-block"
         >
           Retailer Inquiry
         </Link>
@@ -65,7 +65,7 @@ export default function Header() {
         {/* Mobile menu toggle */}
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center text-navy lg:hidden"
+          className="flex h-11 w-11 items-center justify-center text-charcoal lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           onClick={() => setMenuOpen((open) => !open)}
@@ -94,7 +94,7 @@ export default function Header() {
         <nav
           id="mobile-nav"
           aria-label="Primary"
-          className="border-t border-mist bg-white lg:hidden"
+          className="border-t border-stone bg-cream lg:hidden"
         >
           <ul className="px-6 py-4">
             {navItems.map((item) => (
@@ -104,7 +104,7 @@ export default function Header() {
                   aria-current={isActive(item.href) ? "page" : undefined}
                   onClick={() => setMenuOpen(false)}
                   className={`block py-3 text-sm font-medium uppercase tracking-[0.14em] ${
-                    isActive(item.href) ? "text-navy" : "text-navy/65"
+                    isActive(item.href) ? "text-charcoal" : "text-warmgray"
                   }`}
                 >
                   {item.label}
@@ -115,7 +115,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-md bg-navy px-6 py-3 text-center text-sm font-medium uppercase tracking-[0.14em] text-white"
+                className="block rounded-md bg-charcoal px-6 py-3 text-center text-sm font-medium uppercase tracking-[0.14em] text-cream"
               >
                 Retailer Inquiry
               </Link>

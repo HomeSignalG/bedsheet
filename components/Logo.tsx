@@ -19,7 +19,7 @@ export default function Logo({ onDark = false }: { onDark?: boolean }) {
   }
 
   return (
-    <span className={`flex items-center gap-3 ${onDark ? "text-white" : "text-navy"}`}>
+    <span className={`flex items-center gap-3 ${onDark ? "text-cream" : "text-charcoal"}`}>
       {/* Sheet-swoosh mark */}
       <svg
         width="40"
@@ -40,7 +40,7 @@ export default function Logo({ onDark = false }: { onDark?: boolean }) {
         </span>
         <span
           className={`mt-1 block text-[0.6rem] font-medium tracking-[0.32em] ${
-            onDark ? "text-mist" : "text-navy/70"
+            onDark ? "text-stone" : "text-warmgray"
           }`}
         >
           {siteConfig.brandSubtitle.toUpperCase()}

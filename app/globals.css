@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette — cool premium bedding aesthetic per design mockups */
-  --color-navy: #1c2c44; /* deep navy */
-  --color-navy-deep: #131f31; /* darker navy for footer / hover states */
-  --color-ivory: #f4f6f9; /* cool light blue-gray panel */
-  --color-beige: #e5dccb; /* soft beige (color swatches only) */
-  --color-mist: #e2e7ee; /* light cool border gray */
-  --color-accent: #56718f; /* muted blue accent */
+  /* Brand palette — warm neutral premium bedding aesthetic.
+     Ivory and warm white carry the page; charcoal carries the type;
+     stone carries the structure; slate blue is a restrained accent. */
+  --color-ivory: #f7f5f0; /* warm ivory — primary soft background */
+  --color-cream: #fcfbf8; /* soft warm white — alternating sections and cards */
+  --color-charcoal: #292c2d; /* deep charcoal — headings, primary text, dark surfaces */
+  --color-charcoal-deep: #1d2123; /* deepest charcoal — footer, hover states */
+  --color-warmgray: #6e6c67; /* warm gray — secondary and supporting copy */
+  --color-stone: #ddd9d1; /* pale stone — borders, dividers, low-emphasis structure */
+  --color-slate: #667789; /* muted slate blue — accent fills, icons, focus */
+  --color-slate-deep: #58687a; /* same hue, darkened so accent *text* clears AA */
+  --color-taupe: #b4a99b; /* soft taupe — sparing secondary neutral */
 
   /* Typography */
   --font-serif: var(--font-heading), Georgia, "Times New Roman", serif;
@@ -16,15 +21,15 @@
 }
 
 body {
-  background: #ffffff;
-  color: var(--color-navy);
+  background: var(--color-cream);
+  color: var(--color-charcoal);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 /* Visible focus states for keyboard navigation */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-slate);
   outline-offset: 3px;
 }
 

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#1c2c44"/>
+  <rect width="64" height="64" fill="#292c2d"/>
   <!-- Two-layer mark: removable top over fitted base -->
-  <path d="M12 26 Q32 16 52 26" fill="none" stroke="#faf7f1" stroke-width="4" stroke-linecap="round"/>
-  <path d="M12 40 Q32 30 52 40" fill="none" stroke="#56718f" stroke-width="4" stroke-linecap="round"/>
+  <path d="M12 26 Q32 16 52 26" fill="none" stroke="#fcfbf8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M12 40 Q32 30 52 40" fill="none" stroke="#667789" stroke-width="4" stroke-linecap="round"/>
 </svg>

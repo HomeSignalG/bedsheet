@@ -37,24 +37,24 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-deep text-white">
+    <footer className="bg-charcoal-deep text-cream">
       <div className="mx-auto max-w-6xl px-6 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_auto_auto] md:gap-12">
           <div>
             <Link href="/" aria-label={`${siteConfig.brandName} — home`}>
               <Logo onDark />
             </Link>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-mist">
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-stone">
               {siteConfig.brandStatement}
             </p>
           </div>
 
-          <p className="self-center text-sm leading-relaxed text-mist">
+          <p className="self-center text-sm leading-relaxed text-stone">
             {siteConfig.footerMotto}
           </p>
 
           <nav aria-label="Info">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mist/70">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone/70">
               Info
             </p>
             <ul className="mt-4 space-y-2.5">
@@ -62,7 +62,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-mist transition-colors hover:text-white"
+                    className="text-sm text-stone transition-colors hover:text-cream"
                   >
                     {item.label}
                   </Link>
@@ -73,7 +73,7 @@ export default function Footer() {
 
           <div className="flex flex-col justify-between gap-8">
             <nav aria-label="Legal">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-mist/70">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone/70">
                 Legal
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -81,7 +81,7 @@ export default function Footer() {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-sm text-mist transition-colors hover:text-white"
+                      className="text-sm text-stone transition-colors hover:text-cream"
                     >
                       {item.label}
                     </Link>
@@ -97,14 +97,14 @@ export default function Footer() {
                     <a
                       href={social.href}
                       aria-label={social.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-mist transition-colors hover:border-white hover:text-white"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/25 text-stone transition-colors hover:border-cream hover:text-cream"
                     >
                       <SocialIcon label={social.label} />
                     </a>
                   ) : (
                     <span
                       aria-label={`${social.label} (coming soon)`}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-mist/50"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 text-stone/50"
                     >
                       <SocialIcon label={social.label} />
                     </span>
@@ -115,7 +115,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-xs text-mist/80 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-cream/15 pt-6 text-xs text-stone/80 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {siteConfig.copyrightHolder}. All rights reserved.
           </p>

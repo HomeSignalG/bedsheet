@@ -84,13 +84,13 @@ export default function HomePage() {
   return (
     <>
       {/* Hero — photo bleeds to the top and right edges on large screens */}
-      <section className="relative bg-white">
+      <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
-            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl md:text-[3.4rem]">
+            <h1 className="font-serif text-4xl leading-tight text-charcoal sm:text-5xl md:text-[3.4rem]">
               Change your sheets. Not your fitted sheet.
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-warmgray">
               The {siteConfig.brandName} features a removable bottom sheet that
               snaps on and off in seconds—so you can change your bed the easy
               way.
@@ -101,7 +101,7 @@ export default function HomePage() {
             <div className="mt-9">
               <Link
                 href="/product"
-                className="inline-flex items-center gap-3 rounded-md bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep"
+                className="inline-flex items-center gap-3 rounded-md bg-charcoal px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-cream transition-colors hover:bg-charcoal-deep"
               >
                 Discover the Difference
                 <ArrowRightIcon />
@@ -142,7 +142,7 @@ export default function HomePage() {
       <Section background="ivory" labelledBy="steps-heading">
         <h2
           id="steps-heading"
-          className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+          className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
         >
           Change your bottom sheet in seconds.
         </h2>
@@ -171,12 +171,12 @@ export default function HomePage() {
       </Section>
 
       {/* Lifestyle panels */}
-      <section aria-label="Everyday benefits" className="bg-white px-6 py-16 sm:px-8">
+      <section aria-label="Everyday benefits" className="bg-cream px-6 py-16 sm:px-8">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {lifestylePanels.map((panel) => (
             <figure
               key={panel.title}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mist"
+              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-stone"
             >
               <PlaceholderImage
                 src={panel.src}
@@ -187,19 +187,19 @@ export default function HomePage() {
                 className="absolute inset-0 h-full w-full rounded-none object-cover"
               />
               {/* Caption sits low, where these photos are plain sheet, so
-                  faces stay visible and the navy text keeps its contrast. */}
+                  faces stay visible and the charcoal text keeps its contrast. */}
               <div
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/88 to-transparent"
+                className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-cream via-cream/88 to-transparent"
               />
               <figcaption className="absolute inset-x-0 bottom-0 p-6">
-                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">
+                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-charcoal">
                   {panel.title}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-navy/75">{panel.copy}</p>
+                <p className="mt-2 text-sm leading-relaxed text-warmgray">{panel.copy}</p>
               </figcaption>
               <span
-                className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
+                className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-slate text-cream"
                 aria-hidden="true"
               >
                 {panel.icon}
@@ -212,7 +212,7 @@ export default function HomePage() {
       {/* Two-part system — the diagram artwork carries no text, so the
           heading, copy and callouts render as live, editable text. */}
       <Section
-        background="white"
+        background="cream"
         eyebrow="A better way to bed."
         title="The two-part system that stays put."
         intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
@@ -226,27 +226,27 @@ export default function HomePage() {
             className="rounded-none"
           />
           <dl className="space-y-8">
-            <div className="border-l-2 border-navy pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+            <div className="border-l-2 border-slate pl-5">
+              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                 Removable Bottom Sheet
               </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
+              <dd className="mt-2 text-sm leading-relaxed text-warmgray">
                 Snaps on and off in seconds.
               </dd>
             </div>
-            <div className="border-l-2 border-navy pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+            <div className="border-l-2 border-slate pl-5">
+              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                 Fitted Base
               </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
+              <dd className="mt-2 text-sm leading-relaxed text-warmgray">
                 Stays on your mattress securely.
               </dd>
             </div>
-            <div className="border-l-2 border-navy pl-5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+            <div className="border-l-2 border-slate pl-5">
+              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                 Mattress
               </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-navy/70">
+              <dd className="mt-2 text-sm leading-relaxed text-warmgray">
                 Your mattress. The foundation that supports you.
               </dd>
             </div>

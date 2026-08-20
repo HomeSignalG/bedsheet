@@ -101,7 +101,7 @@ const privacySections = [
       <p>
         If you have any questions about this Privacy Policy, please contact us
         through the{" "}
-        <Link href="/contact" className="text-accent underline underline-offset-4">
+        <Link href="/contact" className="text-slate-deep underline underline-offset-4">
           contact form
         </Link>{" "}
         on our website.
@@ -117,17 +117,17 @@ export default function LegalPage() {
       <section className="relative bg-ivory">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[420px] lg:grid-cols-2">
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-deep">
               Legal &amp; Privacy Policy
             </p>
-            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl">
+            <h1 className="font-serif text-4xl leading-tight text-charcoal sm:text-5xl">
               Our commitment to trust and transparency.
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-navy/75">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-warmgray">
               This page outlines our patent protection and how we collect, use,
               and protect your information.
             </p>
-            <p className="mt-4 text-sm text-navy/60">
+            <p className="mt-4 text-sm text-warmgray">
               Last Updated: {siteConfig.legalLastUpdated}
             </p>
           </div>
@@ -154,21 +154,21 @@ export default function LegalPage() {
       </section>
 
       <div className="bg-ivory px-6 py-16 sm:px-8">
-        <div className="mx-auto max-w-4xl rounded-2xl bg-white p-8 shadow-sm sm:p-12">
+        <div className="mx-auto max-w-4xl rounded-2xl bg-cream p-8 shadow-sm sm:p-12">
           {/* Patent & IP */}
           <section id="patent" aria-labelledby="patent-heading" className="scroll-mt-24">
             <div className="flex items-start gap-5">
-              <span className="mt-1 hidden shrink-0 text-navy sm:block" aria-hidden="true">
+              <span className="mt-1 hidden shrink-0 text-slate sm:block" aria-hidden="true">
                 <ShieldIcon />
               </span>
               <div>
                 <h2
                   id="patent-heading"
-                  className="text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+                  className="text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
                 >
                   Patent &amp; Intellectual Property
                 </h2>
-                <div className="mt-5 space-y-4 leading-relaxed text-navy/80">
+                <div className="mt-5 space-y-4 leading-relaxed text-charcoal">
                   <p>{siteConfig.patent.statement}</p>
                   <p>
                     No part of our product, design, or website content may be
@@ -176,7 +176,7 @@ export default function LegalPage() {
                     written permission.
                   </p>
                   <p>
-                    <strong className="text-navy">Patent information:</strong>{" "}
+                    <strong className="text-charcoal">Patent information:</strong>{" "}
                     {siteConfig.patent.number ?? siteConfig.patent.shortNotice}
                   </p>
                 </div>
@@ -184,22 +184,22 @@ export default function LegalPage() {
             </div>
           </section>
 
-          <hr className="my-12 border-mist" />
+          <hr className="my-12 border-stone" />
 
           {/* Privacy policy */}
           <section id="privacy" aria-labelledby="privacy-heading" className="scroll-mt-24">
             <div className="flex items-start gap-5">
-              <span className="mt-1 hidden shrink-0 text-navy sm:block" aria-hidden="true">
+              <span className="mt-1 hidden shrink-0 text-slate sm:block" aria-hidden="true">
                 <LockIcon />
               </span>
               <div className="min-w-0 flex-1">
                 <h2
                   id="privacy-heading"
-                  className="text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+                  className="text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
                 >
                   Privacy Policy
                 </h2>
-                <p className="mt-5 leading-relaxed text-navy/80">
+                <p className="mt-5 leading-relaxed text-charcoal">
                   Your privacy is important to us. This Privacy Policy explains
                   how we collect, use, and safeguard your information when you
                   contact us through our website.
@@ -209,14 +209,14 @@ export default function LegalPage() {
                     <section
                       key={section.title}
                       aria-label={section.title}
-                      className={`border-t border-mist pt-6 ${
+                      className={`border-t border-stone pt-6 ${
                         index >= 6 ? "sm:col-span-2" : ""
                       }`}
                     >
-                      <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-navy">
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-charcoal">
                         {section.title}
                       </h3>
-                      <div className="mt-3 text-sm leading-relaxed text-navy/75">
+                      <div className="mt-3 text-sm leading-relaxed text-warmgray">
                         {section.body}
                       </div>
                     </section>

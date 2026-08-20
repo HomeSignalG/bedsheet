@@ -27,10 +27,10 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 /* Labels sit inside the field border, per the design mockups. */
 const fieldBoxClasses =
-  "rounded-md border bg-white px-4 py-2.5 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/25";
-const boxLabelClasses = "block text-xs font-medium text-navy/70";
+  "rounded-md border bg-cream px-4 py-2.5 focus-within:border-slate focus-within:ring-2 focus-within:ring-slate/25";
+const boxLabelClasses = "block text-xs font-medium text-warmgray";
 const controlClasses =
-  "w-full border-0 bg-transparent p-0 pt-0.5 text-navy placeholder:text-navy/40 focus:outline-none";
+  "w-full border-0 bg-transparent p-0 pt-0.5 text-charcoal placeholder:text-warmgray focus:outline-none";
 const errorClasses = "mt-2 text-sm text-red-700";
 
 export default function ContactForm() {
@@ -97,17 +97,17 @@ export default function ContactForm() {
     return (
       <div
         role="status"
-        className="border border-accent bg-white p-8 text-center"
+        className="border border-slate bg-cream p-8 text-center"
       >
         <h3 className="font-serif text-2xl">Thank you.</h3>
-        <p className="mt-3 leading-relaxed text-navy/75">
+        <p className="mt-3 leading-relaxed text-warmgray">
           Your message has been received. We&rsquo;ll get back to you by email as
           soon as we can.
         </p>
         <p className="mt-6">
           <button
             type="button"
-            className="text-sm font-medium uppercase tracking-[0.18em] text-accent underline underline-offset-4"
+            className="text-sm font-medium uppercase tracking-[0.18em] text-slate-deep underline underline-offset-4"
             onClick={() => setStatus("idle")}
           >
             Send another message
@@ -193,7 +193,7 @@ export default function ContactForm() {
       <div>
         <div
           className={`${fieldBoxClasses} ${
-            errors.inquiryType ? "border-red-700/60" : "border-navy/25"
+            errors.inquiryType ? "border-red-700/60" : "border-stone"
           }`}
         >
           <label htmlFor={fieldId("inquiryType")} className={boxLabelClasses}>
@@ -224,8 +224,8 @@ export default function ContactForm() {
       </div>
 
       {showBuyerFields && (
-        <fieldset className="space-y-6 border border-mist bg-ivory p-6">
-          <legend className="px-2 text-sm font-semibold uppercase tracking-[0.18em] text-navy">
+        <fieldset className="space-y-6 border border-stone bg-ivory p-6">
+          <legend className="px-2 text-sm font-semibold uppercase tracking-[0.18em] text-charcoal">
             Retail buyer details (optional)
           </legend>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -278,7 +278,7 @@ export default function ContactForm() {
       <div>
         <div
           className={`${fieldBoxClasses} ${
-            errors.message ? "border-red-700/60" : "border-navy/25"
+            errors.message ? "border-red-700/60" : "border-stone"
           }`}
         >
           <label htmlFor={fieldId("message")} className={boxLabelClasses}>
@@ -306,11 +306,11 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full cursor-pointer rounded-md bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-navy-deep disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full cursor-pointer rounded-md bg-charcoal px-8 py-4 text-sm font-medium uppercase tracking-[0.18em] text-cream transition-colors hover:bg-charcoal-deep disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
-      <p className="text-sm text-navy/60">
+      <p className="text-sm text-warmgray">
         <span className="text-red-700" aria-hidden="true">
           *
         </span>{" "}
@@ -355,7 +355,7 @@ function TextField({
     <div>
       <div
         className={`${fieldBoxClasses} ${
-          error ? "border-red-700/60" : "border-navy/25"
+          error ? "border-red-700/60" : "border-stone"
         }`}
       >
         <label htmlFor={id} className={boxLabelClasses}>
