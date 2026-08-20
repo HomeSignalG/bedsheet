@@ -29,8 +29,8 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `snap-construction.webp` | Product feature card 4 (Quality Construction) | Final photo (in place): grommet and reinforced hem stitching held in hand. |
 | `whats-included.svg` | Product | Folded top sheet stacked on folded base |
 | `depth-mattress.svg` | Product spec sidebar | Mattress depth range visual |
-| `about-hero.svg` | About hero | Founder seated on a made bed |
-| `about-problem.svg` | About story | Struggling with a traditional fitted sheet |
+| `about-hero-farmhouse.webp` | About hero | Final photo (in place): farmhouse bedroom with the system made up |
+| `about-problem-bw.webp` | About story (The Problem) | Final photo (in place): black and white, woman struggling with a conventional fitted sheet |
 | `about-solution.svg` | About story | Easy Top on a made bed (reserved) |
 | `promise-sheets.svg` | About promise | Folded Easy Top set |
 | `founder-portrait.svg` | About founder | Founder portrait |

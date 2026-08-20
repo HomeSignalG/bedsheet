@@ -132,20 +132,20 @@ export default function AboutPage() {
           </div>
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/about-hero.svg"
-              alt="Placeholder for a photo of the founder seated on a made bed with the top sheet turned back"
-              width={1200}
-              height={900}
+              src="/placeholders/about-hero-farmhouse.webp"
+              alt="A sunlit farmhouse bedroom with the Easy Top system made up on the bed, snaps visible along the sheet edge"
+              width={1398}
+              height={1125}
               priority
             />
           </div>
         </div>
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/about-hero.svg"
-            alt="Placeholder for a photo of the founder seated on a made bed with the top sheet turned back"
-            width={1200}
-            height={900}
+            src="/placeholders/about-hero-farmhouse.webp"
+            alt="A sunlit farmhouse bedroom with the Easy Top system made up on the bed, snaps visible along the sheet edge"
+            width={1398}
+            height={1125}
             priority
             className="h-full w-full rounded-none object-cover"
           />
@@ -180,10 +180,10 @@ export default function AboutPage() {
           {/* The problem: photo + list */}
           <div className="flex gap-5">
             <PlaceholderImage
-              src="/placeholders/about-problem.svg"
-              alt="Placeholder for a photo of someone straining to change a traditional fitted sheet"
-              width={800}
-              height={900}
+              src="/placeholders/about-problem-bw.webp"
+              alt="Black and white photo of a woman straining as she stretches a conventional fitted sheet over a mattress corner"
+              width={1536}
+              height={1024}
               className="max-w-[45%] rounded-lg object-cover"
             />
             <div>
@@ -238,7 +238,7 @@ export default function AboutPage() {
 
         <p className="mt-14 rounded-lg bg-white px-6 py-5 text-center text-lg leading-relaxed text-navy">
           So we reimagined the bed sheet from the ground up—creating a system
-          that stays put, and a top that comes off in seconds.
+          that stays put, and a bottom sheet that comes off in seconds.
         </p>
       </Section>
 
