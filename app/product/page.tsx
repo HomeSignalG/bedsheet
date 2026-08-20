@@ -8,7 +8,6 @@ import SpecTable from "@/components/SpecTable";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
 import {
-  CheckIcon,
   CheckSolidIcon,
   DiamondIcon,
   FabricIcon,
@@ -199,72 +198,41 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Steps + What's included */}
-      <section aria-label="How it works and what's included" className="bg-ivory px-6 py-20 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-          <div>
-            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              Change Your Bottom Sheet in Seconds
-            </h2>
-            <StepCards
-              layout="stacked"
-              steps={[
-                {
-                  label: "Unsnap",
-                  copy: "Release the snaps along the sides.",
-                  src: "/placeholders/snap-closeup.webp",
-                  alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
-                },
-                {
-                  label: "Wash",
-                  copy: "Toss it in the wash and dry.",
-                  src: "/placeholders/laundry-basket.webp",
-                  alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
-                },
-                {
-                  label: "Reattach",
-                  copy: "Snap on a clean bottom sheet. You're done.",
-                  src: "/placeholders/snap-corner-navy.webp",
-                  alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
-              What&rsquo;s Included
-            </h2>
-            <PlaceholderImage
-              src="/placeholders/whats-included.svg"
-              alt="Placeholder for a photo of the folded bottom sheet stacked on the folded fitted base"
-              width={1000}
-              height={700}
-            />
-            <ul className="mt-6 space-y-4">
-              {siteConfig.whatsIncluded.map((entry) => (
-                <li key={entry.item} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 text-accent" aria-hidden="true">
-                    <CheckIcon />
-                  </span>
-                  <div>
-                    <p className="font-medium text-navy">{entry.item}</p>
-                    {entry.note && (
-                      <p className="text-sm text-navy/60">({entry.note})</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-5 text-sm leading-relaxed text-navy/70">
-              Each set includes one fitted base, one removable bottom sheet, and
-              two pillowcases.
-            </p>
-          </div>
+      {/* How it works — the three cards keep a restrained max width so the
+          approved step photography stays at its previous scale. */}
+      <section aria-label="How it works" className="bg-ivory px-6 py-20 sm:px-8">
+        <div className="mx-auto max-w-[39rem]">
+          <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy">
+            Change Your Bottom Sheet in Seconds
+          </h2>
+          <StepCards
+            layout="stacked"
+            steps={[
+              {
+                label: "Unsnap",
+                copy: "Release the snaps along the sides.",
+                src: "/placeholders/snap-closeup.webp",
+                alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
+              },
+              {
+                label: "Wash",
+                copy: "Toss it in the wash and dry.",
+                src: "/placeholders/laundry-basket.webp",
+                alt: "The bottom sheet being lifted from a laundry basket into the washing machine",
+              },
+              {
+                label: "Reattach",
+                copy: "Snap on a clean bottom sheet. You're done.",
+                src: "/placeholders/snap-corner-navy.webp",
+                alt: "Close-up of the fitted base corner with the bottom sheet snapped into place over the grommet",
+              },
+            ]}
+          />
         </div>
       </section>
 
       {/* What comes in the system, and what it fits */}
-      <BeddingSystemSection headingId="bedding-system-heading" />
+      <BeddingSystemSection headingId="bedding-system-heading" showSizeGrid={false} />
 
       {/* Sizes & pocket depth */}
       <Section background="white" labelledBy="spec-heading">

@@ -4,11 +4,15 @@ import { pocketDepthRange, siteConfig } from "@/config/site";
  * The bedding-system section: what comes in the system, then what it fits.
  * Shared by the Home and Product pages so the two never drift apart.
  * `headingId` keeps the labelled-by reference unique per page.
+ * `showSizeGrid` hides the six-size dimension grid on the Product page,
+ * where the detailed specification table below already lists dimensions.
  */
 export default function BeddingSystemSection({
   headingId = "bedding-system-heading",
+  showSizeGrid = true,
 }: {
   headingId?: string;
+  showSizeGrid?: boolean;
 }) {
   return (
     <section aria-labelledby={headingId} className="bg-ivory px-6 py-16 sm:px-8 md:py-20">
@@ -50,21 +54,23 @@ export default function BeddingSystemSection({
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-y-10 sm:grid-cols-3">
-          {siteConfig.sizes.map((size, index) => (
-            <li
-              key={size.size}
-              className={`text-center ${
-                index % 3 !== 0 ? "sm:border-l sm:border-mist" : ""
-              }`}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-navy">
-                {size.size}
-              </p>
-              <p className="mt-1.5 text-sm text-navy/60">{size.dimensions}</p>
-            </li>
-          ))}
-        </ul>
+        {showSizeGrid && (
+          <ul className="mt-12 grid gap-y-10 sm:grid-cols-3">
+            {siteConfig.sizes.map((size, index) => (
+              <li
+                key={size.size}
+                className={`text-center ${
+                  index % 3 !== 0 ? "sm:border-l sm:border-mist" : ""
+                }`}
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.1em] text-navy">
+                  {size.size}
+                </p>
+                <p className="mt-1.5 text-sm text-navy/60">{size.dimensions}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
