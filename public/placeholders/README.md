@@ -16,7 +16,7 @@ and lazy-loading behavior stays consistent when files are swapped.
 | `bedroom-warm.webp` | Product hero | Final photo (in place): SWAP on a warm upholstered bed, snaps visible along the sheet edge |
 | `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: SWAP on a cream upholstered bed |
 | `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
-| `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): top sheet going into the washing machine. 600x480 — adequate at render size; a larger original would be sharper still on high-DPI screens. |
+| `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): bottom sheet lifted from the laundry basket into the washing machine. 1015x1550 WebP — high-DPI sharp, and portrait like the other two step photos. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
 | `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) + Legal hero | Final photo (in place): a boy changing his own bed. Used on two pages. |
