@@ -220,10 +220,10 @@ export default function HomePage() {
         intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
       >
         <div className="grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
-          {/* Diagram renders at 70% so the callouts stay in view rather than
-              being pushed below the fold on narrow and stacked layouts. Its
-              right edge stays anchored beside the two-column callouts so the
-              artwork's leader lines still run into their labels. */}
+          {/* Diagram renders at 70% width. At lg its right edge stays
+              anchored to the callout column so the artwork's leader lines
+              still run into their labels; below lg the callouts stack
+              underneath, so it centres instead. */}
           <div className="mx-auto w-[70%] lg:mr-0">
             <PlaceholderImage
               src="/placeholders/system-diagram-clean.webp"
@@ -235,26 +235,26 @@ export default function HomePage() {
           </div>
           <dl className="space-y-[1.4rem]">
             <div className="border-l-2 border-navy pl-3.5">
-              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
                 Removable Bottom Sheet
               </dt>
-              <dd className="mt-1.5 text-xs leading-relaxed text-navy/70">
+              <dd className="mt-1.5 text-sm leading-relaxed text-navy/70">
                 Snaps on and off in seconds.
               </dd>
             </div>
             <div className="border-l-2 border-navy pl-3.5">
-              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
                 Fitted Base
               </dt>
-              <dd className="mt-1.5 text-xs leading-relaxed text-navy/70">
+              <dd className="mt-1.5 text-sm leading-relaxed text-navy/70">
                 Stays on your mattress securely.
               </dd>
             </div>
             <div className="border-l-2 border-navy pl-3.5">
-              <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-navy">
+              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
                 Mattress
               </dt>
-              <dd className="mt-1.5 text-xs leading-relaxed text-navy/70">
+              <dd className="mt-1.5 text-sm leading-relaxed text-navy/70">
                 Your mattress. The foundation that supports you.
               </dd>
             </div>
