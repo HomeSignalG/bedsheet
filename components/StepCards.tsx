@@ -4,12 +4,21 @@ import PlaceholderImage from "@/components/PlaceholderImage";
  * Numbered process steps with arrow separators.
  * `row` (Home): number + text beside the image.
  * `stacked` (Product): number badge on the image, text below.
+ *
+ * Every step photo fills a shared 4:5 tile so the steps line up regardless
+ * of each source photo's aspect ratio; `objectPosition` sets the crop focus.
  */
 export default function StepCards({
   steps,
   layout = "row",
 }: {
-  steps: { label: string; copy: string; src: string; alt: string }[];
+  steps: {
+    label: string;
+    copy: string;
+    src: string;
+    alt: string;
+    objectPosition?: string;
+  }[];
   layout?: "row" | "stacked";
 }) {
   return (
@@ -25,25 +34,13 @@ export default function StepCards({
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-navy/70">{step.copy}</p>
               </div>
-              <PlaceholderImage
-                src={step.src}
-                alt={step.alt}
-                width={800}
-                height={600}
-                className="rounded-lg"
-              />
+              <StepImage step={step} />
             </div>
           ) : (
             <div>
               <div className="relative">
-                <PlaceholderImage
-                  src={step.src}
-                  alt={step.alt}
-                  width={800}
-                  height={600}
-                  className="rounded-lg"
-                />
-                <span className="absolute -left-2 -top-2" aria-hidden="true">
+                <StepImage step={step} />
+                <span className="absolute -left-2 -top-2 z-10" aria-hidden="true">
                   <StepNumber index={index} />
                 </span>
               </div>
@@ -64,6 +61,25 @@ export default function StepCards({
         </li>
       ))}
     </ol>
+  );
+}
+
+function StepImage({
+  step,
+}: {
+  step: { src: string; alt: string; objectPosition?: string };
+}) {
+  return (
+    <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+      <PlaceholderImage
+        src={step.src}
+        alt={step.alt}
+        width={800}
+        height={1000}
+        objectPosition={step.objectPosition}
+        className="absolute inset-0 h-full w-full rounded-none object-cover"
+      />
+    </div>
   );
 }
 
