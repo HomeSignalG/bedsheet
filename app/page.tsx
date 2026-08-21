@@ -259,7 +259,7 @@ export default function HomePage() {
                 className="rounded-none"
               />
             </div>
-            <dl className="mt-10 space-y-8 @lg:mt-0 @lg:space-y-0 @lg:text-[clamp(0.6875rem,0.28rem+1.25cqw,0.875rem)]">
+            <dl className="mt-10 space-y-8 @lg:mt-0 @lg:space-y-0 @lg:text-[clamp(0.625rem,0.2rem+1.35cqw,0.875rem)]">
               {systemLayers.map((layer) => (
                 <div
                   key={layer.title}
