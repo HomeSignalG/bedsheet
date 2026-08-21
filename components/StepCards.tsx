@@ -5,20 +5,15 @@ import PlaceholderImage from "@/components/PlaceholderImage";
  * `row` (Home): number + text beside the image.
  * `stacked` (Product): number badge on the image, text below.
  *
- * Every step photo fills a shared 4:5 tile so the steps line up regardless
- * of each source photo's aspect ratio; `objectPosition` sets the crop focus.
+ * Every step shares a 3:4 tile so the steps line up regardless of each
+ * source photo's aspect ratio. The photo is scaled to fit inside that tile
+ * rather than cropped to it, so the snaps and grommets stay in frame.
  */
 export default function StepCards({
   steps,
   layout = "row",
 }: {
-  steps: {
-    label: string;
-    copy: string;
-    src: string;
-    alt: string;
-    objectPosition?: string;
-  }[];
+  steps: { label: string; copy: string; src: string; alt: string }[];
   layout?: "row" | "stacked";
 }) {
   return (
@@ -64,20 +59,15 @@ export default function StepCards({
   );
 }
 
-function StepImage({
-  step,
-}: {
-  step: { src: string; alt: string; objectPosition?: string };
-}) {
+function StepImage({ step }: { step: { src: string; alt: string } }) {
   return (
-    <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+    <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-ivory">
       <PlaceholderImage
         src={step.src}
         alt={step.alt}
         width={800}
         height={1000}
-        objectPosition={step.objectPosition}
-        className="absolute inset-0 h-full w-full rounded-none object-cover"
+        className="absolute inset-0 h-full w-full rounded-none object-contain"
       />
     </div>
   );
