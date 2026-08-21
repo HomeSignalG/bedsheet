@@ -71,20 +71,20 @@ export default function ContactPage() {
           </div>
           <div className="lg:hidden">
             <PlaceholderImage
-              src="/placeholders/contact-hero.svg"
-              alt="Placeholder for a photo of a made bed with the top sheet turned down"
-              width={1200}
-              height={900}
+              src="/placeholders/kid-changing-bed.webp"
+              alt="A boy changing his own bed, lifting the light-blue bottom sheet off the grommets at the mattress corner"
+              width={1448}
+              height={1086}
               priority
             />
           </div>
         </div>
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
-            src="/placeholders/contact-hero.svg"
-            alt="Placeholder for a photo of a made bed with the top sheet turned down"
-            width={1200}
-            height={900}
+            src="/placeholders/kid-changing-bed.webp"
+            alt="A boy changing his own bed, lifting the light-blue bottom sheet off the grommets at the mattress corner"
+            width={1448}
+            height={1086}
             priority
             className="h-full w-full rounded-none object-contain"
           />

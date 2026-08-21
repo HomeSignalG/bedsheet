@@ -27,7 +27,7 @@ edges. Note what was done in the file's row below.
 | `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): bottom sheet lifted from the laundry basket into the washing machine. 1015x1550 WebP — high-DPI sharp, and portrait like the other two step photos. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
-| `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) + Legal hero | Final photo (in place): a boy changing his own bed. Used on two pages. |
+| `kid-changing-bed.webp` | Home lifestyle (Easy Enough for Kids) + Contact hero + Legal hero | Final photo (in place): a boy changing his own bed. Used on three pages. |
 | `family-pet-bed.webp` | Home lifestyle (Made for Real Life) | Final photo (in place): girl and dog on the bed. Supplied with the heading, copy and icon baked into a left-hand column; that column was cropped off so the page renders its own live text. |
 | `system-diagram-clean.webp` | Home two-part system | Final diagram (in place). Derived from the supplied graphic by masking out its baked-in heading, copy and callout labels and cropping to the illustration, so the page renders that text live and editable. The supplied graphic ran out of canvas before the foundation closed, so the bottom of that box — its front corner and third leg — was drawn back in from the surrounding line work; the layers, the callout dots and their leader lines are untouched. The three leader lines leave the right edge at 8.58%, 24.38% and 45.88% of the image height, which is what the Home callouts are pinned to. |
 | `product-hero.svg` | Product hero | Top sheet lifted at one corner above the base |
@@ -40,4 +40,4 @@ edges. Note what was done in the file's row below.
 | `about-problem-bw.webp` | About story (The Problem) | Final photo (in place): black and white, woman struggling with a conventional fitted sheet |
 | `about-solution-photo.webp` | About story (The Solution) | Final photo (in place): woman lifting the bottom sheet off the snaps with ease |
 | `promise-hem.webp` | About (Our Promise) | Final photo (in place): hand holding the white sheet hem, grommet and stitching detail |
-| `contact-hero.svg` | Contact hero | Made bed with top sheet turned down |
+| `contact-hero.svg` | _unused_ | Made bed with top sheet turned down. The Contact hero now runs `kid-changing-bed.webp`. |
