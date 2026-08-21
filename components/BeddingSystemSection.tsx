@@ -13,14 +13,18 @@ const backgroundClasses: Record<SectionBackground, string> = {
  * Shared by the Home and Product pages so the two never drift apart.
  * `headingId` keeps the labelled-by reference unique per page. `background`
  * varies only the section fill: ivory on Home, cream on Product, where the
- * section above it is already ivory.
+ * section above it is already ivory. `showSizes` drops the "Available to fit
+ * your mattress" half on Product, where the Sizes & Mattress Depths section
+ * directly below already lists every size and states the depth range.
  */
 export default function BeddingSystemSection({
   headingId = "bedding-system-heading",
   background = "ivory",
+  showSizes = true,
 }: {
   headingId?: string;
   background?: SectionBackground;
+  showSizes?: boolean;
 }) {
   return (
     <section
@@ -54,33 +58,37 @@ export default function BeddingSystemSection({
           ))}
         </ul>
 
-        <hr className="my-14 border-stone" />
+        {showSizes && (
+          <>
+            <hr className="my-14 border-stone" />
 
-        <div className="text-center">
-          <h3 className="text-lg font-semibold uppercase tracking-[0.14em] text-charcoal">
-            Available to Fit Your Mattress
-          </h3>
-          <p className="mt-3 leading-relaxed text-warmgray">
-            Six standard mattress sizes &middot; Available in mattress depths
-            from {pocketDepthRange()}
-          </p>
-        </div>
-
-        <ul className="mt-12 grid gap-y-10 sm:grid-cols-3">
-          {siteConfig.sizes.map((size, index) => (
-            <li
-              key={size.size}
-              className={`text-center ${
-                index % 3 !== 0 ? "sm:border-l sm:border-stone" : ""
-              }`}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.1em] text-charcoal">
-                {size.size}
+            <div className="text-center">
+              <h3 className="text-lg font-semibold uppercase tracking-[0.14em] text-charcoal">
+                Available to Fit Your Mattress
+              </h3>
+              <p className="mt-3 leading-relaxed text-warmgray">
+                Six standard mattress sizes &middot; Available in mattress
+                depths from {pocketDepthRange()}
               </p>
-              <p className="mt-1.5 text-sm text-warmgray">{size.dimensions}</p>
-            </li>
-          ))}
-        </ul>
+            </div>
+
+            <ul className="mt-12 grid gap-y-10 sm:grid-cols-3">
+              {siteConfig.sizes.map((size, index) => (
+                <li
+                  key={size.size}
+                  className={`text-center ${
+                    index % 3 !== 0 ? "sm:border-l sm:border-stone" : ""
+                  }`}
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.1em] text-charcoal">
+                    {size.size}
+                  </p>
+                  <p className="mt-1.5 text-sm text-warmgray">{size.dimensions}</p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </section>
   );

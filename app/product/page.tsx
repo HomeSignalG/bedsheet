@@ -230,8 +230,13 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* What comes in the system, and what it fits */}
-      <BeddingSystemSection headingId="bedding-system-heading" background="cream" />
+      {/* What comes in the system. The sizes half is left off here: the
+          Sizes & Mattress Depths section below covers the same ground. */}
+      <BeddingSystemSection
+        headingId="bedding-system-heading"
+        background="cream"
+        showSizes={false}
+      />
 
       {/* Sizes & mattress depths */}
       <Section background="cream" labelledBy="spec-heading">
