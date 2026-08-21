@@ -8,7 +8,15 @@ photography. To replace one, drop in the final image and either:
 2. Update the `src` prop where the image is used.
 
 All images are rendered through `components/PlaceholderImage.tsx`, so sizing
-and lazy-loading behavior stays consistent when files are swapped.
+and lazy-loading behavior stays consistent when files are swapped. Photos are
+never cropped to their tiles — they scale to fit inside them — so a row of
+tiles only lines up when every photo in it shares one aspect ratio. When a
+supplied shot does not, extend it rather than cropping it back:
+
+    python3 scripts/pad-to-aspect.py in.webp public/placeholders/out.webp 4 3
+
+That keeps the whole frame and builds the new margin out of the photo's own
+edges. Note what was done in the file's row below.
 
 | File | Used on | Depicts (final photo) |
 | --- | --- | --- |
