@@ -172,7 +172,7 @@ export default function AboutPage() {
               was painful—but the real challenge became psychological.
             </p>
             <p>
-              Knowing it would hurt, she began to put it off. Clean sheets
+              Knowing it would hurt, she began to put it off. Changing sheets
               became something she avoided, not because she didn&rsquo;t care,
               but because the process was just too hard.
             </p>
