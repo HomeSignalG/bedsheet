@@ -242,42 +242,50 @@ export default function HomePage() {
         title="The two-part system that stays put."
         intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
       >
-        <div className="relative">
-          <div className="lg:w-[58%]">
-            <PlaceholderImage
-              src="/placeholders/system-diagram-clean.webp"
-              alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
-              width={1265}
-              height={1010}
-              className="rounded-none"
-            />
-          </div>
-          <dl className="mt-10 space-y-8 lg:mt-0 lg:space-y-0">
+        {/* Container queries, not viewport ones: the callouts belong beside the
+            artwork whenever this block is wide enough to hold both, including
+            in a narrow preview panel. Below that they stack. The label type
+            scales with the block so the three pinned callouts never grow tall
+            enough to collide — their leader lines sit 15.8% of the artwork's
+            height apart at the closest point. */}
+        <div className="@container">
+          <div className="relative">
+            <div className="@lg:w-[58%]">
+              <PlaceholderImage
+                src="/placeholders/system-diagram-clean.webp"
+                alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
+                width={1265}
+                height={1010}
+                className="rounded-none"
+              />
+            </div>
+            <dl className="mt-10 space-y-8 @lg:mt-0 @lg:space-y-0 @lg:text-[clamp(0.6875rem,0.28rem+1.25cqw,0.875rem)]">
+              {systemLayers.map((layer) => (
+                <div
+                  key={layer.title}
+                  style={{ top: layer.leader }}
+                  className="border-l-2 border-slate pl-5 @lg:absolute @lg:left-[62%] @lg:right-0 @lg:-translate-y-1/2 @lg:pl-[1.2em]"
+                >
+                  <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal @lg:text-[1em] @lg:leading-tight @lg:tracking-[0.09em]">
+                    {layer.title}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-warmgray @lg:mt-[0.35em] @lg:text-[0.95em] @lg:leading-snug">
+                    {layer.copy}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            {/* Carries each leader line across the gutter, from the edge of the
+                artwork to the label that names the layer it points at. */}
             {systemLayers.map((layer) => (
-              <div
+              <span
                 key={layer.title}
+                aria-hidden="true"
                 style={{ top: layer.leader }}
-                className="border-l-2 border-slate pl-5 lg:absolute lg:left-[62%] lg:right-0 lg:-translate-y-1/2"
-              >
-                <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
-                  {layer.title}
-                </dt>
-                <dd className="mt-2 text-sm leading-relaxed text-warmgray">
-                  {layer.copy}
-                </dd>
-              </div>
+                className="absolute left-[58%] hidden h-px w-[4%] bg-slate @lg:block"
+              />
             ))}
-          </dl>
-          {/* Carries each leader line across the gutter, from the edge of the
-              artwork to the label that names the layer it points at. */}
-          {systemLayers.map((layer) => (
-            <span
-              key={layer.title}
-              aria-hidden="true"
-              style={{ top: layer.leader }}
-              className="absolute left-[58%] hidden h-px w-[4%] bg-slate lg:block"
-            />
-          ))}
+          </div>
         </div>
       </Section>
 
