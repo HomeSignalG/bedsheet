@@ -54,8 +54,8 @@ Update that one file and the change propagates across the site.
 
 ## Placeholder images
 
-All photo slots use labeled placeholder assets in `public/images/` — see
-`public/images/README.md` for what each file should depict when final
+All photo slots use labeled placeholder assets in `public/placeholders/` — see
+`public/placeholders/README.md` for what each file should depict when final
 photography is available.
 
 ## Contact form
