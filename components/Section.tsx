@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
 
-type SectionBackground = "white" | "ivory" | "beige" | "navy";
+type SectionBackground = "cream" | "ivory" | "taupe" | "charcoal";
 
 const backgroundClasses: Record<SectionBackground, string> = {
-  white: "bg-white text-navy",
-  ivory: "bg-ivory text-navy",
-  beige: "bg-beige text-navy",
-  navy: "bg-navy text-white",
+  cream: "bg-cream text-charcoal",
+  ivory: "bg-ivory text-charcoal",
+  taupe: "bg-taupe text-charcoal",
+  charcoal: "bg-charcoal text-cream",
 };
 
 /**
@@ -14,7 +14,7 @@ const backgroundClasses: Record<SectionBackground, string> = {
  * optional eyebrow / title / intro block.
  */
 export default function Section({
-  background = "white",
+  background = "cream",
   eyebrow,
   title,
   intro,
@@ -42,7 +42,7 @@ export default function Section({
             {eyebrow && (
               <p
                 className={`mb-3 text-xs font-semibold uppercase tracking-[0.2em] ${
-                  background === "navy" ? "text-mist" : "text-accent"
+                  background === "charcoal" ? "text-stone" : "text-slate-deep"
                 }`}
               >
                 {eyebrow}
@@ -56,7 +56,7 @@ export default function Section({
             {intro && (
               <p
                 className={`mt-5 text-lg leading-relaxed ${
-                  background === "navy" ? "text-mist" : "text-navy/75"
+                  background === "charcoal" ? "text-stone" : "text-warmgray"
                 }`}
               >
                 {intro}

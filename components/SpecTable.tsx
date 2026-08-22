@@ -17,7 +17,7 @@ export default function SpecTable() {
             Mattress dimensions for each available size
           </caption>
           <thead>
-            <tr className="bg-navy text-white">
+            <tr className="bg-charcoal text-cream">
               <th scope="col" className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em]">
                 Size
               </th>
@@ -30,12 +30,12 @@ export default function SpecTable() {
             {siteConfig.sizes.map((row, index) => (
               <tr
                 key={row.size}
-                className={index % 2 === 0 ? "bg-ivory" : "bg-white"}
+                className={index % 2 === 0 ? "bg-ivory" : "bg-cream"}
               >
                 <th scope="row" className="px-4 py-3 font-semibold uppercase tracking-[0.06em]">
                   {row.size}
                 </th>
-                <td className="px-4 py-3 text-navy/75">{row.dimensions}</td>
+                <td className="px-4 py-3 text-warmgray">{row.dimensions}</td>
               </tr>
             ))}
           </tbody>
@@ -45,11 +45,11 @@ export default function SpecTable() {
       {/* Cards for mobile */}
       <ul className="space-y-4 sm:hidden">
         {siteConfig.sizes.map((row) => (
-          <li key={row.size} className="border border-mist bg-white">
-            <p className="bg-navy px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-white">
+          <li key={row.size} className="border border-stone bg-cream">
+            <p className="bg-charcoal px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-cream">
               {row.size}
             </p>
-            <dl className="space-y-1 p-5 text-sm text-navy/75">
+            <dl className="space-y-1 p-5 text-sm text-warmgray">
               <div className="flex justify-between gap-4">
                 <dt>Mattress Dimensions</dt>
                 <dd>{row.dimensions}</dd>
@@ -59,7 +59,7 @@ export default function SpecTable() {
         ))}
       </ul>
 
-      <p className="mt-6 text-sm leading-relaxed text-navy/70">
+      <p className="mt-6 text-sm leading-relaxed text-warmgray">
         Every size is available in mattress depths from {pocketDepthRange()}.
         Measure your mattress and select the depth that matches it, the same
         way you select the size.

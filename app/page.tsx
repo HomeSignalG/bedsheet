@@ -17,14 +17,14 @@ import {
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
+  title: `${siteConfig.brandName} — Change your sheets the easy way. Made for real life.`,
   description:
-    "The SWAP Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+    "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${siteConfig.brandName} — Change your sheets. Not your fitted sheet.`,
+    title: `${siteConfig.brandName} — Change your sheets the easy way. Made for real life.`,
     description:
-      "The SWAP Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
+      "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
     url: "/",
   },
 };
@@ -53,8 +53,6 @@ const lifestylePanels: {
   copy: string;
   src: string;
   alt: string;
-  /** Crop focus for landscape photos in the portrait panel. */
-  objectPosition?: string;
 }[] = [
   {
     icon: <BackIcon />,
@@ -62,7 +60,6 @@ const lifestylePanels: {
     copy: "Change your bedsheets without wrestling with the mattress.",
     src: "/placeholders/top-sheet-peel-back.webp",
     alt: "A woman lifting the corner of the light-blue bottom sheet away from the snap fasteners on the fitted base",
-    objectPosition: "70% center",
   },
   {
     icon: <ChildIcon />,
@@ -77,7 +74,30 @@ const lifestylePanels: {
     copy: "Life happens. Messes happen. Laundry happens. We make it easier.",
     src: "/placeholders/family-pet-bed.webp",
     alt: "A girl hugging a golden retriever on a bed made up with the light-blue bottom sheet",
-    objectPosition: "center 38%",
+  },
+];
+
+/**
+ * The three layers called out on the two-part system diagram. `leader` is the
+ * vertical position of that callout's leader line in the artwork, as a
+ * percentage of the image height, so the label can be pinned to the dot that
+ * points at its layer.
+ */
+const systemLayers = [
+  {
+    title: "Removable Bottom Sheet",
+    copy: "Snaps on and off in seconds.",
+    leader: "8.58%",
+  },
+  {
+    title: "Fitted Base",
+    copy: "Stays on your mattress securely.",
+    leader: "24.38%",
+  },
+  {
+    title: "Mattress",
+    copy: "Your mattress. The foundation that supports you.",
+    leader: "45.88%",
   },
 ];
 
@@ -85,13 +105,15 @@ export default function HomePage() {
   return (
     <>
       {/* Hero — photo bleeds to the top and right edges on large screens */}
-      <section className="relative bg-white">
+      <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
-            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl md:text-[3.4rem]">
-              Change your sheets. Not your fitted sheet.
+            {/* text-balance keeps the break on the sentence boundary rather
+                than stranding "Made" at the end of the second line. */}
+            <h1 className="text-balance font-serif text-4xl leading-tight text-charcoal sm:text-5xl md:text-[3.4rem]">
+              Change your sheets the easy way. Made for real life.
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-navy/75">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-warmgray">
               The {siteConfig.brandShort}
               <Trademark /> {siteConfig.brandSubtitle} features a removable
               bottom sheet that snaps on and off in seconds—so you can change
@@ -103,7 +125,7 @@ export default function HomePage() {
             <div className="mt-9">
               <Link
                 href="/product"
-                className="inline-flex items-center gap-3 rounded-md bg-navy px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-white transition-colors hover:bg-navy-deep"
+                className="inline-flex items-center gap-3 rounded-md bg-charcoal px-8 py-4 text-sm font-medium uppercase tracking-[0.14em] text-cream transition-colors hover:bg-charcoal-deep"
               >
                 Discover the Difference
                 <ArrowRightIcon />
@@ -114,7 +136,7 @@ export default function HomePage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/bedroom-navy.webp"
-              alt="The SWAP system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
+              alt="The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
               width={1402}
               height={1122}
               priority
@@ -128,11 +150,11 @@ export default function HomePage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/bedroom-navy.webp"
-            alt="The SWAP system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
+            alt="The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
             width={1402}
             height={1122}
             priority
-            className="h-full w-full rounded-none object-cover"
+            className="h-full w-full rounded-none object-contain"
           />
           <div className="absolute bottom-10 left-0 max-w-xs -translate-x-1/4">
             <PatentBadge />
@@ -144,7 +166,7 @@ export default function HomePage() {
       <Section background="ivory" labelledBy="steps-heading">
         <h2
           id="steps-heading"
-          className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+          className="mb-12 text-center text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
         >
           Change your bottom sheet in seconds.
         </h2>
@@ -173,92 +195,97 @@ export default function HomePage() {
       </Section>
 
       {/* Lifestyle panels */}
-      <section aria-label="Everyday benefits" className="bg-white px-6 py-16 sm:px-8">
+      <section aria-label="Everyday benefits" className="bg-cream px-6 py-16 sm:px-8">
         <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
           {lifestylePanels.map((panel) => (
             <figure
               key={panel.title}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mist"
+              className="flex h-full flex-col overflow-hidden rounded-xl border border-stone bg-cream"
             >
-              <PlaceholderImage
-                src={panel.src}
-                alt={panel.alt}
-                width={800}
-                height={600}
-                objectPosition={panel.objectPosition}
-                className="absolute inset-0 h-full w-full rounded-none object-cover"
-              />
-              {/* Caption sits low, where these photos are plain sheet, so
-                  faces stay visible and the navy text keeps its contrast. */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/88 to-transparent"
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 p-6">
-                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-navy">
+              {/* The photo is scaled to fit this tile, never cropped to it,
+                  so the snaps and grommets stay in frame. The caption sits
+                  below the tile rather than over the photo for the same
+                  reason. */}
+              <div className="relative aspect-[4/3] bg-ivory">
+                <PlaceholderImage
+                  src={panel.src}
+                  alt={panel.alt}
+                  width={800}
+                  height={600}
+                  className="absolute inset-0 h-full w-full rounded-none object-contain"
+                />
+                <span
+                  className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-slate text-cream"
+                  aria-hidden="true"
+                >
+                  {panel.icon}
+                </span>
+              </div>
+              <figcaption className="p-6">
+                <p className="text-lg font-bold uppercase leading-snug tracking-[0.06em] text-charcoal">
                   {panel.title}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-navy/75">{panel.copy}</p>
+                <p className="mt-2 text-sm leading-relaxed text-warmgray">{panel.copy}</p>
               </figcaption>
-              <span
-                className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white"
-                aria-hidden="true"
-              >
-                {panel.icon}
-              </span>
             </figure>
           ))}
         </div>
       </section>
 
       {/* Two-part system — the diagram artwork carries no text, so the
-          heading, copy and callouts render as live, editable text. */}
+          heading, copy and callouts render as live, editable text. On large
+          screens each callout is pinned to the leader line its dot sits on in
+          the artwork, so every label lines up with the layer it names. */}
       <Section
-        background="white"
+        background="cream"
         eyebrow="A better way to bed."
         title="The two-part system that stays put."
         intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
       >
-        <div className="grid items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
-          {/* Diagram renders at 70% width. At lg its right edge stays
-              anchored to the callout column so the artwork's leader lines
-              still run into their labels; below lg the callouts stack
-              underneath, so it centres instead. */}
-          <div className="mx-auto w-[70%] lg:mr-0">
-            <PlaceholderImage
-              src="/placeholders/system-diagram-clean.webp"
-              alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress below."
-              width={1265}
-              height={784}
-              className="rounded-none"
-            />
+        {/* Container queries, not viewport ones: the callouts belong beside the
+            artwork whenever this block is wide enough to hold both, including
+            in a narrow preview panel. Below that they stack. The label type
+            scales with the block so the three pinned callouts never grow tall
+            enough to collide — their leader lines sit 15.8% of the artwork's
+            height apart at the closest point. */}
+        <div className="@container">
+          <div className="relative">
+            <div className="@lg:w-[58%]">
+              <PlaceholderImage
+                src="/placeholders/system-diagram-clean.webp"
+                alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
+                width={1265}
+                height={1010}
+                className="rounded-none"
+              />
+            </div>
+            <dl className="mt-10 space-y-8 @lg:mt-0 @lg:space-y-0 @lg:text-[clamp(0.625rem,0.2rem+1.35cqw,0.875rem)]">
+              {systemLayers.map((layer) => (
+                <div
+                  key={layer.title}
+                  style={{ top: layer.leader }}
+                  className="border-l-2 border-slate pl-5 @lg:absolute @lg:left-[62%] @lg:right-0 @lg:-translate-y-1/2 @lg:pl-[1.2em]"
+                >
+                  <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal @lg:text-[1em] @lg:leading-tight @lg:tracking-[0.09em]">
+                    {layer.title}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-warmgray @lg:mt-[0.35em] @lg:text-[0.95em] @lg:leading-snug">
+                    {layer.copy}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            {/* Carries each leader line across the gutter, from the edge of the
+                artwork to the label that names the layer it points at. */}
+            {systemLayers.map((layer) => (
+              <span
+                key={layer.title}
+                aria-hidden="true"
+                style={{ top: layer.leader }}
+                className="absolute left-[58%] hidden h-px w-[4%] bg-slate @lg:block"
+              />
+            ))}
           </div>
-          <dl className="space-y-[1.4rem]">
-            <div className="border-l-2 border-navy pl-3.5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Removable Bottom Sheet
-              </dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-navy/70">
-                Snaps on and off in seconds.
-              </dd>
-            </div>
-            <div className="border-l-2 border-navy pl-3.5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Fitted Base
-              </dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-navy/70">
-                Stays on your mattress securely.
-              </dd>
-            </div>
-            <div className="border-l-2 border-navy pl-3.5">
-              <dt className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
-                Mattress
-              </dt>
-              <dd className="mt-1.5 text-sm leading-relaxed text-navy/70">
-                Your mattress. The foundation that supports you.
-              </dd>
-            </div>
-          </dl>
         </div>
       </Section>
 

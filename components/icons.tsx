@@ -233,7 +233,7 @@ export function CheckIcon({ size = 22 }: { size?: number }) {
   );
 }
 
-/** Filled navy check circle — hero checklists. */
+/** Filled check circle — hero checklists. */
 export function CheckSolidIcon({ size = 22 }: { size?: number }) {
   return (
     <svg
@@ -247,7 +247,7 @@ export function CheckSolidIcon({ size = 22 }: { size?: number }) {
       <path
         d="m10.5 16.5 4 4 7-8"
         fill="none"
-        stroke="#fff"
+        stroke="#fcfbf8"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"

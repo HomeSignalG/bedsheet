@@ -8,10 +8,10 @@
 
 export const siteConfig = {
   /** Full brand name. */
-  brandName: "SWAP Bedding System",
+  brandName: "BackEasy Sheets Bedding System",
 
   /** Short brand name used in the wordmark. */
-  brandShort: "SWAP",
+  brandShort: "BackEasy Sheets",
 
   /** Wordmark subtitle line. */
   brandSubtitle: "Bedding System",
@@ -33,11 +33,11 @@ export const siteConfig = {
    */
   logo: {
     image: null as string | null,
-    alt: "SWAP Bedding System logo",
+    alt: "BackEasy Sheets Bedding System logo",
   },
 
   /** Contact email. */
-  email: "info@swapbeddingsystem.com",
+  email: "info@backeasysheets.com",
 
   /**
    * Placeholder base URL used for canonical URLs, Open Graph metadata,
@@ -62,7 +62,7 @@ export const siteConfig = {
     shortNotice: "Patent information available upon final legal review.",
     /** Statement used on the Legal & Privacy Policy page. */
     statement:
-      "SWAP™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
+      "BackEasy Sheets™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
   },
 
   /**
@@ -104,7 +104,7 @@ export const siteConfig = {
   ],
 
   /** Copyright holder shown in the footer. */
-  copyrightHolder: "SWAP Bedding System",
+  copyrightHolder: "BackEasy Sheets Bedding System",
 
   /**
    * "Last Updated" date shown on the Legal & Privacy Policy page.
@@ -119,7 +119,7 @@ export const siteConfig = {
   socialLinks: [
     { label: "Instagram", href: null as string | null },
     { label: "LinkedIn", href: null as string | null },
-    { label: "Email", href: "mailto:info@swapbeddingsystem.com" as string | null },
+    { label: "Email", href: "mailto:info@backeasysheets.com" as string | null },
   ],
 } as const;
 
