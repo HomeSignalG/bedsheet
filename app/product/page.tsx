@@ -5,6 +5,7 @@ import BeddingSystemSection from "@/components/BeddingSystemSection";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
+import ColorSwatches from "@/components/ColorSwatches";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
 import Trademark from "@/components/Trademark";
@@ -73,19 +74,14 @@ const detailStrip = [
     copy: "Soft, breathable, and durable fabrics for lasting comfort and performance.",
   },
   {
-    icon: <WashIcon />,
-    title: "Care Instructions",
-    copy: "Machine wash with like colors. Tumble dry low. Remove promptly.",
-  },
-  {
-    icon: null,
-    title: "Colors",
-    copy: "Classic colors that fit every bedroom.",
-  },
-  {
     icon: <DiamondIcon />,
     title: "Built to Last",
     copy: "Premium materials and construction you can count on for years.",
+  },
+  {
+    icon: <WashIcon />,
+    title: "Easy Care",
+    copy: "Machine wash with like colors. Tumble dry low. Remove promptly.",
   },
 ];
 
@@ -231,40 +227,47 @@ export default function ProductPage() {
       </section>
 
       {/* What comes in the system. The sizes half is left off here: the
-          Sizes & Mattress Depths section below covers the same ground. */}
+          Sizes, Depths & Colors section below covers the same ground. */}
       <BeddingSystemSection
         headingId="bedding-system-heading"
         background="cream"
         showSizes={false}
       />
 
-      {/* Sizes & mattress depths */}
+      {/* Sizes, mattress depths & colors — the three product selections */}
       <Section background="cream" labelledBy="spec-heading">
         <h2
           id="spec-heading"
           className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
         >
-          Sizes &amp; Mattress Depths
+          Sizes, Depths &amp; Colors
         </h2>
         <SpecTable />
+
+        <div className="mt-14 border-t border-stone pt-12">
+          <h3
+            id="colors-heading"
+            className="text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
+          >
+            Available Colors
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-warmgray">
+            Classic colors designed to complement every bedroom.
+          </p>
+          <div className="mt-8">
+            <ColorSwatches />
+          </div>
+        </div>
       </Section>
 
       {/* Detail strip */}
-      <section aria-label="Materials, care, and colors" className="border-t border-stone bg-cream px-6 py-14 sm:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <section aria-label="Materials, care, and construction" className="border-t border-stone bg-cream px-6 py-14 sm:px-8">
+        <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {detailStrip.map((item) => (
             <div key={item.title} className="flex items-start gap-4">
-              {item.icon ? (
-                <span className="mt-0.5 shrink-0 text-slate" aria-hidden="true">
-                  {item.icon}
-                </span>
-              ) : (
-                <span className="mt-1 flex shrink-0 gap-1.5" aria-hidden="true">
-                  <span className="h-6 w-6 border border-stone bg-ivory" />
-                  <span className="h-6 w-6 border border-stone bg-slate/70" />
-                  <span className="h-6 w-6 border border-stone bg-taupe" />
-                </span>
-              )}
+              <span className="mt-0.5 shrink-0 text-slate" aria-hidden="true">
+                {item.icon}
+              </span>
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                   {item.title}

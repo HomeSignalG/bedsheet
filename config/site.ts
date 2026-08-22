@@ -93,6 +93,26 @@ export const siteConfig = {
   ],
 
   /**
+   * Colorways offered, in the order they are presented on the Product page.
+   *
+   * `hex` drives the swatch fill only — these are web-display values, not
+   * manufacturer color codes. White, Taupe, and Coastal Blue reuse the
+   * approved brand palette tokens from `app/globals.css` (ivory, taupe,
+   * slate). The remaining values are provisional stand-ins chosen to sit
+   * in the same neutral family; replace them here once the physical fabric
+   * colors are finalized. This array is the only place they are defined.
+   */
+  colorways: [
+    { name: "White", hex: "#f7f5f0" },
+    { name: "Flax", hex: "#ded3bc" },
+    { name: "Taupe", hex: "#b4a99b" },
+    { name: "Silver Gray", hex: "#a9adb2" },
+    { name: "Coastal Blue", hex: "#667789" },
+    { name: "Navy", hex: "#2f4256" },
+    { name: "Sage", hex: "#a8b5a2" },
+  ],
+
+  /**
    * Contents of one complete system, listed in the bedding-system section
    * on Home and Product. Single source of truth for package contents.
    */

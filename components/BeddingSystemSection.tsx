@@ -14,7 +14,7 @@ const backgroundClasses: Record<SectionBackground, string> = {
  * `headingId` keeps the labelled-by reference unique per page. `background`
  * varies only the section fill: ivory on Home, cream on Product, where the
  * section above it is already ivory. `showSizes` drops the "Available to fit
- * your mattress" half on Product, where the Sizes & Mattress Depths section
+ * your mattress" half on Product, where the Sizes, Depths & Colors section
  * directly below already lists every size and states the depth range.
  */
 export default function BeddingSystemSection({
