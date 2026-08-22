@@ -25,12 +25,12 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "SWAP was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+    "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: `About Us | ${siteConfig.brandName}`,
     description:
-      "SWAP was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+      "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
     url: "/about",
   },
 };
@@ -107,16 +107,16 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero — photo bleeds to the top and right edges on large screens */}
-      <section className="relative bg-white">
+      <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
           <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-deep">
               About Us
             </p>
-            <h1 className="font-serif text-4xl leading-tight text-navy sm:text-5xl">
+            <h1 className="font-serif text-4xl leading-tight text-charcoal sm:text-5xl">
               A better way to change your sheets.
             </h1>
-            <div className="mt-6 space-y-4 text-lg leading-relaxed text-navy/75">
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-warmgray">
               <p>
                 {siteConfig.brandShort}
                 <Trademark /> was created to solve a problem that was very
@@ -135,7 +135,7 @@ export default function AboutPage() {
           <div className="lg:hidden">
             <PlaceholderImage
               src="/placeholders/about-hero-farmhouse.webp"
-              alt="A sunlit farmhouse bedroom with the SWAP system made up on the bed, snaps visible along the sheet edge"
+              alt="A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge"
               width={1398}
               height={1125}
               priority
@@ -145,11 +145,11 @@ export default function AboutPage() {
         <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
           <PlaceholderImage
             src="/placeholders/about-hero-farmhouse.webp"
-            alt="A sunlit farmhouse bedroom with the SWAP system made up on the bed, snaps visible along the sheet edge"
+            alt="A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge"
             width={1398}
             height={1125}
             priority
-            className="h-full w-full rounded-none object-cover"
+            className="h-full w-full rounded-none object-contain"
           />
         </div>
       </section>
@@ -162,7 +162,7 @@ export default function AboutPage() {
         labelledBy="our-story"
       >
         <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr_1.05fr] lg:gap-8">
-          <div className="space-y-5 leading-relaxed text-navy/80">
+          <div className="space-y-5 leading-relaxed text-charcoal">
             <p>
               After back surgery, our founder found that something as simple as
               changing a fitted sheet became excruciating.
@@ -172,11 +172,11 @@ export default function AboutPage() {
               was painful—but the real challenge became psychological.
             </p>
             <p>
-              Knowing it would hurt, she began to put it off. Clean sheets
+              Knowing it would hurt, she began to put it off. Changing sheets
               became something she avoided, not because she didn&rsquo;t care,
               but because the process was just too hard.
             </p>
-            <p className="font-semibold text-navy">There had to be a better way.</p>
+            <p className="font-semibold text-charcoal">There had to be a better way.</p>
           </div>
 
           {/* The problem: photo + list */}
@@ -186,8 +186,7 @@ export default function AboutPage() {
               alt="Black and white photo of a woman straining as she stretches a conventional fitted sheet over a mattress corner"
               width={1536}
               height={1024}
-              objectPosition="35% center"
-              className="max-w-[45%] rounded-lg object-cover"
+              className="max-w-[45%] self-start rounded-lg"
             />
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-red-800">
@@ -195,7 +194,7 @@ export default function AboutPage() {
               </h3>
               <ul className="mt-4 space-y-3">
                 {problems.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-navy/80">
+                  <li key={item} className="flex items-center gap-3 text-sm text-charcoal">
                     <span className="shrink-0 text-red-700" aria-hidden="true">
                       <CrossIcon />
                     </span>
@@ -209,7 +208,7 @@ export default function AboutPage() {
           {/* The solution: photo + list, with connecting arrow */}
           <div className="relative flex gap-5 lg:pl-6">
             <span
-              className="absolute -left-7 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-mist bg-white text-navy shadow-sm lg:flex"
+              className="absolute -left-7 top-1/2 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-stone bg-cream text-slate shadow-sm lg:flex"
               aria-hidden="true"
             >
               <ArrowRightIcon size={18} />
@@ -219,8 +218,7 @@ export default function AboutPage() {
               alt="A woman easily lifting the bottom sheet off the snap fasteners at the corner of a neatly made bed"
               width={1515}
               height={1038}
-              objectPosition="72% center"
-              className="max-w-[45%] rounded-lg object-cover"
+              className="max-w-[45%] self-start rounded-lg"
             />
             <div>
               <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-emerald-800">
@@ -228,7 +226,7 @@ export default function AboutPage() {
               </h3>
               <ul className="mt-4 space-y-3">
                 {solutions.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-navy/80">
+                  <li key={item} className="flex items-center gap-3 text-sm text-charcoal">
                     <span className="shrink-0 text-emerald-700" aria-hidden="true">
                       <CheckMarkIcon />
                     </span>
@@ -240,29 +238,29 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <p className="mt-14 rounded-lg bg-white px-6 py-5 text-center text-lg leading-relaxed text-navy">
+        <p className="mt-14 rounded-lg bg-cream px-6 py-5 text-center text-lg leading-relaxed text-charcoal">
           So we reimagined the bed sheet from the ground up—creating a system
           that stays put, and a bottom sheet that comes off in seconds.
         </p>
       </Section>
 
       {/* Why it matters */}
-      <section aria-labelledby="why-heading" className="bg-white px-6 pb-20 sm:px-8">
-        <div className="mx-auto max-w-6xl border-t border-mist pt-14">
+      <section aria-labelledby="why-heading" className="bg-cream px-6 pb-20 sm:px-8">
+        <div className="mx-auto max-w-6xl border-t border-stone pt-14">
           <h2
             id="why-heading"
-            className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-navy"
+            className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
           >
             Why It Matters
           </h2>
-          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-0 lg:divide-x lg:divide-mist">
+          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-0 lg:divide-x lg:divide-stone">
             {whyItMatters.map((item) => (
               <li key={item.title} className="text-center lg:px-5 first:lg:pl-0 last:lg:pr-0">
-                <span className="mb-3 inline-flex text-navy" aria-hidden="true">
+                <span className="mb-3 inline-flex text-slate" aria-hidden="true">
                   {item.icon}
                 </span>
-                <p className="text-sm font-semibold text-navy">{item.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-navy/70">{item.copy}</p>
+                <p className="text-sm font-semibold text-charcoal">{item.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-warmgray">{item.copy}</p>
               </li>
             ))}
           </ul>
@@ -274,18 +272,18 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-10">
           <div className="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                 Our Promise
               </h2>
-              <p className="mt-4 leading-relaxed text-navy/80">
+              <p className="mt-4 leading-relaxed text-charcoal">
                 We are committed to thoughtful design, premium materials, and a
                 better experience—because the little things you do every day
                 should be easier.
               </p>
               <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-4">
                 {promiseChips.map((chip) => (
-                  <li key={chip.label} className="flex items-center gap-3 text-sm text-navy/80">
-                    <span className="shrink-0 text-navy" aria-hidden="true">
+                  <li key={chip.label} className="flex items-center gap-3 text-sm text-charcoal">
+                    <span className="shrink-0 text-slate" aria-hidden="true">
                       {chip.icon}
                     </span>
                     {chip.label}
@@ -304,23 +302,23 @@ export default function AboutPage() {
 
           <div>
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-navy">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal">
                 Founded on Purpose
               </h2>
-              <p className="mt-4 leading-relaxed text-navy/80">
+              <p className="mt-4 leading-relaxed text-charcoal">
                 {siteConfig.brandShort} was founded by a problem solver, a
                 designer, and someone who refused to accept that clean sheets
                 had to come at the cost of pain.
               </p>
-              <p className="mt-4 font-semibold text-navy">
+              <p className="mt-4 font-semibold text-charcoal">
                 This is personal.
                 <br />
                 This is our purpose.
               </p>
-              <p className="mt-6 font-script text-4xl text-navy">
+              <p className="mt-6 font-script text-4xl text-charcoal">
                 {siteConfig.founder.name}
               </p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-navy/60">
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-warmgray">
                 {siteConfig.founder.title}
               </p>
             </div>

@@ -1,5 +1,5 @@
 /**
- * Superscript ™ used immediately after the SWAP wordmark in prominent
+ * Superscript ™ used immediately after the BackEasy Sheets wordmark in prominent
  * brand references.
  *
  * Positioned with `relative` rather than `vertical-align: super` so it can
