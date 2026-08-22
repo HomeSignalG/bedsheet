@@ -87,17 +87,17 @@ const systemLayers = [
   {
     title: "Removable Bottom Sheet",
     copy: "Snaps on and off in seconds.",
-    leader: "8.58%",
+    leader: "8.76%",
   },
   {
     title: "Fitted Base",
     copy: "Stays on your mattress securely.",
-    leader: "24.38%",
+    leader: "29.69%",
   },
   {
     title: "Mattress",
     copy: "Your mattress. The foundation that supports you.",
-    leader: "45.88%",
+    leader: "57.7%",
   },
 ];
 
@@ -246,7 +246,7 @@ export default function HomePage() {
             artwork whenever this block is wide enough to hold both, including
             in a narrow preview panel. Below that they stack. The label type
             scales with the block so the three pinned callouts never grow tall
-            enough to collide — their leader lines sit 15.8% of the artwork's
+            enough to collide — their leader lines sit 20.9% of the artwork's
             height apart at the closest point. */}
         <div className="@container">
           <div className="relative">
@@ -254,8 +254,8 @@ export default function HomePage() {
               <PlaceholderImage
                 src="/placeholders/system-diagram-clean.webp"
                 alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
-                width={1265}
-                height={1010}
+                width={1593}
+                height={987}
                 className="rounded-none"
               />
             </div>
