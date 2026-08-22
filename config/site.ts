@@ -6,6 +6,19 @@
  * updated in one place without touching page code.
  */
 
+/** Contact email. Referenced below so it is only ever written once. */
+const EMAIL = "info@backeasysheets.com";
+
+/**
+ * Public origin of the site, without a trailing slash.
+ *
+ * Set `NEXT_PUBLIC_SITE_URL` per environment (preview deployments, staging)
+ * to override the production default.
+ */
+const BASE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.backeasysheets.com"
+).replace(/\/$/, "");
+
 export const siteConfig = {
   /** Full brand name. */
   brandName: "BackEasy Sheets Bedding System",
@@ -23,9 +36,6 @@ export const siteConfig = {
   brandStatement:
     "The two-part bed sheet system that stays put—so you can change your sheets the easy way.",
 
-  /** Center footer line. */
-  footerMotto: "Patented innovation designed to make life easier—every day.",
-
   /**
    * Logo configuration. The wordmark is rendered from text plus an inline
    * mark. When final logo artwork is ready, set `logo.image` to its path
@@ -37,13 +47,13 @@ export const siteConfig = {
   },
 
   /** Contact email. */
-  email: "info@backeasysheets.com",
+  email: EMAIL,
 
   /**
-   * Placeholder base URL used for canonical URLs, Open Graph metadata,
-   * robots.txt and sitemap.xml. Update once a domain is purchased.
+   * Public origin used for canonical URLs, Open Graph metadata,
+   * robots.txt and sitemap.xml.
    */
-  baseUrl: "https://www.example.com",
+  baseUrl: BASE_URL,
 
   /** Founder attribution shown on the About page. */
   founder: {
@@ -53,8 +63,10 @@ export const siteConfig = {
 
   /**
    * Patent / intellectual property configuration.
-   * `number` must remain null until real patent details are supplied by
-   * legal review — never publish an invented patent number.
+   *
+   * Every patent claim the site makes is written here, so legal review can
+   * adjust the wording in one place. `number` must remain null until real
+   * patent details are supplied — never publish an invented patent number.
    */
   patent: {
     number: null as string | null,
@@ -63,6 +75,15 @@ export const siteConfig = {
     /** Statement used on the Legal & Privacy Policy page. */
     statement:
       "BackEasy Sheets™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
+    /** Heading of the badge shown on the Home and Product heroes. */
+    badgeTitle: "Patented System",
+    /** Supporting lines of that badge. */
+    badgeCopy: ["Engineered for a better bed.", "Designed for real life."],
+    /** Claim used in running copy on the About page. */
+    prose: "our patented two-part bed sheet system",
+    /** Center footer line. */
+    footerMotto:
+      "Patented innovation designed to make life easier—every day.",
   },
 
   /**
@@ -107,10 +128,26 @@ export const siteConfig = {
   copyrightHolder: "BackEasy Sheets Bedding System",
 
   /**
+   * Privacy-policy facts that the page text is generated from, so the
+   * policy can never describe behaviour the site does not have.
+   *
+   * `usesCookies` stays false while the site sets no cookies, runs no
+   * analytics, and embeds no third-party scripts. Flip it — and say what
+   * they are — before adding any of those.
+   */
+  privacy: {
+    usesCookies: false,
+    /** How long contact-form submissions are kept. */
+    retention: "24 months",
+    /** Where privacy requests should be sent. */
+    requestEmail: EMAIL,
+  },
+
+  /**
    * "Last Updated" date shown on the Legal & Privacy Policy page.
    * Update whenever the policy text changes.
    */
-  legalLastUpdated: "August 16, 2026",
+  legalLastUpdated: "August 22, 2026",
 
   /**
    * Social links rendered in the footer. Point these at real profiles
@@ -119,7 +156,7 @@ export const siteConfig = {
   socialLinks: [
     { label: "Instagram", href: null as string | null },
     { label: "LinkedIn", href: null as string | null },
-    { label: "Email", href: "mailto:info@backeasysheets.com" as string | null },
+    { label: "Email", href: `mailto:${EMAIL}` as string | null },
   ],
 } as const;
 

@@ -25,7 +25,9 @@ export default function ImageCard({
           alt={alt}
           width={800}
           height={600}
-          className="absolute inset-0 h-full w-full rounded-none object-contain"
+          bare
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="absolute inset-0 h-full w-full object-contain"
         />
       </div>
       <figcaption className="flex-1 pt-5">
