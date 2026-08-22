@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import PatentBadge from "@/components/PatentBadge";
-import BeddingSystemSection from "@/components/BeddingSystemSection";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
+import WhatsIncluded from "@/components/WhatsIncluded";
 import ColorSwatches from "@/components/ColorSwatches";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
@@ -226,32 +226,30 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* What comes in the system. The sizes half is left off here: the
-          Sizes, Depths & Colors section below covers the same ground. */}
-      <BeddingSystemSection
-        headingId="bedding-system-heading"
-        background="cream"
-        showSizes={false}
-      />
-
-      {/* Sizes, mattress depths & colors — the three product selections */}
-      <Section background="cream" labelledBy="spec-heading">
-        <h2
-          id="spec-heading"
-          className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
-        >
-          Sizes, Depths &amp; Colors
-        </h2>
-        <SpecTable />
+      {/* Product information, read top to bottom: what's in the box, then
+          what it fits, then what it comes in. One section with hairline
+          rules so the three read as one block rather than three bands. */}
+      <Section background="cream" labelledBy="whats-included-heading">
+        <WhatsIncluded headingId="whats-included-heading" />
 
         <div className="mt-14 border-t border-stone pt-12">
-          <h3
+          <h2
+            id="spec-heading"
+            className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
+          >
+            Sizes &amp; Mattress Depths
+          </h2>
+          <SpecTable />
+        </div>
+
+        <div className="mt-14 border-t border-stone pt-12">
+          <h2
             id="colors-heading"
             className="text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
           >
             Available Colors
-          </h3>
-          <p className="mt-3 text-sm leading-relaxed text-warmgray">
+          </h2>
+          <p className="mt-3 leading-relaxed text-warmgray">
             Classic colors designed to complement every bedroom.
           </p>
           <div className="mt-8">

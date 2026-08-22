@@ -10,12 +10,12 @@ const backgroundClasses: Record<SectionBackground, string> = {
 
 /**
  * The bedding-system section: what comes in the system, then what it fits.
- * Shared by the Home and Product pages so the two never drift apart.
- * `headingId` keeps the labelled-by reference unique per page. `background`
- * varies only the section fill: ivory on Home, cream on Product, where the
- * section above it is already ivory. `showSizes` drops the "Available to fit
- * your mattress" half on Product, where the Sizes, Depths & Colors section
- * directly below already lists every size and states the depth range.
+ * Used on Home; Product presents the same `systemContents` through its own
+ * "What's Included" section, so the quantities stay in one place and the two
+ * pages cannot drift apart. `headingId` keeps the labelled-by reference
+ * unique per page. `background` varies only the section fill. `showSizes`
+ * drops the "Available to fit your mattress" half for a page that lists the
+ * sizes itself.
  */
 export default function BeddingSystemSection({
   headingId = "bedding-system-heading",
@@ -53,6 +53,11 @@ export default function BeddingSystemSection({
               </span>
               <span className="border-l border-stone pl-5 leading-snug text-charcoal">
                 {entry.item}
+                {entry.note && (
+                  <span className="mt-0.5 block text-sm text-warmgray">
+                    {entry.note}
+                  </span>
+                )}
               </span>
             </li>
           ))}

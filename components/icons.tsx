@@ -282,3 +282,83 @@ export function ArrowRightIcon({ size = 18 }: { size?: number }) {
     </Icon>
   );
 }
+
+/**
+ * Wider product illustrations used by "What's Included" on the Product page.
+ *
+ * Same line language as the icons above — currentColor stroke, round joins —
+ * but each carries its own viewBox because a sheet is not square. They are
+ * decorative: the quantity and item name next to them carry the meaning.
+ */
+function Illustration({
+  children,
+  viewBox,
+  className,
+}: {
+  children: ReactNode;
+  viewBox: string;
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox={viewBox}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      {children}
+    </svg>
+  );
+}
+
+/**
+ * Two removable bottom sheets — two separate sheets, one overlapping the
+ * other, each with a snap. The front sheet is filled so it reads as the
+ * nearer of two objects rather than a single outlined shape.
+ */
+export function TwoSheetsIllustration({ className }: { className?: string }) {
+  return (
+    <Illustration viewBox="0 0 128 92" className={className}>
+      <rect x="5" y="7" width="86" height="46" rx="4" />
+      <circle cx="20" cy="30" r="2" fill="currentColor" stroke="none" />
+      <rect x="37" y="39" width="86" height="46" rx="4" className="fill-ivory" />
+      <circle cx="108" cy="62" r="2" fill="currentColor" stroke="none" />
+    </Illustration>
+  );
+}
+
+/** Fitted mattress base sheet — one panel with the fitted seam across it. */
+export function FittedBaseIllustration({ className }: { className?: string }) {
+  return (
+    <Illustration viewBox="0 0 120 68" className={className}>
+      <rect x="4" y="8" width="112" height="52" rx="5" />
+      <path d="M4 27h112" />
+    </Illustration>
+  );
+}
+
+/** Top sheet — one panel with the folded hem at the head end. */
+export function TopSheetIllustration({ className }: { className?: string }) {
+  return (
+    <Illustration viewBox="0 0 120 68" className={className}>
+      <rect x="4" y="8" width="112" height="52" rx="2" />
+      <path d="M17 27h86M17 35h86" />
+    </Illustration>
+  );
+}
+
+/** Four pillowcases — four separate cases, not two. */
+export function PillowcasesIllustration({ className }: { className?: string }) {
+  return (
+    <Illustration viewBox="0 0 120 68" className={className}>
+      <rect x="4" y="6" width="52" height="26" rx="5" />
+      <rect x="64" y="6" width="52" height="26" rx="5" />
+      <rect x="4" y="36" width="52" height="26" rx="5" />
+      <rect x="64" y="36" width="52" height="26" rx="5" />
+    </Illustration>
+  );
+}
