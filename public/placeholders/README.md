@@ -23,7 +23,7 @@ edges. Note what was done in the file's row below.
 | `bedroom-navy.webp` | Home hero | Final photo (in place): BackEasy Sheets on a grey platform bed |
 | `bedroom-warm.webp` | Product hero | Final photo (in place): BackEasy Sheets on a warm upholstered bed, snaps visible along the sheet edge |
 | `bedroom-cream.webp` | _unused_ | Final photo, held for a future slot: BackEasy Sheets on a cream upholstered bed |
-| `snap-closeup.webp` | Home "Remove" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. Rendered at natural aspect so neither snap is cropped. |
+| `snap-closeup.webp` | Home "Remove" step + Product "Unsnap" step | Final photo (in place): both snaps — sheet corner folded back over the base snap. 1054x1492 WebP, retouched. Scales to fit its tile, so neither snap is cropped. |
 | `laundry-basket.webp` | Home + Product "Wash" step | Final photo (in place): bottom sheet lifted from the laundry basket into the washing machine. 1015x1550 WebP — high-DPI sharp, and portrait like the other two step photos. |
 | `snap-corner-navy.webp` | Home + Product "Reattach" step | Final photo (in place): fitted-base corner with the sheet snapped over the grommet, shot over the navy rug. Natural aspect, uncropped. |
 | `top-sheet-peel-back.webp` | Home lifestyle (Easier on Your Back) | Final photo (in place): lifting the top sheet off the snaps |
