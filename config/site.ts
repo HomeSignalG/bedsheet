@@ -76,7 +76,7 @@ export const siteConfig = {
     statement:
       "BackEasy Sheets™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
     /** Heading of the badge shown on the Home and Product heroes. */
-    badgeTitle: "Patented System",
+    badgeTitle: "Patented",
     /** Supporting lines of that badge. */
     badgeCopy: ["Engineered for a better bed.", "Designed for real life."],
     /** Claim used in running copy on the About page. */
