@@ -164,19 +164,21 @@ export default function ProductPage() {
             priority
             className="h-full w-full rounded-none object-contain"
           />
-          <dl>
-            <div className="absolute right-8 top-14 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
-              <HeroLabel
-                title="Removable Bottom Sheet"
-                copy="Soft, smooth, and easy to remove and wash."
-              />
-            </div>
-            <div className="absolute bottom-16 right-8 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
-              <HeroLabel
-                title="Fitted Base"
-                copy="Stays securely on your mattress. All. The. Time."
-              />
-            </div>
+          {/* One <dl> per callout. Each is pinned to its own spot on the
+              photo, so a shared <dl> would need a positioning div around
+              each term — burying the dt/dd a level too deep for the list
+              to still describe them. */}
+          <dl className="absolute right-8 top-14 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
+            <HeroLabel
+              title="Removable Bottom Sheet"
+              copy="Soft, smooth, and easy to remove and wash."
+            />
+          </dl>
+          <dl className="absolute bottom-16 right-8 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
+            <HeroLabel
+              title="Fitted Base"
+              copy="Stays securely on your mattress. All. The. Time."
+            />
           </dl>
         </div>
       </section>
