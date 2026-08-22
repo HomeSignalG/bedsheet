@@ -102,7 +102,12 @@ export default function Footer() {
                       <SocialIcon label={social.label} />
                     </a>
                   ) : (
+                    // role="img": the icon inside is aria-hidden, so this span
+                    // is the graphic. A span has no implicit role, and ARIA
+                    // prohibits aria-label there — img supports naming, so the
+                    // "coming soon" state reaches assistive tech.
                     <span
+                      role="img"
                       aria-label={`${social.label} (coming soon)`}
                       className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 text-stone/50"
                     >
