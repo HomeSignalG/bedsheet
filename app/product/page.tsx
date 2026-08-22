@@ -89,14 +89,31 @@ const detailStrip = [
   },
 ];
 
-function HeroLabel({ title, copy }: { title: string; copy: string }) {
+/**
+ * One term/description pair from the hero.
+ *
+ * `as` picks the wrapper: `div` when the caller already provides the `dl`
+ * (the stacked hero lays several pairs out in one list), `dl` when the pair
+ * stands alone (each overlaid callout is its own one-item list). A `dl` may
+ * wrap each group in a single div, but not two — nesting the pair inside a
+ * positioned div *and* this wrapper left the dt/dd with no dl parent.
+ */
+function HeroLabel({
+  title,
+  copy,
+  as: Wrapper = "div",
+}: {
+  title: string;
+  copy: string;
+  as?: "div" | "dl";
+}) {
   return (
-    <div className="border-l-2 border-slate pl-4">
+    <Wrapper className="border-l-2 border-slate pl-4">
       <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal">
         {title}
       </dt>
       <dd className="mt-1 text-sm leading-relaxed text-warmgray">{copy}</dd>
-    </div>
+    </Wrapper>
   );
 }
 
@@ -164,20 +181,20 @@ export default function ProductPage() {
             priority
             className="h-full w-full rounded-none object-contain"
           />
-          <dl>
-            <div className="absolute right-8 top-14 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
-              <HeroLabel
-                title="Removable Bottom Sheet"
-                copy="Soft, smooth, and easy to remove and wash."
-              />
-            </div>
-            <div className="absolute bottom-16 right-8 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
-              <HeroLabel
-                title="Fitted Base"
-                copy="Stays securely on your mattress. All. The. Time."
-              />
-            </div>
-          </dl>
+          <div className="absolute right-8 top-14 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
+            <HeroLabel
+              as="dl"
+              title="Removable Bottom Sheet"
+              copy="Soft, smooth, and easy to remove and wash."
+            />
+          </div>
+          <div className="absolute bottom-16 right-8 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
+            <HeroLabel
+              as="dl"
+              title="Fitted Base"
+              copy="Stays securely on your mattress. All. The. Time."
+            />
+          </div>
         </div>
       </section>
 
