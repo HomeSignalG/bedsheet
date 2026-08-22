@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const heroChecklist = [
   "Snaps on and off in seconds",
   "Fitted base stays on your mattress",
-  "Choose your mattress size and depth",
+  'Available in six mattress sizes, with pocket depths from 10"–22".',
 ];
 
 const featureCards = [
