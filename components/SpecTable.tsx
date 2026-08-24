@@ -3,9 +3,9 @@ import { pocketDepthRange, siteConfig } from "@/config/site";
 /**
  * Mattress size specification table.
  *
- * Depth is deliberately not a column: it is a separate selection the
- * customer makes, not a range a single fitted base spans. The note below
- * the table states the available depths.
+ * Depth is deliberately not a column. The note below the table states the
+ * range of pocket depths offered and nothing further — see the comment on
+ * that note.
  */
 export default function SpecTable() {
   return (
@@ -59,10 +59,11 @@ export default function SpecTable() {
         ))}
       </ul>
 
-      <p className="mt-6 text-sm leading-relaxed text-warmgray">
-        Every size is available in mattress depths from {pocketDepthRange()}.
-        Measure your mattress and select the depth that matches it, the same
-        way you select the size.
+      {/* The only pocket-depth claim the site makes. How the depths are
+          manufactured or sold is not settled, so nothing here may imply
+          depth tiers, selectable depths, or a universal fit. */}
+      <p className="mt-6 text-sm font-semibold leading-relaxed text-charcoal">
+        Available in pocket depths from {pocketDepthRange()}.
       </p>
     </div>
   );
