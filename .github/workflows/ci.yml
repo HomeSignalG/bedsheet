@@ -1,0 +1,31 @@
+# Verifies that the site still builds and lints. The repo had no checks at
+# all, so a pull request could merge on nothing but whatever the author ran
+# locally. `next build` type-checks as part of its run, so a build failure
+# covers TypeScript errors too.
+name: CI
+
+on:
+  # Every pull request, whatever its base — the default branch here is a
+  # working branch that gets renamed, so pinning to a branch name would
+  # quietly stop matching.
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # Next 16 needs 20.9+; 22 is the current LTS.
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      # Last, so a lint error surfaces without waiting on a full build.
+      - run: npm run build
