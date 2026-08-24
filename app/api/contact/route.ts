@@ -110,14 +110,26 @@ export async function POST(request: Request) {
  */
 export async function GET() {
   const mode = process.env.CONTACT_DELIVERY ?? null;
-  const resendApiKeySet = Boolean(process.env.RESEND_API_KEY);
   const contactFromEmailSet = Boolean(process.env.CONTACT_FROM_EMAIL);
+  const smtpHostSet = Boolean(process.env.SMTP_HOST);
+  const smtpUserSet = Boolean(process.env.SMTP_USER);
+  const smtpPasswordSet = Boolean(process.env.SMTP_PASSWORD);
+  const resendApiKeySet = Boolean(process.env.RESEND_API_KEY);
   const problems: string[] = [];
 
   if (!mode) {
     problems.push(
-      'CONTACT_DELIVERY is not set. Set it to "resend" so submissions are emailed.',
+      'CONTACT_DELIVERY is not set. Set it to "smtp" to send through your mail host, or "resend" to send through the Resend API.',
     );
+  } else if (mode === "smtp") {
+    if (!smtpHostSet) problems.push("SMTP_HOST is not set.");
+    if (!smtpUserSet) problems.push("SMTP_USER is not set.");
+    if (!smtpPasswordSet) problems.push("SMTP_PASSWORD is not set.");
+    if (!contactFromEmailSet) {
+      problems.push(
+        "CONTACT_FROM_EMAIL is not set. It should be the mailbox the SMTP credentials belong to.",
+      );
+    }
   } else if (mode === "resend") {
     if (!resendApiKeySet) {
       problems.push('RESEND_API_KEY is not set, and CONTACT_DELIVERY="resend" requires it.');
@@ -129,11 +141,11 @@ export async function GET() {
     }
   } else if (mode === "log") {
     problems.push(
-      'CONTACT_DELIVERY="log" only prints submissions to the server console and is refused outright in production. Set it to "resend".',
+      'CONTACT_DELIVERY="log" only prints submissions to the server console and is refused outright in production. Set it to "smtp" or "resend".',
     );
   } else {
     problems.push(
-      `CONTACT_DELIVERY is set to an unknown mode. Set it to "resend".`,
+      'CONTACT_DELIVERY is set to an unknown mode. Use "smtp" or "resend".',
     );
   }
 
@@ -143,8 +155,12 @@ export async function GET() {
     {
       ready,
       deliveryMode: mode,
-      resendApiKeySet,
       contactFromEmailSet,
+      smtpHostSet,
+      smtpUserSet,
+      smtpPasswordSet,
+      smtpPort: process.env.SMTP_PORT ?? null,
+      resendApiKeySet,
       deliversTo: siteConfig.email,
       problems,
     },

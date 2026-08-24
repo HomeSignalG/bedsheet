@@ -25,8 +25,14 @@ import { siteConfig } from "@/config/site";
  *      the inbox by that point, and telling the sender "your message could
  *      not be sent" when it was would only produce a duplicate submission.
  *
- * Two modes, chosen by environment:
+ * Three modes, chosen by environment:
  *
+ *   CONTACT_DELIVERY=smtp     Send through an ordinary SMTP server — the
+ *                             mailbox the site already owns, using the
+ *                             credentials the web host provides. Requires
+ *                             SMTP_HOST, SMTP_USER, SMTP_PASSWORD and
+ *                             CONTACT_FROM_EMAIL; SMTP_PORT and SMTP_SECURE
+ *                             are optional.
  *   CONTACT_DELIVERY=resend   Send via the Resend API. Requires
  *                             RESEND_API_KEY and CONTACT_FROM_EMAIL.
  *   CONTACT_DELIVERY=log      Log to the server console. Development only;
@@ -55,6 +61,11 @@ export async function deliverContactSubmission(
   data: ContactFormData,
 ): Promise<void> {
   const mode = process.env.CONTACT_DELIVERY;
+
+  if (mode === "smtp") {
+    await deliverViaSmtp(data);
+    return;
+  }
 
   if (mode === "resend") {
     await deliverViaResend(data);
@@ -90,6 +101,94 @@ export async function deliverContactSubmission(
   throw new DeliveryNotConfiguredError(
     "CONTACT_DELIVERY is not set. Contact-form submissions have nowhere to go.",
   );
+}
+
+/**
+ * Sends through a plain SMTP server — the same credentials a mail client
+ * would use for the site's own mailbox. This is the path that needs no
+ * third-party account and no DNS work: the host already runs the mail
+ * server for the address the site publishes.
+ *
+ * `SMTP_PORT` defaults to 587, the submission port, which starts plaintext
+ * and upgrades with STARTTLS; 465 is implicit TLS from the first byte.
+ * `SMTP_SECURE` overrides that inference for a host that does something
+ * unusual. TLS is required either way — `requireTLS` makes a server that
+ * cannot upgrade fail loudly rather than sending the password in the clear.
+ */
+async function deliverViaSmtp(data: ContactFormData): Promise<void> {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASSWORD;
+  const from = process.env.CONTACT_FROM_EMAIL;
+
+  const missing = [
+    !host && "SMTP_HOST",
+    !user && "SMTP_USER",
+    !pass && "SMTP_PASSWORD",
+    !from && "CONTACT_FROM_EMAIL",
+  ].filter(Boolean);
+
+  if (missing.length > 0 || !host || !user || !pass || !from) {
+    throw new DeliveryNotConfiguredError(
+      `CONTACT_DELIVERY="smtp" requires ${missing.join(", ")}.`,
+    );
+  }
+
+  const port = Number(process.env.SMTP_PORT ?? 587);
+  if (!Number.isInteger(port) || port <= 0 || port > 65535) {
+    throw new DeliveryNotConfiguredError(
+      `SMTP_PORT is not a valid port number: "${process.env.SMTP_PORT}".`,
+    );
+  }
+
+  const secure = process.env.SMTP_SECURE
+    ? process.env.SMTP_SECURE === "true"
+    : port === 465;
+
+  // Imported here rather than at module scope so that the other delivery
+  // modes, and the config check, never pay to load it.
+  const { createTransport } = await import("nodemailer");
+  const transport = createTransport({
+    host,
+    port,
+    secure,
+    requireTLS: !secure,
+    auth: { user, pass },
+  });
+
+  try {
+    // The message itself. A throw here reaches the sender as a failure.
+    const notification = buildNotificationEmail(data, brand);
+    await transport.sendMail({
+      from,
+      to: siteConfig.email,
+      replyTo: data.email,
+      subject: notification.subject,
+      text: notification.text,
+    });
+
+    // The sender's receipt. Best-effort, see the note at the top.
+    const confirmation = buildConfirmationEmail(data, brand);
+    try {
+      await transport.sendMail({
+        from,
+        to: data.email,
+        replyTo: siteConfig.email,
+        subject: confirmation.subject,
+        text: confirmation.text,
+        html: confirmation.html,
+      });
+    } catch (error) {
+      console.error(
+        `[contact] notification delivered, but the confirmation to ${data.email} failed:`,
+        error,
+      );
+    }
+  } finally {
+    // Without this the pooled connection keeps the process's event loop
+    // busy well past the response.
+    transport.close();
+  }
 }
 
 async function deliverViaResend(data: ContactFormData): Promise<void> {
