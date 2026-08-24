@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
   // Nothing gains from advertising the framework and version.
   poweredByHeader: false,
 
+  // Nodemailer opens raw TLS sockets and resolves its own transports at
+  // runtime, which the Route Handler bundler cannot follow. Next auto-opts
+  // out a list of such packages; nodemailer is not on it, so name it here or
+  // contact delivery fails at runtime with a module-resolution error.
+  serverExternalPackages: ["nodemailer"],
+
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

@@ -46,13 +46,44 @@ part that needs configuration.
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | No | Public origin, no trailing slash. Overrides the production default in `config/site.ts` — set it on preview and staging deploys so canonical URLs and the sitemap point at the right host. |
-| `CONTACT_DELIVERY` | To submit the form | `resend` to send email, or `log` to print submissions to the server console. `log` is refused in production. |
+| `CONTACT_DELIVERY` | To submit the form | `smtp` to send through an ordinary mail server, `resend` to send through the Resend API, or `log` to print submissions to the server console. `log` is refused in production. |
+| `CONTACT_FROM_EMAIL` | Always, to send | Address both emails are sent from. Under `smtp` it should be the mailbox the credentials belong to; under `resend` its domain must be verified in Resend. |
+| `SMTP_HOST` | With `CONTACT_DELIVERY=smtp` | Mail server hostname, from the web host's mail settings. |
+| `SMTP_USER` | With `CONTACT_DELIVERY=smtp` | Mailbox login — usually the full address. |
+| `SMTP_PASSWORD` | With `CONTACT_DELIVERY=smtp` | Mailbox password. |
+| `SMTP_PORT` | No | Defaults to `587` (STARTTLS). Use `465` for implicit TLS. |
+| `SMTP_SECURE` | No | `true` forces implicit TLS, `false` forces STARTTLS. Inferred from the port when unset, which is right for almost every host. |
 | `RESEND_API_KEY` | With `CONTACT_DELIVERY=resend` | Resend API key. |
-| `CONTACT_FROM_EMAIL` | With `CONTACT_DELIVERY=resend` | Verified sender address. |
 
 With `CONTACT_DELIVERY` unset the form reports a failure and points the sender
 at the contact email address. That is deliberate: a form that reports success
 while dropping the message loses leads silently.
+
+These are **runtime** variables read on each request, not build-time ones, so
+they must be present in the environment the server actually runs under — and
+the process needs a restart after they change. Setting them only at build time
+leaves the form broken.
+
+### Checking the configuration
+
+`GET /api/contact` reports whether delivery can work, whichever backend is
+selected — otherwise
+invisible from outside: the form deliberately tells the sender nothing about
+the server, so a missing `CONTACT_DELIVERY` and a rejected API key produce the
+same message. It answers `200` when delivery is ready and `503` while it is
+not, and reports only booleans — never a key or any other secret.
+
+```console
+$ curl https://backeasysheets.com/api/contact
+{"ready":false,"deliveryMode":null,"resendApiKeySet":false,
+ "contactFromEmailSet":false,"deliversTo":"info@backeasysheets.com",
+ "problems":["CONTACT_DELIVERY is not set. Set it to \"resend\" so submissions are emailed."]}
+```
+
+`ready: true` means the variables are present and well-formed. It does not
+prove Resend will accept the send — an unverified sending domain still fails
+at delivery time, and that shows up in the server log as `[contact] delivery
+failed:`.
 
 ## Central configuration
 
@@ -117,7 +148,50 @@ The route is protected by an origin check, a per-IP rate limit
 is per server instance; back it with Redis or KV if the site is deployed
 across several.
 
-Delivery goes through `lib/contact-delivery.ts`. Adding another backend
-(Supabase, Formspree, SES) means adding a branch there — no page or form
-changes. Delivery either succeeds or throws; the route never reports success
-for a message it could not send.
+Delivery goes through `lib/contact-delivery.ts`. Pick a backend with
+`CONTACT_DELIVERY`:
+
+- **`smtp`** sends through an ordinary mail server using the credentials the
+  web host already provides for the site's own mailbox. No third-party account
+  and no DNS changes, so it is usually the quickest way to get a working form.
+  TLS is required: on the default port 587 the connection starts plaintext and
+  must upgrade with STARTTLS, and a server that cannot upgrade fails rather
+  than sending the password in the clear.
+- **`resend`** sends through the Resend HTTP API. Needs an account and the
+  sending domain verified there by DNS.
+
+Nodemailer is listed in `serverExternalPackages` in `next.config.ts`. It opens
+raw TLS sockets and resolves transports at runtime, which the Route Handler
+bundler cannot follow; without that entry delivery fails at runtime with a
+module-resolution error.
+
+Either backend sends two emails per submission — both rendered by
+`lib/contact-email.ts`:
+
+1. **The notification**, to the contact address in `config/site.ts`. This is
+   the message itself. Its `Reply-To` is the sender, so replying in the inbox
+   answers them directly. It must succeed: if it fails, delivery throws, the
+   route answers 5xx, and the form tells the sender their message did not go
+   through. The route never reports success for a message it could not send.
+2. **The confirmation**, to the address the sender typed in — their receipt,
+   confirming the message went through and naming the address the answer will
+   arrive at, with a `Reply-To` of the contact address. It is sent second and is
+   best-effort: a failure is logged, not thrown. The lead is already in the
+   inbox by then, and telling the sender "your message could not be sent" when
+   it was would only produce a duplicate submission.
+
+**The confirmation does not quote the submission back, and must not start.**
+Nobody verifies the address typed into the form, so anything that email echoes
+is text an attacker can aim at a stranger's inbox from the site's own sending
+domain — a spam-complaint vector that costs far more than the copy is worth to
+a sender who already knows what they wrote. The full submission goes to the
+business inbox and nowhere else. `tests/contact-email.test.ts` guards this.
+
+What sender-supplied text remains — the first name in the greeting — is capped
+short and flattened to one line by `sanitizeHeader()`, and escaped in the HTML
+part. The confirmation's subject is fixed rather than built from submitted
+values. The same `sanitizeHeader()` bounds the notification subject, which
+keeps it safe under any delivery backend, not just a JSON API.
+
+Adding another backend (Supabase, Formspree, SES) means adding a branch in
+`contact-delivery.ts` — no page, form, or email-copy changes.
