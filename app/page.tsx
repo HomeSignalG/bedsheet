@@ -252,7 +252,7 @@ export default function HomePage() {
           <div className="relative">
             <div className="@lg:w-[58%]">
               <PlaceholderImage
-                src="/placeholders/system-diagram-clean.webp"
+                src="/placeholders/system-diagram-full.webp"
                 alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
                 width={1265}
                 height={1010}
