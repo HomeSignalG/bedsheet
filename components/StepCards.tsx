@@ -67,7 +67,9 @@ function StepImage({ step }: { step: { src: string; alt: string } }) {
         alt={step.alt}
         width={800}
         height={1000}
-        className="absolute inset-0 h-full w-full rounded-none object-contain"
+        bare
+        sizes="(min-width: 768px) 33vw, 100vw"
+        className="absolute inset-0 h-full w-full object-contain"
       />
     </div>
   );

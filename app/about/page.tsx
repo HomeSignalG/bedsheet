@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Dancing_Script } from "next/font/google";
 import Section from "@/components/Section";
 import BenefitStrip from "@/components/BenefitStrip";
 import CtaBand from "@/components/CtaBand";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import HeroPhoto from "@/components/HeroPhoto";
+import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import Trademark from "@/components/Trademark";
 import {
   ArrowRightIcon,
@@ -21,18 +23,34 @@ import {
   SupportIcon,
 } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+// Loaded here rather than in the root layout: the signature below is the
+// only place on the site that uses it, and loading it globally preloads a
+// third font family on every route.
+//
+// Applied as `className`, not as a CSS variable. A `@theme` token built from
+// a variable (`--font-script: var(--font-signature), …`) is substituted where
+// it is *declared* — on :root — so setting `--font-signature` further down
+// the tree leaves the token invalid and the text falls back to body copy.
+const signature = Dancing_Script({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const metadata: Metadata = pageMetadata({
   title: "About Us",
   description:
     "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: `About Us | ${siteConfig.brandName}`,
-    description:
-      "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
-    url: "/about",
-  },
+  path: "/about",
+});
+
+/** Hero photograph. Declared once so both renderings share one description. */
+const heroPhoto: Photo = {
+  src: "/placeholders/about-hero-farmhouse.webp",
+  alt: "A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge",
+  width: 1398,
+  height: 1125,
 };
 
 const heroBenefits = [
@@ -123,9 +141,9 @@ export default function AboutPage() {
                 real, very personal—and far too common.
               </p>
               <p>
-                Today, our patented two-part bed sheet system helps people of
-                all ages change the part of the bed that gets dirty most—without
-                the struggle.
+                Today, {siteConfig.patent.prose} helps people of all ages
+                change the part of the bed that gets dirty most—without the
+                struggle.
               </p>
             </div>
             <div className="mt-9">
@@ -133,25 +151,10 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="lg:hidden">
-            <PlaceholderImage
-              src="/placeholders/about-hero-farmhouse.webp"
-              alt="A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge"
-              width={1398}
-              height={1125}
-              priority
-            />
+            <PlaceholderImage {...heroPhoto} priority sizes="(min-width: 640px) 640px, 100vw" />
           </div>
         </div>
-        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
-          <PlaceholderImage
-            src="/placeholders/about-hero-farmhouse.webp"
-            alt="A sunlit farmhouse bedroom with the BackEasy Sheets system made up on the bed, snaps visible along the sheet edge"
-            width={1398}
-            height={1125}
-            priority
-            className="h-full w-full rounded-none object-contain"
-          />
-        </div>
+        <HeroPhoto photo={heroPhoto} />
       </section>
 
       {/* Our story: problem and solution */}
@@ -186,6 +189,7 @@ export default function AboutPage() {
               alt="Black and white photo of a woman straining as she stretches a conventional fitted sheet over a mattress corner"
               width={1536}
               height={1024}
+              sizes="(min-width: 1024px) 200px, 45vw"
               className="max-w-[45%] self-start rounded-lg"
             />
             <div>
@@ -218,6 +222,7 @@ export default function AboutPage() {
               alt="A woman easily lifting the bottom sheet off the snap fasteners at the corner of a neatly made bed"
               width={1515}
               height={1038}
+              sizes="(min-width: 1024px) 200px, 45vw"
               className="max-w-[45%] self-start rounded-lg"
             />
             <div>
@@ -296,6 +301,7 @@ export default function AboutPage() {
               alt="Close-up of a hand holding the crisp white sheet hem, showing the set grommet and fine stitching"
               width={1536}
               height={1024}
+              sizes="(min-width: 640px) 224px, 100vw"
               className="sm:max-w-56"
             />
           </div>
@@ -315,7 +321,7 @@ export default function AboutPage() {
                 <br />
                 This is our purpose.
               </p>
-              <p className="mt-6 font-script text-4xl text-charcoal">
+              <p className={`${signature.className} mt-6 text-4xl text-charcoal`}>
                 {siteConfig.founder.name}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-warmgray">

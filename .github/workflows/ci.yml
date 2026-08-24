@@ -1,7 +1,7 @@
-# Verifies that the site still builds and lints. The repo had no checks at
-# all, so a pull request could merge on nothing but whatever the author ran
-# locally. `next build` type-checks as part of its run, so a build failure
-# covers TypeScript errors too.
+# Verifies that the site still builds, lints and passes its tests. The repo
+# had no checks at all, so a pull request could merge on nothing but whatever
+# the author ran locally. `next build` type-checks as part of its run, so a
+# build failure covers TypeScript errors too.
 name: CI
 
 on:
@@ -27,5 +27,9 @@ jobs:
 
       - run: npm run lint
 
-      # Last, so a lint error surfaces without waiting on a full build.
+      # Cheap, and it names the failing assertion where a build failure would
+      # not. Runs before the build for the same reason lint does.
+      - run: npm test
+
+      # Last, so a lint or test failure surfaces without waiting on a full build.
       - run: npm run build

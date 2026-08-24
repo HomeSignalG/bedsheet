@@ -15,9 +15,12 @@
   --color-taupe: #b4a99b; /* soft taupe — sparing secondary neutral */
 
   /* Typography */
+  /* Both variables are set on <html> by the root layout. A token built from
+     a variable is substituted here, at :root — so a font scoped to a single
+     page cannot be wired up this way; apply its next/font className instead
+     (see the signature on the About page). */
   --font-serif: var(--font-heading), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-script: var(--font-signature), "Brush Script MT", cursive;
 }
 
 body {

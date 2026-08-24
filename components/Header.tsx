@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "@/components/Logo";
@@ -16,9 +16,78 @@ const navItems = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [lastPathname, setLastPathname] = useState(pathname);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
-  const isActive = (href: string) =>
-    href.includes("#") ? false : pathname === href;
+  const isActive = (href: string) => pathname === href;
+
+  /** Closes the menu and hands focus back to the control that opened it. */
+  const closeMenu = useCallback((returnFocus = false) => {
+    setMenuOpen(false);
+    if (returnFocus) toggleRef.current?.focus();
+  }, []);
+
+  // Close on navigation. Link clicks close the panel themselves; this also
+  // catches a back/forward step, which would otherwise leave it open over
+  // the new page. Adjusted during render rather than in an effect, so the
+  // panel never paints once against the page it no longer belongs to.
+  if (lastPathname !== pathname) {
+    setLastPathname(pathname);
+    setMenuOpen(false);
+  }
+
+  // The panel covers the page beneath it, so while it is open: Escape
+  // dismisses it, Tab cycles within it rather than wandering into the
+  // hidden content behind, and the page underneath does not scroll.
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    // Both elements: the root layout gives <html> a height, which makes it
+    // the scrollport, so locking the body alone leaves the page scrolling.
+    const root = document.documentElement;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu(true);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const toggle = toggleRef.current;
+      const panel = panelRef.current;
+      if (!toggle || !panel) return;
+
+      const focusable = [
+        toggle,
+        ...panel.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"),
+      ];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      root.style.overflow = previousRootOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+    };
+  }, [menuOpen, closeMenu]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-stone bg-cream/95 backdrop-blur">
@@ -26,7 +95,7 @@ export default function Header() {
         <Link
           href="/"
           aria-label={`${siteConfig.brandName} — home`}
-          onClick={() => setMenuOpen(false)}
+          onClick={() => closeMenu()}
         >
           <Logo />
         </Link>
@@ -64,6 +133,7 @@ export default function Header() {
 
         {/* Mobile menu toggle */}
         <button
+          ref={toggleRef}
           type="button"
           className="flex h-11 w-11 items-center justify-center text-charcoal lg:hidden"
           aria-expanded={menuOpen}
@@ -92,6 +162,7 @@ export default function Header() {
       {/* Mobile navigation */}
       {menuOpen && (
         <nav
+          ref={panelRef}
           id="mobile-nav"
           aria-label="Primary"
           className="border-t border-stone bg-cream lg:hidden"
@@ -102,7 +173,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => closeMenu()}
                   className={`block py-3 text-sm font-medium uppercase tracking-[0.14em] ${
                     isActive(item.href) ? "text-charcoal" : "text-warmgray"
                   }`}
@@ -114,7 +185,7 @@ export default function Header() {
             <li className="pt-3">
               <Link
                 href="/contact"
-                onClick={() => setMenuOpen(false)}
+                onClick={() => closeMenu()}
                 className="block rounded-md bg-charcoal px-6 py-3 text-center text-sm font-medium uppercase tracking-[0.14em] text-cream"
               >
                 Retailer Inquiry
