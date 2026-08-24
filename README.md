@@ -46,13 +46,44 @@ part that needs configuration.
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | No | Public origin, no trailing slash. Overrides the production default in `config/site.ts` — set it on preview and staging deploys so canonical URLs and the sitemap point at the right host. |
-| `CONTACT_DELIVERY` | To submit the form | `resend` to send email, or `log` to print submissions to the server console. `log` is refused in production. |
+| `CONTACT_DELIVERY` | To submit the form | `smtp` to send through an ordinary mail server, `resend` to send through the Resend API, or `log` to print submissions to the server console. `log` is refused in production. |
+| `CONTACT_FROM_EMAIL` | Always, to send | Address both emails are sent from. Under `smtp` it should be the mailbox the credentials belong to; under `resend` its domain must be verified in Resend. |
+| `SMTP_HOST` | With `CONTACT_DELIVERY=smtp` | Mail server hostname, from the web host's mail settings. |
+| `SMTP_USER` | With `CONTACT_DELIVERY=smtp` | Mailbox login — usually the full address. |
+| `SMTP_PASSWORD` | With `CONTACT_DELIVERY=smtp` | Mailbox password. |
+| `SMTP_PORT` | No | Defaults to `587` (STARTTLS). Use `465` for implicit TLS. |
+| `SMTP_SECURE` | No | `true` forces implicit TLS, `false` forces STARTTLS. Inferred from the port when unset, which is right for almost every host. |
 | `RESEND_API_KEY` | With `CONTACT_DELIVERY=resend` | Resend API key. |
-| `CONTACT_FROM_EMAIL` | With `CONTACT_DELIVERY=resend` | Verified sender address. Both the notification and the sender's confirmation are sent from it, so its domain must be verified in Resend — an unverified sender is the usual reason confirmations land in spam or are rejected outright. |
 
 With `CONTACT_DELIVERY` unset the form reports a failure and points the sender
 at the contact email address. That is deliberate: a form that reports success
 while dropping the message loses leads silently.
+
+These are **runtime** variables read on each request, not build-time ones, so
+they must be present in the environment the server actually runs under — and
+the process needs a restart after they change. Setting them only at build time
+leaves the form broken.
+
+### Checking the configuration
+
+`GET /api/contact` reports whether delivery can work, whichever backend is
+selected — otherwise
+invisible from outside: the form deliberately tells the sender nothing about
+the server, so a missing `CONTACT_DELIVERY` and a rejected API key produce the
+same message. It answers `200` when delivery is ready and `503` while it is
+not, and reports only booleans — never a key or any other secret.
+
+```console
+$ curl https://backeasysheets.com/api/contact
+{"ready":false,"deliveryMode":null,"resendApiKeySet":false,
+ "contactFromEmailSet":false,"deliversTo":"info@backeasysheets.com",
+ "problems":["CONTACT_DELIVERY is not set. Set it to \"resend\" so submissions are emailed."]}
+```
+
+`ready: true` means the variables are present and well-formed. It does not
+prove Resend will accept the send — an unverified sending domain still fails
+at delivery time, and that shows up in the server log as `[contact] delivery
+failed:`.
 
 ## Central configuration
 
@@ -117,8 +148,25 @@ The route is protected by an origin check, a per-IP rate limit
 is per server instance; back it with Redis or KV if the site is deployed
 across several.
 
-Delivery goes through `lib/contact-delivery.ts`, which sends two emails per
-submission — both rendered by `lib/contact-email.ts`:
+Delivery goes through `lib/contact-delivery.ts`. Pick a backend with
+`CONTACT_DELIVERY`:
+
+- **`smtp`** sends through an ordinary mail server using the credentials the
+  web host already provides for the site's own mailbox. No third-party account
+  and no DNS changes, so it is usually the quickest way to get a working form.
+  TLS is required: on the default port 587 the connection starts plaintext and
+  must upgrade with STARTTLS, and a server that cannot upgrade fails rather
+  than sending the password in the clear.
+- **`resend`** sends through the Resend HTTP API. Needs an account and the
+  sending domain verified there by DNS.
+
+Nodemailer is listed in `serverExternalPackages` in `next.config.ts`. It opens
+raw TLS sockets and resolves transports at runtime, which the Route Handler
+bundler cannot follow; without that entry delivery fails at runtime with a
+module-resolution error.
+
+Either backend sends two emails per submission — both rendered by
+`lib/contact-email.ts`:
 
 1. **The notification**, to the contact address in `config/site.ts`. This is
    the message itself. Its `Reply-To` is the sender, so replying in the inbox
