@@ -16,7 +16,9 @@ export default function PlaceholderImage({
   width,
   height,
   priority = false,
+  sizes,
   className = "",
+  bare = false,
 }: {
   src: string;
   alt: string;
@@ -24,8 +26,25 @@ export default function PlaceholderImage({
   height: number;
   /** Set for above-the-fold images; everything else lazy-loads. */
   priority?: boolean;
+  /**
+   * Rendered width of the image, as a CSS `sizes` value. Without it the
+   * browser assumes full viewport width and picks a needlessly large
+   * candidate for any image that renders smaller than that.
+   */
+  sizes?: string;
   className?: string;
+  /**
+   * Skips the default `h-auto w-full rounded-xl` sizing so the caller can
+   * size the image itself. Set it wherever `className` already supplies
+   * width or height, since two competing utilities for the same property
+   * resolve by stylesheet order rather than by which was written last.
+   */
+  bare?: boolean;
 }) {
+  const base = bare
+    ? ""
+    : `h-auto w-full ${className.includes("rounded") ? "" : "rounded-xl"}`;
+
   return (
     <Image
       src={src}
@@ -33,7 +52,16 @@ export default function PlaceholderImage({
       width={width}
       height={height}
       priority={priority}
-      className={`h-auto w-full ${className.includes("rounded") ? "" : "rounded-xl"} ${className}`}
+      sizes={sizes}
+      className={`${base} ${className}`.trim()}
     />
   );
+}
+
+/** Shape of a photograph, so its alt text is written exactly once. */
+export interface Photo {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
 }

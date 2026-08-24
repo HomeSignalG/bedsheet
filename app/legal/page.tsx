@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import HeroPhoto from "@/components/HeroPhoto";
+import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import { LockIcon, ShieldIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Legal & Privacy Policy",
   description:
     "Our commitment to trust and transparency: patent protection and how we collect, use, and protect your information.",
-  alternates: { canonical: "/legal" },
-  openGraph: {
-    title: `Legal & Privacy Policy | ${siteConfig.brandName}`,
-    description:
-      "Our commitment to trust and transparency: patent protection and how we collect, use, and protect your information.",
-    url: "/legal",
-  },
+  path: "/legal",
+});
+
+/**
+ * Hero photograph. A detail shot of the hem and stitching rather than a
+ * lifestyle scene: this page is about construction, ownership and data, and
+ * the lifestyle photography already runs on three other pages.
+ */
+const heroPhoto: Photo = {
+  src: "/placeholders/promise-hem.webp",
+  alt: "Close-up of a hand holding the crisp white sheet hem, showing the set grommet and fine stitching",
+  width: 1536,
+  height: 1024,
 };
 
 const privacySections = [
@@ -22,9 +30,11 @@ const privacySections = [
     title: "1. Information We Collect",
     body: (
       <p>
-        We collect only the information you voluntarily provide to us when you
-        fill out our contact form, including your name, email address, company
-        (if provided), and the details of your inquiry.
+        We collect only the information you voluntarily provide when you fill
+        out our contact form: your name, email address, company and job details
+        (if provided), and the contents of your inquiry. Our web host also
+        records standard server logs, including IP addresses, to keep the site
+        running and to limit automated abuse of the contact form.
       </p>
     ),
   },
@@ -34,7 +44,9 @@ const privacySections = [
       <p>
         We use the information you provide solely to respond to your inquiries,
         communicate with you about our products or services, and provide the
-        information you request.
+        information you request. We do not use it for automated decision-making
+        or profiling, and we do not send marketing email to addresses collected
+        through the contact form unless you ask us to.
       </p>
     ),
   },
@@ -42,65 +54,125 @@ const privacySections = [
     title: "3. Information Sharing",
     body: (
       <p>
-        We do not sell, rent, or trade your personal information. We may share
-        your information only with trusted service providers who assist us in
-        operating our website or responding to your inquiries, and only to the
-        extent necessary to provide those services.
+        We do not sell, rent, or trade your personal information. We share it
+        only with the service providers that host this site and deliver our
+        contact-form email, and only to the extent needed to provide those
+        services. We may also disclose information where the law requires it.
       </p>
     ),
   },
   {
-    title: "4. Data Security",
+    title: "4. Data Retention",
     body: (
       <p>
-        We take reasonable measures to protect your information from
-        unauthorized access, use, or disclosure. However, no method of
-        transmission over the internet is 100% secure.
+        We keep contact-form submissions for {siteConfig.privacy.retention}{" "}
+        after our last correspondence with you, then delete them. Server logs
+        are kept for a short period by our host and then rotated out. You may
+        ask us to delete your information sooner at any time.
       </p>
     ),
   },
   {
-    title: "5. Your Choices",
+    title: "5. Data Security",
     body: (
       <p>
-        You may request that we update, correct, or delete your personal
-        information at any time by contacting us.
+        This site is served over HTTPS, and we take reasonable measures to
+        protect your information from unauthorized access, use, or disclosure.
+        However, no method of transmission over the internet is 100% secure.
       </p>
     ),
   },
   {
-    title: "6. Cookies",
+    title: "6. Cookies and Tracking",
+    body: siteConfig.privacy.usesCookies ? (
+      <p>
+        This website uses cookies to enhance your browsing experience. You can
+        disable cookies in your browser settings if you prefer.
+      </p>
+    ) : (
+      <p>
+        This website sets no cookies. We run no analytics, no advertising
+        pixels, and no third-party tracking scripts, so there is nothing here
+        for you to opt out of.
+      </p>
+    ),
+  },
+  {
+    title: "7. Your Privacy Rights",
     body: (
       <p>
-        Our website may use cookies to enhance your browsing experience. You
-        can choose to disable cookies in your browser settings if you prefer.
+        You may ask us to access, correct, delete, or provide a copy of the
+        personal information we hold about you, and you may object to or ask us
+        to restrict how we use it. Email{" "}
+        <a
+          href={`mailto:${siteConfig.privacy.requestEmail}`}
+          className="text-slate-deep underline underline-offset-4"
+        >
+          {siteConfig.privacy.requestEmail}
+        </a>{" "}
+        and we will respond within 30 days. We will never charge you or treat
+        you differently for exercising these rights.
       </p>
     ),
   },
   {
-    title: "7. Children's Privacy",
+    title: "8. California Residents",
+    body: (
+      <p>
+        Under the CCPA and CPRA you may request the categories and specific
+        pieces of personal information we have collected, ask us to delete or
+        correct it, and opt out of its sale or sharing. We do not sell or share
+        personal information as those laws define it, and we have not done so
+        in the preceding twelve months. Use the contact address in section 7 to
+        make a request.
+      </p>
+    ),
+  },
+  {
+    title: "9. Visitors in the UK and EEA",
+    body: (
+      <p>
+        Where the UK GDPR or EU GDPR applies, our lawful basis for handling
+        your inquiry is legitimate interest — responding to a message you chose
+        to send us. You have the rights described in section 7, plus the right
+        to lodge a complaint with your local supervisory authority. Information
+        you send us is processed in the United States.
+      </p>
+    ),
+  },
+  {
+    title: "10. Children's Privacy",
     body: (
       <p>
         Our website is not intended for children under the age of 13, and we do
-        not knowingly collect personal information from children.
+        not knowingly collect personal information from children. If you
+        believe a child has sent us personal information, contact us and we
+        will delete it.
       </p>
     ),
   },
   {
-    title: "8. Changes to This Policy",
+    title: "11. Changes to This Policy",
     body: (
       <p>
         We may update this Privacy Policy from time to time. Any changes will
-        be posted on this page with an updated effective date.
+        be posted on this page, and the &ldquo;Last Updated&rdquo; date at the
+        top will change with them.
       </p>
     ),
   },
   {
-    title: "9. Contact Us",
+    title: "12. Contact Us",
     body: (
       <p>
-        If you have any questions about this Privacy Policy, please contact us
-        through the{" "}
+        If you have any questions about this Privacy Policy, email us at{" "}
+        <a
+          href={`mailto:${siteConfig.email}`}
+          className="text-slate-deep underline underline-offset-4"
+        >
+          {siteConfig.email}
+        </a>{" "}
+        or use the{" "}
         <Link href="/contact" className="text-slate-deep underline underline-offset-4">
           contact form
         </Link>{" "}
@@ -132,25 +204,10 @@ export default function LegalPage() {
             </p>
           </div>
           <div className="lg:hidden">
-            <PlaceholderImage
-              src="/placeholders/kid-changing-bed.webp"
-              alt="A boy smiling as he lifts the light-blue bottom sheet off the snap fasteners to change his own bed"
-              width={1448}
-              height={1086}
-              priority
-            />
+            <PlaceholderImage {...heroPhoto} priority sizes="(min-width: 640px) 640px, 100vw" />
           </div>
         </div>
-        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
-          <PlaceholderImage
-            src="/placeholders/kid-changing-bed.webp"
-            alt="A boy smiling as he lifts the light-blue bottom sheet off the snap fasteners to change his own bed"
-            width={1448}
-            height={1086}
-            priority
-            className="h-full w-full rounded-none object-contain"
-          />
-        </div>
+        <HeroPhoto photo={heroPhoto} />
       </section>
 
       <div className="bg-ivory px-6 py-16 sm:px-8">
@@ -205,13 +262,11 @@ export default function LegalPage() {
                   contact us through our website.
                 </p>
                 <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-                  {privacySections.map((section, index) => (
+                  {privacySections.map((section) => (
                     <section
                       key={section.title}
                       aria-label={section.title}
-                      className={`border-t border-stone pt-6 ${
-                        index >= 6 ? "sm:col-span-2" : ""
-                      }`}
+                      className="border-t border-stone pt-6"
                     >
                       <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-charcoal">
                         {section.title}

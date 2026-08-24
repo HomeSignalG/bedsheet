@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
 
           <p className="self-center text-sm leading-relaxed text-stone">
-            {siteConfig.footerMotto}
+            {siteConfig.patent.footerMotto}
           </p>
 
           <nav aria-label="Info">

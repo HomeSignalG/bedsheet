@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import BenefitStrip from "@/components/BenefitStrip";
 import ContactForm from "@/components/ContactForm";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import HeroPhoto from "@/components/HeroPhoto";
+import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import {
   BadgeIcon,
   HeartIcon,
@@ -10,18 +11,21 @@ import {
   ShieldIcon,
 } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
     "Whether you're a retailer, distributor, or have a question about our products, we're here to help. Send us a message and our team will get back to you as soon as possible.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    title: `Contact | ${siteConfig.brandName}`,
-    description:
-      "Whether you're a retailer, distributor, or have a question about our products, we're here to help. Send us a message and our team will get back to you as soon as possible.",
-    url: "/contact",
-  },
+  path: "/contact",
+});
+
+/** Hero photograph. Declared once so both renderings share one description. */
+const heroPhoto: Photo = {
+  src: "/placeholders/contact-hero-bedroom.webp",
+  alt: "A made bed with the BackEasy top sheet snapped along the mattress edge, in a sunlit bedroom",
+  width: 1536,
+  height: 1024,
 };
 
 const heroBenefits = [
@@ -70,25 +74,10 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="lg:hidden">
-            <PlaceholderImage
-              src="/placeholders/contact-hero-bedroom.webp"
-              alt="A made bed with the BackEasy top sheet snapped along the mattress edge, in a sunlit bedroom"
-              width={1536}
-              height={1024}
-              priority
-            />
+            <PlaceholderImage {...heroPhoto} priority sizes="(min-width: 640px) 640px, 100vw" />
           </div>
         </div>
-        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
-          <PlaceholderImage
-            src="/placeholders/contact-hero-bedroom.webp"
-            alt="A made bed with the BackEasy top sheet snapped along the mattress edge, in a sunlit bedroom"
-            width={1536}
-            height={1024}
-            priority
-            className="h-full w-full rounded-none object-contain"
-          />
-        </div>
+        <HeroPhoto photo={heroPhoto} />
       </section>
 
       {/* Contact card + form */}

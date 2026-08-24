@@ -6,7 +6,8 @@ import BeddingSystemSection from "@/components/BeddingSystemSection";
 import PatentBadge from "@/components/PatentBadge";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import HeroPhoto from "@/components/HeroPhoto";
+import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import Trademark from "@/components/Trademark";
 import {
   ArrowRightIcon,
@@ -15,18 +16,23 @@ import {
   HouseIcon,
 } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.brandName} — Change your sheets the easy way. Made for real life.`,
-  description:
-    "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: `${siteConfig.brandName} — Change your sheets the easy way. Made for real life.`,
+  ...pageMetadata({
     description:
       "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
-    url: "/",
-  },
+    path: "/",
+  }),
+  title: `${siteConfig.brandName} — Change your sheets the easy way. Made for real life.`,
+};
+
+/** Hero photograph. Declared once so both renderings share one description. */
+const heroPhoto: Photo = {
+  src: "/placeholders/bedroom-navy.webp",
+  alt: "The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot",
+  width: 1402,
+  height: 1122,
 };
 
 const heroBenefits = [
@@ -134,32 +140,19 @@ export default function HomePage() {
           </div>
           {/* Contained image + badge on small screens */}
           <div className="lg:hidden">
-            <PlaceholderImage
-              src="/placeholders/bedroom-navy.webp"
-              alt="The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
-              width={1402}
-              height={1122}
-              priority
-            />
+            <PlaceholderImage {...heroPhoto} priority sizes="(min-width: 640px) 640px, 100vw" />
             <div className="mt-4">
               <PatentBadge />
             </div>
           </div>
         </div>
-        {/* Full-bleed photo on large screens */}
-        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
-          <PlaceholderImage
-            src="/placeholders/bedroom-navy.webp"
-            alt="The BackEasy Sheets system on a grey platform bed: light-blue fitted base and bottom sheet with a navy throw folded across the foot"
-            width={1402}
-            height={1122}
-            priority
-            className="h-full w-full rounded-none object-contain"
-          />
-          <div className="absolute bottom-10 left-0 max-w-xs -translate-x-1/4">
+        {/* Photo on large screens, with the badge pinned to its lower-left
+            corner rather than to the panel it is letterboxed within. */}
+        <HeroPhoto photo={heroPhoto}>
+          <div className="absolute bottom-8 left-0 max-w-xs -translate-x-1/4">
             <PatentBadge />
           </div>
-        </div>
+        </HeroPhoto>
       </section>
 
       {/* Three-step process */}
@@ -212,7 +205,9 @@ export default function HomePage() {
                   alt={panel.alt}
                   width={800}
                   height={600}
-                  className="absolute inset-0 h-full w-full rounded-none object-contain"
+                  bare
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="absolute inset-0 h-full w-full object-contain"
                 />
                 <span
                   className="absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-slate text-cream"
@@ -256,6 +251,7 @@ export default function HomePage() {
                 alt="Exploded diagram of the two-part system: a removable bottom sheet with snap fasteners lifts away from a fitted base, which stays on the mattress and its foundation below."
                 width={1265}
                 height={1010}
+                sizes="(min-width: 1024px) 640px, 100vw"
                 className="rounded-none"
               />
             </div>

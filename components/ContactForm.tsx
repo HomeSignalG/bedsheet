@@ -1,13 +1,16 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import Link from "next/link";
 import {
+  HONEYPOT_FIELD,
   inquiryTypes,
   RETAIL_INQUIRY,
   validateContactForm,
   type ContactFormData,
   type ContactFormErrors,
 } from "@/lib/contact";
+import { siteConfig } from "@/config/site";
 
 const emptyForm: ContactFormData = {
   firstName: "",
@@ -37,11 +40,22 @@ export default function ContactForm() {
   const [form, setForm] = useState<ContactFormData>(emptyForm);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const idPrefix = useId();
   const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+  /** Decoy value. Kept out of `form` so it is never sent as real data. */
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const showBuyerFields = form.inquiryType === RETAIL_INQUIRY;
   const fieldId = (name: keyof ContactFormData) => `${idPrefix}-${name}`;
+
+  // The form is replaced by the confirmation panel on success, taking the
+  // focused submit button with it. Without this, focus falls back to
+  // <body> and a keyboard user is silently returned to the top of the page.
+  useEffect(() => {
+    if (status === "success") successRef.current?.focus();
+  }, [status]);
 
   function setField(name: keyof ContactFormData, value: string) {
     setForm((current) => ({ ...current, [name]: value }));
@@ -52,6 +66,10 @@ export default function ContactForm() {
       delete next[name];
       return next;
     });
+    // A failed send is stale the moment the user starts editing; without
+    // this the banner stays pinned above the form until the next submit.
+    setStatus((current) => (current === "error" ? "idle" : current));
+    setSubmitError(null);
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -66,18 +84,24 @@ export default function ContactForm() {
     }
 
     setStatus("submitting");
+    setSubmitError(null);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          [HONEYPOT_FIELD]: honeypotRef.current?.value ?? "",
+        }),
       });
-      const result = (await response.json()) as {
-        ok: boolean;
+      const result = (await response.json().catch(() => ({ ok: false }))) as {
+        ok?: boolean;
         errors?: ContactFormErrors;
+        error?: string;
       };
       if (!response.ok || !result.ok) {
         setErrors(result.errors ?? {});
+        setSubmitError(result.error ?? null);
         setStatus("error");
         requestAnimationFrame(() => errorSummaryRef.current?.focus());
         return;
@@ -96,6 +120,8 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div
+        ref={successRef}
+        tabIndex={-1}
         role="status"
         className="border border-slate bg-cream p-8 text-center"
       >
@@ -118,7 +144,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+    <form onSubmit={handleSubmit} noValidate className="relative space-y-6">
       {(errorEntries.length > 0 || status === "error") && (
         <div
           ref={errorSummaryRef}
@@ -143,11 +169,30 @@ export default function ContactForm() {
             </>
           ) : (
             <p className="font-medium">
-              Something went wrong sending your message. Please try again.
+              {submitError ??
+                "Something went wrong sending your message. Please try again."}
             </p>
           )}
         </div>
       )}
+
+      {/* Decoy field. Positioned off-screen rather than hidden with
+          `display: none`, which some bots skip, and taken out of the tab
+          order and the accessibility tree so no person ever meets it. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">
+        <label htmlFor={`${idPrefix}-${HONEYPOT_FIELD}`}>
+          Leave this field empty
+        </label>
+        <input
+          ref={honeypotRef}
+          id={`${idPrefix}-${HONEYPOT_FIELD}`}
+          name={HONEYPOT_FIELD}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
         <TextField
@@ -315,6 +360,23 @@ export default function ContactForm() {
           *
         </span>{" "}
         Required field
+      </p>
+      <p className="text-sm leading-relaxed text-warmgray">
+        We use your details only to answer your message. See our{" "}
+        <Link
+          href="/legal#privacy"
+          className="text-slate-deep underline underline-offset-4"
+        >
+          Privacy Policy
+        </Link>
+        , or email us directly at{" "}
+        <a
+          href={`mailto:${siteConfig.email}`}
+          className="text-slate-deep underline underline-offset-4"
+        >
+          {siteConfig.email}
+        </a>
+        .
       </p>
     </form>
   );

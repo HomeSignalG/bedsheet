@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import PatentBadge from "@/components/PatentBadge";
+import HeroPhoto from "@/components/HeroPhoto";
 import StepCards from "@/components/StepCards";
 import CtaBand from "@/components/CtaBand";
 import SpecTable from "@/components/SpecTable";
 import WhatsIncluded from "@/components/WhatsIncluded";
 import ColorSwatches from "@/components/ColorSwatches";
-import PlaceholderImage from "@/components/PlaceholderImage";
+import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
 import Trademark from "@/components/Trademark";
 import {
@@ -16,19 +17,34 @@ import {
   WashIcon,
 } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Product",
   description:
     "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, available in mattress depths from 10\"–22\".",
-  alternates: { canonical: "/product" },
-  openGraph: {
-    title: `Product | ${siteConfig.brandName}`,
-    description:
-      "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, available in mattress depths from 10\"–22\".",
-    url: "/product",
-  },
+  path: "/product",
+});
+
+/** Hero photograph. Declared once so both renderings share one description. */
+const heroPhoto: Photo = {
+  src: "/placeholders/bedroom-warm.webp",
+  alt: "The BackEasy Sheets system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot",
+  width: 1536,
+  height: 1024,
 };
+
+/** The two parts the hero photograph calls out, named as on the diagram. */
+const heroParts = [
+  {
+    title: "Removable Bottom Sheet",
+    copy: "Soft, smooth, and easy to remove and wash.",
+  },
+  {
+    title: "Fitted Base",
+    copy: "Stays securely on your mattress. All. The. Time.",
+  },
+];
 
 const heroChecklist = [
   "Snaps on and off in seconds",
@@ -85,9 +101,24 @@ const detailStrip = [
   },
 ];
 
-function HeroLabel({ title, copy }: { title: string; copy: string }) {
+/**
+ * One labelled part of the hero photograph.
+ *
+ * Renders the `dt`/`dd` pair and its own wrapping `div` — the single level
+ * of wrapping a `dl` permits. Anything positioning these has to style this
+ * div rather than add another around it, or the list becomes invalid.
+ */
+function HeroLabel({
+  title,
+  copy,
+  className = "",
+}: {
+  title: string;
+  copy: string;
+  className?: string;
+}) {
   return (
-    <div className="border-l-2 border-slate pl-4">
+    <div className={`border-l-2 border-slate pl-4 ${className}`}>
       <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-charcoal">
         {title}
       </dt>
@@ -131,50 +162,29 @@ export default function ProductPage() {
           </div>
           {/* Contained image + labels on small screens */}
           <div className="lg:hidden">
-            <PlaceholderImage
-              src="/placeholders/bedroom-warm.webp"
-              alt="The BackEasy Sheets system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
-              width={1536}
-              height={1024}
-              priority
-            />
+            <PlaceholderImage {...heroPhoto} priority sizes="(min-width: 640px) 640px, 100vw" />
             <dl className="mt-6 grid gap-6 sm:grid-cols-2">
-              <HeroLabel
-                title="Removable Bottom Sheet"
-                copy="Soft, smooth, and easy to remove and wash."
-              />
-              <HeroLabel
-                title="Fitted Base"
-                copy="Stays securely on your mattress. All. The. Time."
-              />
+              {heroParts.map((part) => (
+                <HeroLabel key={part.title} {...part} />
+              ))}
             </dl>
           </div>
         </div>
-        {/* Full-bleed photo with overlaid callouts on large screens */}
-        <div className="absolute inset-y-0 right-0 hidden w-[46%] lg:block">
-          <PlaceholderImage
-            src="/placeholders/bedroom-warm.webp"
-            alt="The BackEasy Sheets system on an upholstered bed: white fitted base and bottom sheet with snap fasteners along the edge, and a woven throw folded across the foot"
-            width={1536}
-            height={1024}
-            priority
-            className="h-full w-full rounded-none object-contain"
-          />
+        {/* Photo with overlaid callouts on large screens. Both callouts are
+            positioned against the photograph — see HeroPhoto — so they stay
+            on the bed they name at every viewport width. */}
+        <HeroPhoto photo={heroPhoto}>
           <dl>
-            <div className="absolute right-8 top-14 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
-              <HeroLabel
-                title="Removable Bottom Sheet"
-                copy="Soft, smooth, and easy to remove and wash."
-              />
-            </div>
-            <div className="absolute bottom-16 right-8 max-w-56 rounded-lg bg-cream/90 p-4 shadow-sm backdrop-blur-sm">
-              <HeroLabel
-                title="Fitted Base"
-                copy="Stays securely on your mattress. All. The. Time."
-              />
-            </div>
+            <HeroLabel
+              {...heroParts[0]}
+              className="absolute right-4 top-6 max-w-56 rounded-lg border-l-2 bg-cream/90 p-4 pl-4 shadow-sm backdrop-blur-sm"
+            />
+            <HeroLabel
+              {...heroParts[1]}
+              className="absolute bottom-6 right-4 max-w-56 rounded-lg border-l-2 bg-cream/90 p-4 pl-4 shadow-sm backdrop-blur-sm"
+            />
           </dl>
-        </div>
+        </HeroPhoto>
       </section>
 
       {/* Feature cards */}
@@ -204,8 +214,8 @@ export default function ProductPage() {
             layout="stacked"
             steps={[
               {
-                label: "Unsnap",
-                copy: "Release the snaps along the sides.",
+                label: "Remove",
+                copy: "Unsnap the bottom sheet from the fitted mattress sheet.",
                 src: "/placeholders/snap-closeup.webp",
                 alt: "Close-up of the bottom sheet corner folded back, showing the snap fastener on the sheet and the matching snap on the fitted base below",
               },
