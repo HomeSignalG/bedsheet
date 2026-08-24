@@ -54,6 +54,31 @@ With `CONTACT_DELIVERY` unset the form reports a failure and points the sender
 at the contact email address. That is deliberate: a form that reports success
 while dropping the message loses leads silently.
 
+These are **runtime** variables read on each request, not build-time ones, so
+they must be present in the environment the server actually runs under — and
+the process needs a restart after they change. Setting them only at build time
+leaves the form broken.
+
+### Checking the configuration
+
+`GET /api/contact` reports whether delivery can work, which is otherwise
+invisible from outside: the form deliberately tells the sender nothing about
+the server, so a missing `CONTACT_DELIVERY` and a rejected API key produce the
+same message. It answers `200` when delivery is ready and `503` while it is
+not, and reports only booleans — never a key or any other secret.
+
+```console
+$ curl https://backeasysheets.com/api/contact
+{"ready":false,"deliveryMode":null,"resendApiKeySet":false,
+ "contactFromEmailSet":false,"deliversTo":"info@backeasysheets.com",
+ "problems":["CONTACT_DELIVERY is not set. Set it to \"resend\" so submissions are emailed."]}
+```
+
+`ready: true` means the variables are present and well-formed. It does not
+prove Resend will accept the send — an unverified sending domain still fails
+at delivery time, and that shows up in the server log as `[contact] delivery
+failed:`.
+
 ## Central configuration
 
 All changeable business information lives in **`config/site.ts`**:
