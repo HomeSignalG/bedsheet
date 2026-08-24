@@ -5,7 +5,8 @@
  *      reading the submitted fields at a glance. Its `reply_to` is set to
  *      the sender by the delivery adapter, so replying answers them.
  *   2. The confirmation back to the sender — the receipt telling them their
- *      message really was sent, with a copy for their records.
+ *      message really was sent and where the answer will arrive. It carries
+ *      no copy of the submission; see `buildConfirmationEmail` for why.
  *
  * These are pure functions with no environment or network access, so the
  * wording and the escaping are covered by unit tests. The delivery adapter
@@ -36,14 +37,24 @@ export interface EmailContent {
 const MAX_SUBJECT_LENGTH = 200;
 
 /**
- * Strips anything that does not belong on a header line and collapses
- * runs of whitespace.
+ * Longest the sender's first name may run in the confirmation greeting.
+ * A name field accepts 200 characters, which is room enough to address a
+ * paragraph at a stranger; a greeting needs far less than that.
+ */
+const MAX_GREETING_LENGTH = 40;
+
+/**
+ * Flattens a submitted value to a single bounded line: control characters
+ * and line breaks become spaces, runs of whitespace collapse, and anything
+ * past `maxLength` is truncated.
  *
- * The notification subject is assembled from submitted values. Delivery
- * goes over a JSON API rather than raw SMTP, so a newline cannot inject a
- * header there — but a value that reaches a header must not carry line
- * breaks or control characters under any backend, and this keeps that true
- * whichever one `contact-delivery.ts` is pointed at.
+ * Used for the notification subject, which is assembled from submitted
+ * values. Delivery goes over a JSON API rather than raw SMTP, so a newline
+ * cannot inject a header there — but a value that reaches a header must not
+ * carry line breaks or control characters under any backend, and this keeps
+ * that true whichever one `contact-delivery.ts` is pointed at. Also used for
+ * the confirmation greeting, which is the one piece of sender-supplied text
+ * that email still contains.
  */
 export function sanitizeHeader(
   value: string,
@@ -107,79 +118,59 @@ export function buildNotificationEmail(
 }
 
 /**
- * The confirmation sent back to whoever filled in the form: proof the
- * message went through, what we received, and when to expect an answer.
+ * The confirmation sent back to whoever filled in the form: proof the message
+ * went through, and where the answer will arrive.
  *
- * It quotes the submission back, so it carries text the sender supplied.
- * That is why the HTML part escapes every interpolated value and why the
- * subject line is fixed rather than built from their input.
+ * It deliberately does NOT quote the submission back. This email goes to
+ * whatever address was typed into the form, which nobody has verified — so
+ * anything echoed into it is text an attacker can aim at a stranger's inbox
+ * from a domain we care about the reputation of. The sender already knows
+ * what they wrote; the copy is worth little to them and a lot to a spammer.
+ * The full submission goes only to the business inbox, in the notification.
+ *
+ * What is left of the sender's input is their first name, in the greeting.
+ * That is capped short and stripped of line breaks for the same reason, and
+ * every interpolated value is escaped in the HTML part.
  */
 export function buildConfirmationEmail(
   data: ContactFormData,
   brand: EmailBrand,
 ): EmailContent {
   const subject = sanitizeHeader(
-    `We received your message — ${brand.brandShort}`,
+    `We received your message \u2014 ${brand.brandShort}`,
   );
-  const greetingName = data.firstName.trim() || "there";
-
-  const detailRows: [string, string][] = [
-    ["Inquiry", data.inquiryType],
-    ["Subject", data.subject],
-  ];
-  if (data.company.trim()) {
-    detailRows.push(["Company", data.company.trim()]);
-  }
-  detailRows.push(...buyerFields(data));
+  const greeting = sanitizeHeader(data.firstName, MAX_GREETING_LENGTH) || "there";
+  const replyTo = data.email.trim();
 
   const text = [
-    `Hi ${greetingName},`,
+    `Hi ${greeting},`,
     "",
     `Thank you for contacting ${brand.brandName}. This email confirms that your`,
-    "message was sent successfully and is now with our team. We typically",
-    "respond within one business day.",
+    "message was sent successfully and is now with our team.",
     "",
-    "Here is a copy for your records:",
+    `We will reply to ${replyTo}, typically within one business day.`,
     "",
-    ...detailRows.map(([label, value]) => `${label}: ${value}`),
+    "There is no need to reply to this email. If you need to reach us sooner,",
+    `email ${brand.contactEmail}.`,
     "",
-    "Message",
-    "-------",
-    data.message,
-    "",
-    "There is no need to reply to this email — we will be in touch. If you",
-    `need to reach us sooner, email ${brand.contactEmail}.`,
-    "",
-    `— The ${brand.brandShort} team`,
+    `\u2014 The ${brand.brandShort} team`,
   ].join("\n");
-
-  const rows = detailRows
-    .map(
-      ([label, value]) =>
-        `<tr><td style="padding:4px 12px 4px 0;color:#6f6a61;vertical-align:top;white-space:nowrap;">${escapeHtml(
-          label,
-        )}</td><td style="padding:4px 0;">${escapeHtml(value)}</td></tr>`,
-    )
-    .join("");
 
   const html = `<!doctype html>
 <html lang="en"><body style="margin:0;padding:24px;background:#f4f1ea;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#2f2f2d;">
 <div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e2ddd2;border-radius:12px;padding:32px;">
 <h1 style="margin:0 0 16px;font-size:20px;line-height:1.3;">We received your message</h1>
-<p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Hi ${escapeHtml(greetingName)},</p>
+<p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Hi ${escapeHtml(greeting)},</p>
 <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for contacting ${escapeHtml(
     brand.brandName,
-  )}. This email confirms that your message was sent successfully and is now with our team. We typically respond within one business day.</p>
-<p style="margin:24px 0 8px;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6f6a61;">Copy for your records</p>
-<table role="presentation" style="width:100%;border-collapse:collapse;font-size:15px;line-height:1.6;">${rows}</table>
-<p style="margin:20px 0 8px;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6f6a61;">Message</p>
-<div style="white-space:pre-wrap;font-size:15px;line-height:1.6;border-left:3px solid #e2ddd2;padding:4px 0 4px 16px;">${escapeHtml(
-    data.message,
-  )}</div>
-<p style="margin:28px 0 0;font-size:14px;line-height:1.6;color:#6f6a61;">There is no need to reply to this email — we will be in touch. If you need to reach us sooner, email <a href="mailto:${escapeHtml(
+  )}. This email confirms that your message was sent successfully and is now with our team.</p>
+<p style="margin:0 0 16px;font-size:15px;line-height:1.6;">We will reply to <strong>${escapeHtml(
+    replyTo,
+  )}</strong>, typically within one business day.</p>
+<p style="margin:28px 0 0;font-size:14px;line-height:1.6;color:#6f6a61;">There is no need to reply to this email. If you need to reach us sooner, email <a href="mailto:${escapeHtml(
     brand.contactEmail,
   )}" style="color:#4a5a6b;">${escapeHtml(brand.contactEmail)}</a>.</p>
-<p style="margin:16px 0 0;font-size:14px;line-height:1.6;">— The ${escapeHtml(
+<p style="margin:16px 0 0;font-size:14px;line-height:1.6;">\u2014 The ${escapeHtml(
     brand.brandShort,
   )} team</p>
 </div></body></html>`;

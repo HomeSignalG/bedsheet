@@ -119,14 +119,46 @@ describe("buildConfirmationEmail", () => {
     assert.ok(email.html?.includes("We received your message"));
   });
 
-  it("quotes the submission back for the sender's records", () => {
+  it("names the address the reply will go to", () => {
+    const email = buildConfirmationEmail(form(), brand);
+    assert.ok(email.text.includes("We will reply to ann@shop.example"));
+    assert.ok(email.html?.includes("ann@shop.example"));
+  });
+
+  // The confirmation goes to an address nobody has verified, so anything it
+  // echoes is text an attacker can aim at a stranger from our domain. The
+  // submission belongs in the notification to the business inbox and nowhere
+  // else — these are the regression guards for that.
+  it("never quotes the submitted message back", () => {
+    const secret = "Attacker authored payload text.";
+    const email = buildConfirmationEmail(form({ message: secret }), brand);
+    assert.ok(!email.text.includes(secret));
+    assert.ok(!email.html?.includes(secret));
+  });
+
+  it("never echoes the other submitted free-text fields", () => {
     const email = buildConfirmationEmail(
-      form({ message: "Please send a wholesale price list." }),
+      form({
+        subject: "SUBJECT-PAYLOAD",
+        company: "COMPANY-PAYLOAD",
+        jobTitle: "JOBTITLE-PAYLOAD",
+        companyWebsite: "https://website-payload.example",
+        retailOrganization: "RETAILORG-PAYLOAD",
+        storeCount: "STORECOUNT-PAYLOAD",
+      }),
       brand,
     );
-    assert.ok(email.text.includes("Subject: Wholesale"));
-    assert.ok(email.text.includes("Please send a wholesale price list."));
-    assert.ok(email.html?.includes("Please send a wholesale price list."));
+    for (const payload of [
+      "SUBJECT-PAYLOAD",
+      "COMPANY-PAYLOAD",
+      "JOBTITLE-PAYLOAD",
+      "website-payload",
+      "RETAILORG-PAYLOAD",
+      "STORECOUNT-PAYLOAD",
+    ]) {
+      assert.ok(!email.text.includes(payload), `text leaked ${payload}`);
+      assert.ok(!email.html?.includes(payload), `html leaked ${payload}`);
+    }
   });
 
   it("points the sender at the business inbox for anything urgent", () => {
@@ -135,17 +167,30 @@ describe("buildConfirmationEmail", () => {
     assert.ok(email.html?.includes(`mailto:${brand.contactEmail}`));
   });
 
-  it("escapes submitted text in the HTML part", () => {
+  it("escapes the greeting in the HTML part", () => {
     const email = buildConfirmationEmail(
-      form({
-        firstName: "<b>Ann</b>",
-        message: `<img src=x onerror="alert(1)">`,
-      }),
+      form({ firstName: `<img src=x onerror="alert(1)">` }),
       brand,
     );
     assert.ok(!email.html?.includes("<img src=x"));
-    assert.ok(!email.html?.includes("<b>Ann</b>"));
     assert.ok(email.html?.includes("&lt;img src=x"));
+  });
+
+  it("caps the greeting so a name field cannot carry a message", () => {
+    const email = buildConfirmationEmail(
+      form({ firstName: "Ann".padEnd(200, "!") }),
+      brand,
+    );
+    const greeting = email.text.split("\n")[0];
+    assert.ok(greeting.length <= "Hi ,".length + 40, greeting);
+  });
+
+  it("strips line breaks from the greeting", () => {
+    const email = buildConfirmationEmail(
+      form({ firstName: "Ann\nClick https://phish.example" }),
+      brand,
+    );
+    assert.equal(email.text.split("\n")[0], "Hi Ann Click https://phish.example,");
   });
 
   it("falls back to a neutral greeting when the name is blank", () => {
@@ -154,11 +199,5 @@ describe("buildConfirmationEmail", () => {
         "Hi there,",
       ),
     );
-  });
-
-  it("omits optional rows that were left empty", () => {
-    const email = buildConfirmationEmail(form({ company: "" }), brand);
-    assert.ok(!email.text.includes("Company:"));
-    assert.ok(!email.text.includes("Job title:"));
   });
 });

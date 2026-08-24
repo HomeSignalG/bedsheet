@@ -126,16 +126,24 @@ submission — both rendered by `lib/contact-email.ts`:
    route answers 5xx, and the form tells the sender their message did not go
    through. The route never reports success for a message it could not send.
 2. **The confirmation**, to the address the sender typed in — their receipt,
-   quoting the submission back with a `Reply-To` of the contact address. It is
-   sent second and is best-effort: a failure is logged, not thrown. The lead is
-   already in the inbox by then, and telling the sender "your message could not
-   be sent" when it was would only produce a duplicate submission.
+   confirming the message went through and naming the address the answer will
+   arrive at, with a `Reply-To` of the contact address. It is sent second and is
+   best-effort: a failure is logged, not thrown. The lead is already in the
+   inbox by then, and telling the sender "your message could not be sent" when
+   it was would only produce a duplicate submission.
 
-The confirmation quotes text the sender supplied, so its HTML part escapes
-every interpolated value and its subject line is fixed rather than built from
-their input. `sanitizeHeader()` strips line breaks and control characters from
-anything that reaches a header, which keeps the notification subject safe under
-any delivery backend, not just a JSON API.
+**The confirmation does not quote the submission back, and must not start.**
+Nobody verifies the address typed into the form, so anything that email echoes
+is text an attacker can aim at a stranger's inbox from the site's own sending
+domain — a spam-complaint vector that costs far more than the copy is worth to
+a sender who already knows what they wrote. The full submission goes to the
+business inbox and nowhere else. `tests/contact-email.test.ts` guards this.
+
+What sender-supplied text remains — the first name in the greeting — is capped
+short and flattened to one line by `sanitizeHeader()`, and escaped in the HTML
+part. The confirmation's subject is fixed rather than built from submitted
+values. The same `sanitizeHeader()` bounds the notification subject, which
+keeps it safe under any delivery backend, not just a JSON API.
 
 Adding another backend (Supabase, Formspree, SES) means adding a branch in
 `contact-delivery.ts` — no page, form, or email-copy changes.
