@@ -232,10 +232,12 @@ export default function LegalPage() {
                     copied, reproduced, distributed, or used without our prior
                     written permission.
                   </p>
-                  <p>
-                    <strong className="text-charcoal">Patent information:</strong>{" "}
-                    {siteConfig.patent.number ?? siteConfig.patent.shortNotice}
-                  </p>
+                  {siteConfig.patent.number && (
+                    <p>
+                      <strong className="text-charcoal">Patent information:</strong>{" "}
+                      {siteConfig.patent.number}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

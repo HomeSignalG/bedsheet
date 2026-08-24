@@ -124,7 +124,7 @@ export default function Footer() {
           <p>
             © {year} {siteConfig.copyrightHolder}. All rights reserved.
           </p>
-          <p>{siteConfig.patent.number ?? siteConfig.patent.shortNotice}</p>
+          {siteConfig.patent.number && <p>{siteConfig.patent.number}</p>}
         </div>
       </div>
     </footer>

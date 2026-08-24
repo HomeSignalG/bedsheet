@@ -70,8 +70,6 @@ export const siteConfig = {
    */
   patent: {
     number: null as string | null,
-    /** Short notice used in the footer while `number` is null. */
-    shortNotice: "Patent information available upon final legal review.",
     /** Statement used on the Legal & Privacy Policy page. */
     statement:
       "BackEasy Sheets™ Bedding System and its products and designs are protected by U.S. patents and patents pending.",
