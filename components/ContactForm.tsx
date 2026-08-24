@@ -127,8 +127,9 @@ export default function ContactForm() {
       >
         <h3 className="font-serif text-2xl">Thank you.</h3>
         <p className="mt-3 leading-relaxed text-warmgray">
-          Your message has been received. We&rsquo;ll get back to you by email as
-          soon as we can.
+          Your message has been sent to our team, and a confirmation email is on
+          its way. We&rsquo;ll reply to the email address you provided, typically
+          within one business day.
         </p>
         <p className="mt-6">
           <button

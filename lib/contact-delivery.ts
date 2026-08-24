@@ -1,14 +1,29 @@
 import type { ContactFormData } from "@/lib/contact";
+import {
+  buildConfirmationEmail,
+  buildNotificationEmail,
+  type EmailBrand,
+  type EmailContent,
+} from "@/lib/contact-email";
 import { siteConfig } from "@/config/site";
 
 /**
  * Delivery adapter for contact-form submissions.
  *
  * The API route validates the submission and then hands it to
- * `deliverContactSubmission`. Delivery either succeeds or throws — the route
- * turns a throw into a 5xx and the form tells the sender their message did
- * not go through. Nothing here may swallow a failure: a form that reports
- * success while dropping the message loses leads silently.
+ * `deliverContactSubmission`, which sends two emails:
+ *
+ *   1. The notification to `siteConfig.email` — the business inbox. This is
+ *      the message itself, and it must succeed. If it fails, this function
+ *      throws, the route answers 5xx, and the form tells the sender their
+ *      message did not go through. Nothing here may swallow that failure: a
+ *      form that reports success while dropping the message loses leads
+ *      silently.
+ *   2. The confirmation back to the address the sender typed in, so they
+ *      have proof it was sent. This one is best-effort — it is sent second,
+ *      and a failure is logged rather than thrown. The lead is already in
+ *      the inbox by that point, and telling the sender "your message could
+ *      not be sent" when it was would only produce a duplicate submission.
  *
  * Two modes, chosen by environment:
  *
@@ -29,6 +44,13 @@ export class DeliveryNotConfiguredError extends Error {
   }
 }
 
+/** Brand details the email copy is rendered from. */
+const brand: EmailBrand = {
+  brandName: siteConfig.brandName,
+  brandShort: siteConfig.brandShort,
+  contactEmail: siteConfig.email,
+};
+
 export async function deliverContactSubmission(
   data: ContactFormData,
 ): Promise<void> {
@@ -45,9 +67,22 @@ export async function deliverContactSubmission(
         'CONTACT_DELIVERY="log" is a development-only mode and will not run in production.',
       );
     }
+    const notification = buildNotificationEmail(data, brand);
+    const confirmation = buildConfirmationEmail(data, brand);
     console.info("[contact] submission received (log mode, not delivered):", {
-      ...data,
       receivedAt: new Date().toISOString(),
+      notification: {
+        to: siteConfig.email,
+        replyTo: data.email,
+        subject: notification.subject,
+        text: notification.text,
+      },
+      confirmation: {
+        to: data.email,
+        replyTo: siteConfig.email,
+        subject: confirmation.subject,
+        text: confirmation.text,
+      },
     });
     return;
   }
@@ -67,19 +102,53 @@ async function deliverViaResend(data: ContactFormData): Promise<void> {
     );
   }
 
+  // The message itself. A throw here is the whole point of the adapter
+  // contract — the sender is told it did not go through.
+  const notification = buildNotificationEmail(data, brand);
+  await sendViaResend(apiKey, {
+    from,
+    to: [siteConfig.email],
+    reply_to: data.email,
+    subject: notification.subject,
+    text: notification.text,
+  });
+
+  // The sender's receipt. Best-effort by design, see the note at the top.
+  const confirmation = buildConfirmationEmail(data, brand);
+  try {
+    await sendViaResend(apiKey, {
+      from,
+      to: [data.email],
+      reply_to: siteConfig.email,
+      subject: confirmation.subject,
+      text: confirmation.text,
+      html: confirmation.html,
+    });
+  } catch (error) {
+    console.error(
+      `[contact] notification delivered, but the confirmation to ${data.email} failed:`,
+      error,
+    );
+  }
+}
+
+interface ResendPayload extends EmailContent {
+  from: string;
+  to: string[];
+  reply_to: string;
+}
+
+async function sendViaResend(
+  apiKey: string,
+  payload: ResendPayload,
+): Promise<void> {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      from,
-      to: [siteConfig.email],
-      reply_to: data.email,
-      subject: `[${data.inquiryType}] ${data.subject}`,
-      text: formatSubmission(data),
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
@@ -87,36 +156,7 @@ async function deliverViaResend(data: ContactFormData): Promise<void> {
     // never returned to the browser.
     const detail = await response.text().catch(() => "");
     throw new Error(
-      `Resend rejected the submission (${response.status}). ${detail}`.trim(),
+      `Resend rejected the email to ${payload.to.join(", ")} (${response.status}). ${detail}`.trim(),
     );
   }
-}
-
-/** Plain-text rendering of a submission, used as the email body. */
-function formatSubmission(data: ContactFormData): string {
-  const lines = [
-    `Name:     ${data.firstName} ${data.lastName}`,
-    `Email:    ${data.email}`,
-    `Company:  ${data.company || "—"}`,
-    `Inquiry:  ${data.inquiryType}`,
-    `Subject:  ${data.subject}`,
-  ];
-
-  const buyerFields: [string, string | undefined][] = [
-    ["Job title", data.jobTitle],
-    ["Website", data.companyWebsite],
-    ["Retail org", data.retailOrganization],
-    ["Stores", data.storeCount],
-  ];
-  const filled = buyerFields.filter(([, value]) => value);
-
-  if (filled.length > 0) {
-    lines.push("", "Retail buyer details");
-    for (const [label, value] of filled) {
-      lines.push(`${label}: ${value}`);
-    }
-  }
-
-  lines.push("", "Message", "-------", data.message);
-  return lines.join("\n");
 }
