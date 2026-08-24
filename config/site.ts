@@ -93,14 +93,40 @@ export const siteConfig = {
   ],
 
   /**
+   * Colorways offered, in the order they are presented on the Product page.
+   *
+   * `hex` drives the swatch fill only — these are web-display values, not
+   * manufacturer color codes. White, Taupe, and Coastal Blue reuse the
+   * approved brand palette tokens from `app/globals.css` (ivory, taupe,
+   * slate). The remaining values are provisional stand-ins chosen to sit
+   * in the same neutral family; replace them here once the physical fabric
+   * colors are finalized. This array is the only place they are defined.
+   */
+  colorways: [
+    { name: "White", hex: "#f7f5f0" },
+    { name: "Flax", hex: "#ded3bc" },
+    { name: "Taupe", hex: "#b4a99b" },
+    { name: "Silver Gray", hex: "#a9adb2" },
+    { name: "Coastal Blue", hex: "#667789" },
+    { name: "Navy", hex: "#2f4256" },
+    { name: "Sage", hex: "#a8b5a2" },
+  ],
+
+  /**
    * Contents of one complete system, listed in the bedding-system section
-   * on Home and Product. Single source of truth for package contents.
+   * on Home and in "What's Included" on Product. Single source of truth for
+   * package contents.
+   *
+   * `featured` marks the item Product leads with — the pair of removable
+   * bottom sheets is the point of the system, not one line item among four.
+   * `note` carries a qualifier that must travel with the quantity wherever
+   * it is shown.
    */
   systemContents: [
-    { quantity: 1, item: "Fitted Mattress Base Sheet" },
-    { quantity: 2, item: "Removable Bottom Sheets" },
-    { quantity: 1, item: "Top Sheet" },
-    { quantity: 2, item: "Pillowcases" },
+    { quantity: 1, item: "Fitted Mattress Base Sheet", featured: false, note: null as string | null },
+    { quantity: 2, item: "Removable Bottom Sheets", featured: true, note: null as string | null },
+    { quantity: 1, item: "Top Sheet", featured: false, note: null as string | null },
+    { quantity: 4, item: "Pillowcases", featured: false, note: "2 with Twin & Twin XL" as string | null },
   ],
 
   /** Copyright holder shown in the footer. */
