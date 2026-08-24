@@ -48,7 +48,7 @@ part that needs configuration.
 | `NEXT_PUBLIC_SITE_URL` | No | Public origin, no trailing slash. Overrides the production default in `config/site.ts` — set it on preview and staging deploys so canonical URLs and the sitemap point at the right host. |
 | `CONTACT_DELIVERY` | To submit the form | `resend` to send email, or `log` to print submissions to the server console. `log` is refused in production. |
 | `RESEND_API_KEY` | With `CONTACT_DELIVERY=resend` | Resend API key. |
-| `CONTACT_FROM_EMAIL` | With `CONTACT_DELIVERY=resend` | Verified sender address. |
+| `CONTACT_FROM_EMAIL` | With `CONTACT_DELIVERY=resend` | Verified sender address. Both the notification and the sender's confirmation are sent from it, so its domain must be verified in Resend — an unverified sender is the usual reason confirmations land in spam or are rejected outright. |
 
 With `CONTACT_DELIVERY` unset the form reports a failure and points the sender
 at the contact email address. That is deliberate: a form that reports success
@@ -117,7 +117,25 @@ The route is protected by an origin check, a per-IP rate limit
 is per server instance; back it with Redis or KV if the site is deployed
 across several.
 
-Delivery goes through `lib/contact-delivery.ts`. Adding another backend
-(Supabase, Formspree, SES) means adding a branch there — no page or form
-changes. Delivery either succeeds or throws; the route never reports success
-for a message it could not send.
+Delivery goes through `lib/contact-delivery.ts`, which sends two emails per
+submission — both rendered by `lib/contact-email.ts`:
+
+1. **The notification**, to the contact address in `config/site.ts`. This is
+   the message itself. Its `Reply-To` is the sender, so replying in the inbox
+   answers them directly. It must succeed: if it fails, delivery throws, the
+   route answers 5xx, and the form tells the sender their message did not go
+   through. The route never reports success for a message it could not send.
+2. **The confirmation**, to the address the sender typed in — their receipt,
+   quoting the submission back with a `Reply-To` of the contact address. It is
+   sent second and is best-effort: a failure is logged, not thrown. The lead is
+   already in the inbox by then, and telling the sender "your message could not
+   be sent" when it was would only produce a duplicate submission.
+
+The confirmation quotes text the sender supplied, so its HTML part escapes
+every interpolated value and its subject line is fixed rather than built from
+their input. `sanitizeHeader()` strips line breaks and control characters from
+anything that reaches a header, which keeps the notification subject safe under
+any delivery backend, not just a JSON API.
+
+Adding another backend (Supabase, Formspree, SES) means adding a branch in
+`contact-delivery.ts` — no page, form, or email-copy changes.

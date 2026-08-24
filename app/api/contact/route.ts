@@ -56,8 +56,11 @@ export async function POST(request: Request) {
   }
 
   // Decoy field: only an automated client fills it in. Answer 200 so the
-  // bot has nothing to tune against, and drop the submission.
+  // bot has nothing to tune against, and drop the submission. Logged
+  // because this is the one path that drops a message while reporting
+  // success — if a real sender ever trips it, the log is the only trace.
   if (readString(body, HONEYPOT_FIELD)) {
+    console.info("[contact] submission dropped: decoy field was filled in.");
     return NextResponse.json({ ok: true });
   }
 
