@@ -8,6 +8,7 @@ import {
 import {
   deliverContactSubmission,
   DeliveryNotConfiguredError,
+  probeDelivery,
 } from "@/lib/contact-delivery";
 import { clientKey, rateLimit } from "@/lib/rate-limit";
 import { siteConfig } from "@/config/site";
@@ -15,6 +16,9 @@ import { siteConfig } from "@/config/site";
 /** Submissions allowed from one client per window. */
 const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
+
+/** Live probes allowed from one client per window. */
+const PROBE_LIMIT = 10;
 
 export async function POST(request: Request) {
   if (!isSameOrigin(request)) {
@@ -108,7 +112,24 @@ export async function POST(request: Request) {
  * GET handlers are dynamic by default in Next 16, so this reads the live
  * environment on every request rather than whatever was set at build time.
  */
-export async function GET() {
+export async function GET(request: Request) {
+  // `?probe=1` additionally opens a real connection to the mail server and
+  // authenticates, reporting its verdict. Rate limited, because it makes an
+  // outbound connection on every request.
+  const wantsProbe = new URL(request.url).searchParams.get("probe") === "1";
+  if (wantsProbe) {
+    const limit = rateLimit(`probe:${clientKey(request)}`, {
+      limit: PROBE_LIMIT,
+      windowMs: RATE_WINDOW_MS,
+    });
+    if (!limit.ok) {
+      return NextResponse.json(
+        { ok: false, error: "Too many probes. Please try again shortly." },
+        { status: 429, headers: { "Retry-After": String(limit.retryAfter) } },
+      );
+    }
+  }
+
   const mode = process.env.CONTACT_DELIVERY ?? null;
   const contactFromEmailSet = Boolean(process.env.CONTACT_FROM_EMAIL);
   const smtpHostSet = Boolean(process.env.SMTP_HOST);
@@ -150,10 +171,18 @@ export async function GET() {
   }
 
   const ready = problems.length === 0;
+  const probe = wantsProbe && ready ? await probeDelivery() : undefined;
 
   return NextResponse.json(
     {
       ready,
+      ...(wantsProbe
+        ? {
+            probe:
+              probe ??
+              "Skipped: fix the settings listed under problems first, then probe again.",
+          }
+        : {}),
       deliveryMode: mode,
       contactFromEmailSet,
       smtpHostSet,
@@ -165,7 +194,7 @@ export async function GET() {
       problems,
     },
     {
-      status: ready ? 200 : 503,
+      status: ready && (!probe || probe.ok) ? 200 : 503,
       // Never let a proxy or CDN serve a stale answer: the whole point is to
       // reflect the environment the server is running with right now.
       headers: { "Cache-Control": "no-store" },

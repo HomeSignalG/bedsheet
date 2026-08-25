@@ -85,7 +85,25 @@ prove the mail server will accept the send — a wrong password or an
 unverified sending domain still fails at delivery time, and that shows up in
 the server log as `[contact] delivery failed:`.
 
-For that case, run the diagnostic on the server:
+`GET /api/contact?probe=1` goes further: it opens a real connection to the
+mail server and authenticates, without sending anything, and reports the
+server's own verdict — the stage it reached and the SMTP response line:
+
+```json
+{"ready":true,
+ "probe":{"ok":false,"stage":"auth","code":535,
+          "detail":"535 5.7.0 Invalid login or password"}}
+```
+
+`stage` says what to go and fix: `auth` is a credential the mail server
+rejects, `connect` is a wrong host or port, `dns` is a hostname that does not
+resolve, `tls` is an encryption mismatch. It answers 200 only when the mail
+server accepts the login, so an uptime check pointed at it catches a
+credential that expires. The response carries no password and nothing an
+attacker could not learn by submitting the form and watching it fail, but it
+is a live outbound connection, so it is rate limited.
+
+For a fuller picture, run the diagnostic on the server:
 
 ```bash
 cd /path/to/the/deployed/site
