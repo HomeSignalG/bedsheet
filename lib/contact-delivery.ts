@@ -115,6 +115,92 @@ export async function deliverContactSubmission(
  * unusual. TLS is required either way — `requireTLS` makes a server that
  * cannot upgrade fail loudly rather than sending the password in the clear.
  */
+/** What a live connection test found. Carries no secret. */
+export interface DeliveryProbe {
+  ok: boolean;
+  /** How far the connection got: dns, connect, tls, auth, or ready. */
+  stage: string;
+  /** SMTP status code, when the server issued one. */
+  code?: number;
+  /** The server's own response line, or the transport error. */
+  detail?: string;
+}
+
+/**
+ * Opens a real connection to the mail server and authenticates, without
+ * sending anything.
+ *
+ * The POST handler cannot report why delivery failed — the browser must
+ * never learn about the server's configuration — so the reason only reaches
+ * the host's log. On a host whose log box streams from the moment it is
+ * opened, that reason is easy to miss entirely. This makes it retrievable.
+ *
+ * What it returns is the mail server's own verdict on our credentials: a
+ * status code and the response line, e.g. 535 "Invalid login or password".
+ * No password, no key, and nothing an attacker could not learn by submitting
+ * the form and watching it fail — but enough for whoever runs the site to
+ * tell "wrong password" from "wrong port" without shell access.
+ */
+export async function probeDelivery(): Promise<DeliveryProbe> {
+  const mode = process.env.CONTACT_DELIVERY;
+
+  if (mode !== "smtp") {
+    return {
+      ok: false,
+      stage: "unsupported",
+      detail: `Live probing is implemented for CONTACT_DELIVERY="smtp"; this server is set to ${
+        mode ? `"${mode}"` : "nothing"
+      }.`,
+    };
+  }
+
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASSWORD;
+  if (!host || !user || !pass) {
+    return { ok: false, stage: "config", detail: "SMTP settings are incomplete." };
+  }
+
+  const port = Number(process.env.SMTP_PORT ?? 587);
+  const secure = process.env.SMTP_SECURE
+    ? process.env.SMTP_SECURE === "true"
+    : port === 465;
+
+  const { createTransport } = await import("nodemailer");
+  const transport = createTransport({
+    host,
+    port,
+    secure,
+    requireTLS: !secure,
+    auth: { user, pass },
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 10_000,
+  });
+
+  try {
+    await transport.verify();
+    return { ok: true, stage: "ready", detail: "Authenticated successfully." };
+  } catch (error) {
+    const e = error as { code?: string; responseCode?: number; response?: string; message?: string };
+    const detail = e.response || e.message || String(error);
+    // nodemailer reports ESOCKET for a refused connection and for a TLS
+    // failure alike, so fall through to the underlying errno. The point of
+    // the stage is to say which thing to go and fix — a wrong password and
+    // an unreachable port must not read the same.
+    const stage =
+      e.code === "EAUTH" ? "auth"
+      : /ENOTFOUND|EAI_AGAIN/.test(detail) ? "dns"
+      : /ECONNREFUSED|ETIMEDOUT|EHOSTUNREACH|ENETUNREACH/.test(detail) ? "connect"
+      : e.code === "ETIMEDOUT" || e.code === "ECONNECTION" ? "connect"
+      : e.code === "ESOCKET" || e.code === "ETLS" ? "tls"
+      : "unknown";
+    return { ok: false, stage, code: e.responseCode, detail };
+  } finally {
+    transport.close();
+  }
+}
+
 async function deliverViaSmtp(data: ContactFormData): Promise<void> {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
