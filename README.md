@@ -81,9 +81,39 @@ $ curl https://backeasysheets.com/api/contact
 ```
 
 `ready: true` means the variables are present and well-formed. It does not
-prove Resend will accept the send — an unverified sending domain still fails
-at delivery time, and that shows up in the server log as `[contact] delivery
-failed:`.
+prove the mail server will accept the send — a wrong password or an
+unverified sending domain still fails at delivery time, and that shows up in
+the server log as `[contact] delivery failed:`.
+
+For that case, run the diagnostic on the server:
+
+```bash
+cd /path/to/the/deployed/site
+node scripts/diagnose-contact-smtp.js
+```
+
+It prints the whole SMTP conversation, and — importantly — compares the
+password as written in `.env.production` against the value the app actually
+receives.
+
+### Keep the SMTP password alphanumeric
+
+`.env` files are parsed by dotenv, which gives some characters meaning:
+
+| Line in `.env.production` | What the app receives |
+| --- | --- |
+| `SMTP_PASSWORD=hunter2#secret$x` | `hunter2` |
+| `SMTP_PASSWORD='hunter2#secret$x'` | `hunter2#secret` |
+| `SMTP_PASSWORD="hunter2#secret$x"` | `hunter2#secret` |
+| `SMTP_PASSWORD=hunter2secretx99` | `hunter2secretx99` |
+
+A `#` truncates the value from that point, and `$name` is expanded as a
+variable reference and disappears — **inside quotes as well as outside**, so
+quoting is not a fix. The mail server then answers `535 Invalid login or
+password` while the file still reads correctly, which is close to
+undiagnosable without the script above.
+
+Use letters and digits only for the mailbox password.
 
 ## Central configuration
 
