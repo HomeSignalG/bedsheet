@@ -50,7 +50,8 @@ part that needs configuration.
 | `CONTACT_FROM_EMAIL` | Always, to send | Address both emails are sent from. Under `smtp` it should be the mailbox the credentials belong to; under `resend` its domain must be verified in Resend. |
 | `SMTP_HOST` | With `CONTACT_DELIVERY=smtp` | Mail server hostname, from the web host's mail settings. |
 | `SMTP_USER` | With `CONTACT_DELIVERY=smtp` | Mailbox login — usually the full address. |
-| `SMTP_PASSWORD` | With `CONTACT_DELIVERY=smtp` | Mailbox password. |
+| `SMTP_PASSWORD` | With `CONTACT_DELIVERY=smtp` | Mailbox password. Safe for a password of letters and digits only — see the warning below. |
+| `SMTP_PASSWORD_FILE` | Instead of `SMTP_PASSWORD` | Path to a file whose entire contents are the password. Takes precedence when set. Use this for any password containing `#` or `$`. |
 | `SMTP_PORT` | No | Defaults to `587` (STARTTLS). Use `465` for implicit TLS. |
 | `SMTP_SECURE` | No | `true` forces implicit TLS, `false` forces STARTTLS. Inferred from the port when unset, which is right for almost every host. |
 | `RESEND_API_KEY` | With `CONTACT_DELIVERY=resend` | Resend API key. |
@@ -114,7 +115,7 @@ It prints the whole SMTP conversation, and — importantly — compares the
 password as written in `.env.production` against the value the app actually
 receives.
 
-### Keep the SMTP password alphanumeric
+### A password containing `#` or `$` must go in a file
 
 `.env` files are parsed by dotenv, which gives some characters meaning:
 
@@ -129,9 +130,28 @@ A `#` truncates the value from that point, and `$name` is expanded as a
 variable reference and disappears — **inside quotes as well as outside**, so
 quoting is not a fix. The mail server then answers `535 Invalid login or
 password` while the file still reads correctly, which is close to
-undiagnosable without the script above.
+undiagnosable: reading the file, the obvious move, confirms nothing.
 
-Use letters and digits only for the mailbox password.
+Rather than demanding a weaker password, point `SMTP_PASSWORD_FILE` at a file
+whose entire contents are the password. It has no syntax — nothing is
+expanded, nothing is a comment — and only a trailing newline is stripped:
+
+```bash
+cat > ~/.smtp-password     # then type the password, Enter, then Ctrl-D
+chmod 600 ~/.smtp-password
+```
+
+Typing into `cat` rather than passing the password as a shell argument also
+keeps it out of shell history and out of any quoting rules.
+
+Then in `.env.production`:
+
+```
+SMTP_PASSWORD_FILE=/absolute/path/to/.smtp-password
+```
+
+`GET /api/contact` reports which source is in use as `smtpPasswordSource`, so
+it is visible at a glance which one the running app picked up.
 
 ## Central configuration
 

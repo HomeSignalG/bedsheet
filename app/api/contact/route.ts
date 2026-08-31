@@ -134,7 +134,8 @@ export async function GET(request: Request) {
   const contactFromEmailSet = Boolean(process.env.CONTACT_FROM_EMAIL);
   const smtpHostSet = Boolean(process.env.SMTP_HOST);
   const smtpUserSet = Boolean(process.env.SMTP_USER);
-  const smtpPasswordSet = Boolean(process.env.SMTP_PASSWORD);
+  const smtpPasswordFile = process.env.SMTP_PASSWORD_FILE ?? null;
+  const smtpPasswordSet = Boolean(process.env.SMTP_PASSWORD || smtpPasswordFile);
   const resendApiKeySet = Boolean(process.env.RESEND_API_KEY);
   const problems: string[] = [];
 
@@ -145,7 +146,9 @@ export async function GET(request: Request) {
   } else if (mode === "smtp") {
     if (!smtpHostSet) problems.push("SMTP_HOST is not set.");
     if (!smtpUserSet) problems.push("SMTP_USER is not set.");
-    if (!smtpPasswordSet) problems.push("SMTP_PASSWORD is not set.");
+    if (!smtpPasswordSet) {
+      problems.push("Neither SMTP_PASSWORD nor SMTP_PASSWORD_FILE is set.");
+    }
     if (!contactFromEmailSet) {
       problems.push(
         "CONTACT_FROM_EMAIL is not set. It should be the mailbox the SMTP credentials belong to.",
@@ -188,6 +191,11 @@ export async function GET(request: Request) {
       smtpHostSet,
       smtpUserSet,
       smtpPasswordSet,
+      smtpPasswordSource: smtpPasswordFile
+        ? `file: ${smtpPasswordFile}`
+        : process.env.SMTP_PASSWORD
+          ? "SMTP_PASSWORD"
+          : null,
       smtpPort: process.env.SMTP_PORT ?? null,
       resendApiKeySet,
       deliversTo: siteConfig.email,

@@ -115,6 +115,32 @@ export async function deliverContactSubmission(
  * unusual. TLS is required either way — `requireTLS` makes a server that
  * cannot upgrade fail loudly rather than sending the password in the clear.
  */
+/**
+ * The SMTP password, read from a file when `SMTP_PASSWORD_FILE` names one.
+ *
+ * `.env` files are parsed by dotenv, which gives some characters meaning: a
+ * `#` truncates the value from that point, and `$name` is expanded as a
+ * variable reference and disappears. Quoting stops neither — measured on the
+ * Next version this repo pins. A perfectly good mailbox password containing
+ * either character therefore reaches the mail server mangled, which it
+ * answers with `535 Invalid login or password` while the env file still
+ * reads correctly. That is close to undiagnosable, and it is not a
+ * reasonable reason to make someone change their password.
+ *
+ * A password file has no syntax: its entire contents are the password. Only
+ * a trailing newline is stripped, because every text editor and `cat > file`
+ * adds one. `SMTP_PASSWORD` still works and is fine for a password made of
+ * letters and digits.
+ */
+async function smtpPassword(): Promise<string | undefined> {
+  const path = process.env.SMTP_PASSWORD_FILE;
+  if (!path) return process.env.SMTP_PASSWORD;
+
+  const { readFile } = await import("node:fs/promises");
+  const contents = await readFile(path, "utf8");
+  return contents.replace(/\r?\n$/, "");
+}
+
 /** What a live connection test found. Carries no secret. */
 export interface DeliveryProbe {
   ok: boolean;
@@ -156,7 +182,16 @@ export async function probeDelivery(): Promise<DeliveryProbe> {
 
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASSWORD;
+  let pass: string | undefined;
+  try {
+    pass = await smtpPassword();
+  } catch (error) {
+    return {
+      ok: false,
+      stage: "config",
+      detail: `SMTP_PASSWORD_FILE could not be read: ${(error as Error).message}`,
+    };
+  }
   if (!host || !user || !pass) {
     return { ok: false, stage: "config", detail: "SMTP settings are incomplete." };
   }
@@ -204,13 +239,20 @@ export async function probeDelivery(): Promise<DeliveryProbe> {
 async function deliverViaSmtp(data: ContactFormData): Promise<void> {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASSWORD;
   const from = process.env.CONTACT_FROM_EMAIL;
+  let pass: string | undefined;
+  try {
+    pass = await smtpPassword();
+  } catch (error) {
+    throw new DeliveryNotConfiguredError(
+      `SMTP_PASSWORD_FILE could not be read: ${(error as Error).message}`,
+    );
+  }
 
   const missing = [
     !host && "SMTP_HOST",
     !user && "SMTP_USER",
-    !pass && "SMTP_PASSWORD",
+    !pass && "SMTP_PASSWORD or SMTP_PASSWORD_FILE",
     !from && "CONTACT_FROM_EMAIL",
   ].filter(Boolean);
 
