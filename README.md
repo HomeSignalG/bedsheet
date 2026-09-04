@@ -46,6 +46,8 @@ part that needs configuration.
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | No | Public origin, no trailing slash. Overrides the production default in `config/site.ts` — set it on preview and staging deploys so canonical URLs and the sitemap point at the right host. |
+| `GOOGLE_SITE_VERIFICATION` | No | Google Search Console verification token, rendered as a `google-site-verification` meta tag. Read when pages are rendered, which for these static routes means **at build time** — set it before `npm run build`. Unset, the tag is omitted. |
+| `BING_SITE_VERIFICATION` | No | Bing Webmaster Tools token, rendered as `msvalidate.01`. Same build-time rule as above. |
 | `CONTACT_DELIVERY` | To submit the form | `smtp` to send through an ordinary mail server, `resend` to send through the Resend API, or `log` to print submissions to the server console. `log` is refused in production. |
 | `CONTACT_FROM_EMAIL` | Always, to send | Address both emails are sent from. Under `smtp` it should be the mailbox the credentials belong to; under `resend` its domain must be verified in Resend. |
 | `SMTP_HOST` | With `CONTACT_DELIVERY=smtp` | Mail server hostname, from the web host's mail settings. |
@@ -177,6 +179,13 @@ All changeable business information lives in **`config/site.ts`**:
 Update that one file and the change propagates across the site, including the
 JSON-LD in `components/StructuredData.tsx`.
 
+That file carries the site-wide `Organization`, `WebSite` and `Product` graph;
+`components/BreadcrumbStructuredData.tsx` adds a `Home → page` trail on the
+inner pages. Both describe only what the site actually publishes. There is no
+`Offer`, price, availability, rating, review, address, telephone or `sameAs`,
+because none of those exist yet — add them when they do, not before, and add
+`sameAs` only for profiles that are real and verified.
+
 ## Metadata
 
 Pages build their metadata through `pageMetadata()` in `lib/metadata.ts`
@@ -186,6 +195,68 @@ the layout's — silently dropping `siteName`, `type` and `locale`. The helper
 keeps those on every route.
 
 The share card is generated at build time by `app/opengraph-image.tsx`.
+
+Titles are composed as `Page words | BackEasy Sheets`. Inner pages export the
+page-specific half and let the root layout's `%s` template add the suffix; the
+home page shares the layout's route segment, where that template does not
+apply, so `pageMetadata()` writes the composed string itself for `/`. That is
+easy to break silently — `tests/metadata.test.ts` covers it.
+
+## Search engines and indexing
+
+The canonical host is `https://www.backeasysheets.com`, set once in
+`config/site.ts` and used by every canonical link, Open Graph URL, `robots.txt`,
+`sitemap.xml` and JSON-LD `@id`. Override it per environment with
+`NEXT_PUBLIC_SITE_URL` so a preview deploy never claims the production URL.
+
+`app/sitemap.ts` dates each URL from the last commit that touched that route's
+page file (`lib/last-modified.ts`). Two consequences worth knowing:
+
+- Building from a source tree with no `.git` — an exported tarball, say —
+  drops `lastmod` rather than substituting the build date. That is deliberate:
+  stamping every page as changed on every deploy trains crawlers to ignore the
+  field.
+- The date comes from the page file alone, so copy that lives in a shared
+  component reports the page's older date. It understates freshness, which is
+  the safe direction to be wrong in.
+
+### The next pages, and why they do not exist yet
+
+Four topics were evaluated for standalone indexable pages. None was created:
+each would either duplicate a page that already ranks better for the same
+intent, or would publish facts the business has not established. A thin page
+is worse than no page — it competes with the page that should win.
+
+| Topic | Verdict | Where it lives today |
+| --- | --- | --- |
+| How it works | No page. Home and `/product` both carry the three steps; a third URL would compete with `/product` for the same query. | `/product`, "Change Your Bottom Sheet in Seconds" |
+| Sizes / mattress-depth guide | The strongest future candidate — people search for a depth ("sheets for an 18-inch mattress"). Blocked on facts we do not have: how to measure a mattress, which depth suits which mattress. | `/product#spec-heading`, linked from Home |
+| FAQ | Not yet. It needs answers only the founder has — minimum order, lead time, warranty, where to buy. Three answers is a thin page, and inventing the rest is not an option. | Scattered across `/product` and `/contact` |
+| Retailers / wholesale | The intent is real and commercial, but the content *is* the contact form. `/contact` now targets that query directly instead. | `/contact` |
+
+Revisit the size guide and the FAQ once the underlying facts exist; both are
+content work, not engineering work.
+
+### What still has to be done outside this repository
+
+These cannot be done in code, and none of them are done yet:
+
+1. **Confirm `backeasysheets.com` redirects to `https://www.backeasysheets.com`**
+   with a permanent (301) redirect, at the host or DNS level. Everything here
+   points at the `www` host; if the apex serves the same pages instead of
+   redirecting, the two hosts split their own signals.
+2. **Create the Google Search Console property** for `https://www.backeasysheets.com`,
+   verify it (set `GOOGLE_SITE_VERIFICATION` and rebuild, or drop Google's
+   verification HTML file into `public/`), then submit `/sitemap.xml` and
+   request indexing for `/` and `/product`.
+3. **Create the Bing Webmaster Tools site**, verify it the same way with
+   `BING_SITE_VERIFICATION`, and submit the same sitemap.
+
+Search Console is also the measurement layer for now: it reports impressions,
+clicks, average position and per-query data without any script on the page, so
+the site keeps setting no cookies and `privacy.usesCookies` stays `false`. Any
+analytics product that runs a script would need a `script-src` entry in the CSP
+in `next.config.ts` and a rewrite of the cookie section of the privacy policy.
 
 ## Images
 

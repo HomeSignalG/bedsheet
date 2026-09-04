@@ -3,6 +3,7 @@ import BenefitStrip from "@/components/BenefitStrip";
 import ContactForm from "@/components/ContactForm";
 import HeroPhoto from "@/components/HeroPhoto";
 import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
+import BreadcrumbStructuredData from "@/components/BreadcrumbStructuredData";
 import {
   BadgeIcon,
   HeartIcon,
@@ -14,9 +15,9 @@ import { siteConfig } from "@/config/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact",
+  title: "Wholesale & Retailer Inquiries",
   description:
-    "Whether you're a retailer, distributor, or have a question about our products, we're here to help. Send us a message and our team will get back to you as soon as possible.",
+    "Retailer, distributor and wholesale inquiries for the BackEasy Sheets two-part bedding system. Send a message and our team will get back to you.",
   path: "/contact",
 });
 
@@ -49,6 +50,7 @@ const heroBenefits = [
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbStructuredData name="Contact" path="/contact" />
       {/* Hero — photo bleeds to the top and right edges on large screens */}
       <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[520px] lg:grid-cols-2">

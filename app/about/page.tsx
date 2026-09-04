@@ -6,6 +6,7 @@ import CtaBand from "@/components/CtaBand";
 import HeroPhoto from "@/components/HeroPhoto";
 import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import Trademark from "@/components/Trademark";
+import BreadcrumbStructuredData from "@/components/BreadcrumbStructuredData";
 import {
   ArrowRightIcon,
   BackIcon,
@@ -39,9 +40,9 @@ const signature = Dancing_Script({
 });
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Us",
+  title: "Why We Made an Easier Bed Sheet",
   description:
-    "BackEasy Sheets was created to solve a problem that was very real, very personal—and far too common. Born from a real problem after back surgery, built for real life.",
+    "Changing a bed should not mean wrestling a conventional fitted sheet off the mattress. The story behind the BackEasy Sheets two-part bedding system.",
   path: "/about",
 });
 
@@ -124,6 +125,7 @@ const promiseChips = [
 export default function AboutPage() {
   return (
     <>
+      <BreadcrumbStructuredData name="About Us" path="/about" />
       {/* Hero — photo bleeds to the top and right edges on large screens */}
       <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">

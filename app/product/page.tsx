@@ -10,6 +10,7 @@ import ColorSwatches from "@/components/ColorSwatches";
 import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import ImageCard from "@/components/ImageCard";
 import Trademark from "@/components/Trademark";
+import BreadcrumbStructuredData from "@/components/BreadcrumbStructuredData";
 import {
   CheckSolidIcon,
   DiamondIcon,
@@ -20,9 +21,9 @@ import { siteConfig } from "@/config/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Product",
+  title: "Two-Part Bed Sheet System",
   description:
-    "A fitted base that stays on your mattress and a removable bottom sheet that snaps on and off in seconds. Six sizes, Twin through California King, available in mattress depths from 10\"–22\".",
+    "A fitted base sheet that stays on the mattress and a removable bottom sheet that snaps on and off. Six sizes, Twin to California King, depths 10\"–22\".",
   path: "/product",
 });
 
@@ -130,6 +131,7 @@ function HeroLabel({
 export default function ProductPage() {
   return (
     <>
+      <BreadcrumbStructuredData name="Product" path="/product" />
       {/* Hero — photo bleeds to the top and right edges on large screens */}
       <section className="relative bg-cream">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[560px] lg:grid-cols-2">
@@ -144,7 +146,9 @@ export default function ProductPage() {
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-warmgray">
               A fitted base that stays on your mattress. A removable bottom sheet
               that snaps on and off in seconds—so you can change your bed the
-              easy way.
+              easy way. Instead of pulling a conventional fitted sheet off the
+              mattress and working a clean one back over each corner, you unsnap
+              one layer and snap on the next.
             </p>
             <ul className="mt-7 space-y-3">
               {heroChecklist.map((item) => (
@@ -207,9 +211,14 @@ export default function ProductPage() {
       {/* How it works */}
       <section aria-label="How it works" className="bg-ivory px-6 py-20 sm:px-8">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal">
+          <h2 className="mb-4 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal">
             Change Your Bottom Sheet in Seconds
           </h2>
+          <p className="mb-10 max-w-2xl leading-relaxed text-warmgray">
+            Two parts, one bed. The fitted mattress base sheet is installed
+            once and stays on the mattress. The removable bottom sheet snaps to
+            it, and that is the part you take off, wash, and snap back on.
+          </p>
           <StepCards
             layout="stacked"
             steps={[
@@ -243,9 +252,11 @@ export default function ProductPage() {
         <WhatsIncluded headingId="whats-included-heading" />
 
         <div className="mt-14 border-t border-stone pt-12">
+          {/* scroll-mt: the header is sticky, so Home's link to this anchor
+              would otherwise land with the heading behind it. */}
           <h2
             id="spec-heading"
-            className="mb-10 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
+            className="mb-10 scroll-mt-24 text-lg font-semibold uppercase tracking-[0.14em] text-charcoal"
           >
             Sizes &amp; Mattress Depths
           </h2>

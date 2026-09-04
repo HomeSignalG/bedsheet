@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Trademark from "@/components/Trademark";
 import { pocketDepthRange, siteConfig } from "@/config/site";
 
@@ -92,6 +93,18 @@ export default function BeddingSystemSection({
                 </li>
               ))}
             </ul>
+
+            {/* Sends both readers and crawlers from the summary here to the
+                full table on Product, which is the page that should rank for
+                a size or depth query. */}
+            <p className="mt-10 text-center">
+              <Link
+                href="/product#spec-heading"
+                className="text-sm font-semibold uppercase tracking-[0.14em] text-charcoal underline underline-offset-4 hover:text-slate-deep"
+              >
+                See sizes and mattress depths
+              </Link>
+            </p>
           </>
         )}
       </div>

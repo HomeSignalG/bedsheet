@@ -18,11 +18,32 @@ const body = Inter({
   display: "swap",
 });
 
+/**
+ * Search-engine ownership tokens, supplied per environment.
+ *
+ * Both are read when the page is rendered, which for these statically
+ * prerendered routes means at build time — set them before `npm run build`,
+ * not just in the running server's environment. Unset, the meta tags are
+ * omitted entirely rather than emitted empty. Neither tag sets a cookie or
+ * loads a script, so `privacy.usesCookies` stays honest with them in place.
+ */
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION?.trim();
+const bingSiteVerification = process.env.BING_SITE_VERIFICATION?.trim();
+
+const verification = {
+  ...(googleSiteVerification ? { google: googleSiteVerification } : {}),
+  ...(bingSiteVerification
+    ? { other: { "msvalidate.01": bingSiteVerification } }
+    : {}),
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.baseUrl),
   title: {
     default: `${siteConfig.brandName} — ${siteConfig.tagline}`,
-    template: `%s | ${siteConfig.brandName}`,
+    // The short brand name, not the full one: a 33-character suffix eats the
+    // half of a search-result title that says what the page is about.
+    template: `%s | ${siteConfig.brandShort}`,
   },
   description: siteConfig.brandStatement,
   openGraph: {
@@ -33,6 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  ...(Object.keys(verification).length > 0 ? { verification } : {}),
 };
 
 export default function RootLayout({
