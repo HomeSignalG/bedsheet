@@ -3,13 +3,14 @@ import Link from "next/link";
 import HeroPhoto from "@/components/HeroPhoto";
 import PlaceholderImage, { type Photo } from "@/components/PlaceholderImage";
 import { LockIcon, ShieldIcon } from "@/components/icons";
+import BreadcrumbStructuredData from "@/components/BreadcrumbStructuredData";
 import { siteConfig } from "@/config/site";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Legal & Privacy Policy",
   description:
-    "Our commitment to trust and transparency: patent protection and how we collect, use, and protect your information.",
+    "Patent statement and privacy policy for BackEasy Sheets: what the contact form collects, how it is used, and how long it is kept.",
   path: "/legal",
 });
 
@@ -185,6 +186,7 @@ const privacySections = [
 export default function LegalPage() {
   return (
     <>
+      <BreadcrumbStructuredData name="Legal & Privacy Policy" path="/legal" />
       {/* Hero — photo bleeds to the top and right edges on large screens */}
       <section className="relative bg-ivory">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 sm:px-8 md:py-20 lg:min-h-[420px] lg:grid-cols-2">

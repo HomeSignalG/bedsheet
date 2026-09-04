@@ -18,14 +18,12 @@ import {
 import { siteConfig } from "@/config/site";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  ...pageMetadata({
-    description:
-      "The BackEasy Sheets Bedding System features a removable bottom sheet that snaps on and off in seconds—so you can change your bed the easy way.",
-    path: "/",
-  }),
-  title: `${siteConfig.brandName} — Change your sheets the easy way. Made for real life.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Bed Sheets With a Removable Bottom Sheet",
+  description:
+    "A patented two-part bed sheet system: the fitted base stays on the mattress, and the removable bottom sheet snaps off and on in seconds.",
+  path: "/",
+});
 
 /** Hero photograph. Declared once so both renderings share one description. */
 const heroPhoto: Photo = {
@@ -123,7 +121,9 @@ export default function HomePage() {
               The {siteConfig.brandShort}
               <Trademark /> {siteConfig.brandSubtitle} features a removable
               bottom sheet that snaps on and off in seconds—so you can change
-              your bed the easy way.
+              your bed the easy way. The fitted mattress base sheet stays where
+              it is, so changing the bed no longer means pulling a conventional
+              fitted sheet off the mattress and stretching a fresh one back on.
             </p>
             <div className="mt-8">
               <BenefitStrip items={heroBenefits} />
@@ -235,7 +235,7 @@ export default function HomePage() {
         background="cream"
         eyebrow="A better way to bed."
         title="The two-part system that stays put."
-        intro="The fitted base stays securely on your mattress. The removable bottom sheet is what gets changed. It's that simple."
+        intro="The fitted base stays securely on your mattress. The removable bottom sheet is the layer you lie on, and it is the only part that comes off to be washed—no stripping and re-fitting a conventional fitted sheet. It's that simple."
       >
         {/* Container queries, not viewport ones: the callouts belong beside the
             artwork whenever this block is wide enough to hold both, including

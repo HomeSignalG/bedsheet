@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { siteConfig } from "@/config/site";
+// Relative, not the `@/` alias: the title composition below is unit tested,
+// and the test runner resolves imports without tsconfig's path mapping.
+import { siteConfig } from "../config/site.ts";
 
 /**
  * Builds a page's metadata.
@@ -24,26 +26,35 @@ const shareImage = {
   alt: `${siteConfig.brandName} — ${siteConfig.tagline}`,
 };
 
+/**
+ * Composes the title exactly as it will appear in a search result:
+ * the page's own words, then the short brand name.
+ */
+export function composeTitle(title: string): string {
+  return `${title} | ${siteConfig.brandShort}`;
+}
+
 export function pageMetadata({
   title,
   description,
   path,
 }: {
-  /** Page title. Omit on the home page, which uses the layout default. */
-  title?: string;
+  /** Page-specific part of the title, without the brand suffix. */
+  title: string;
   description: string;
   /** Route path, e.g. `/product`. Use `/` for the home page. */
   path: string;
 }): Metadata {
-  // The home page keeps the full default title; inner pages get the
-  // `%s | Brand` template applied by the layout, so Open Graph has to
-  // spell out the same composed string itself.
-  const composed = title
-    ? `${title} | ${siteConfig.brandName}`
-    : `${siteConfig.brandName} — ${siteConfig.tagline}`;
+  const composed = composeTitle(title);
+
+  // The layout's `%s | brand` template applies to child segments only, and
+  // the home page shares the layout's own segment — so it has to carry the
+  // composed string itself. Inner pages pass the bare title and let the
+  // template add the suffix, which keeps it in one place.
+  const isHome = path === "/";
 
   return {
-    ...(title ? { title } : {}),
+    title: isHome ? composed : title,
     description,
     alternates: { canonical: path },
     openGraph: {
